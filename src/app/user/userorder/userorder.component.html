@@ -1,0 +1,24 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav">
+        <button color="primary" mat-button routerLink="/customer">customer2</button>
+        <button color="primary" mat-button routerLink="/customer">customer2</button>
+        <button color="primary" mat-button routerLink="/customer">customer1</button>
+      </mat-drawer>
+      <div class="sidenav-content">
+        <mat-toolbar color="primary">
+          <mat-toolbar-row>
+            <button mat-icon-button (click)="drawer.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span>CIF</span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="drawer.toggle()">
+              <mat-icon>add_shopping_cart</mat-icon>
+             
+            </button>
+            <mat-icon>home</mat-icon>
+          </mat-toolbar-row>
+        </mat-toolbar>
+    
+      </div>
+    </mat-drawer-container>

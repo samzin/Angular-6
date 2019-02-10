@@ -1,0 +1,39 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+body{
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+}
+:host {
+    display: block;
+}
+.mat-toolbar-row {
+    height: 40px;
+}
+.mat-toolbar.mat-primary[_ngcontent-c1] {
+    background: #377798;
+    color: #fff;
+}
+.mat-toolbar-multiple-rows {
+    min-height: 40px;
+}
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.container .mat-drawer {
+    min-width: 175px;
+}
+
+.container .mat-drawer .mat-button {
+  display:block;
+  width: 100%;
+  text-align: left;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
