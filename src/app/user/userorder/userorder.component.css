@@ -6,11 +6,12 @@ body{
     display: block;
 }
 .mat-toolbar-row {
-    height: 40px;
+    height: 45px;
 }
 .mat-toolbar.mat-primary[_ngcontent-c1] {
     background: #377799;
     color: #fff;
+    font: 535 16px/32px Roboto,"Helvetica Neue",sans-serif;
 }
 .mat-toolbar-multiple-rows {
     min-height: 40px;
@@ -37,3 +38,24 @@ body{
 .spacer{
     flex: 1 1 auto;
 }
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .example-card {
+    max-width: 200px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  
+  
