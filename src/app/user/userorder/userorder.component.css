@@ -52,10 +52,11 @@ body{
     max-width: 200px;
   }
   
+ 
+
   .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
   }
 
-  
   

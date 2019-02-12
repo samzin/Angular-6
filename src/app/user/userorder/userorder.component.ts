@@ -23,9 +23,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class UserorderComponent implements OnInit {
 
+  breakpoint;
+  rowHeight:String;
   constructor() { }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
+    this.rowHeight = (window.innerWidth <= 400) ?  "4:4" : "2:4";
   }
 
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 6;
+    this.rowHeight = (event.target.innerWidth <= 400) ? "4:4" : "2:4";
+  }
 }
+
+
