@@ -182,6 +182,9 @@ label.validation-message{
   color:#ed5558;
 }
 
+label.message{
+  color:rgb(70, 66, 66);
+}
 
 
 /* ANIMATIONS */

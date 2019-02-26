@@ -1,0 +1,76 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav">
+
+
+    <button color="primary" mat-button routerLink="/orderform"><b>New Order</b></button>
+    <mat-divider></mat-divider>
+    <button color="primary" mat-button routerLink="/customer"><b>Old Orders</b></button>
+    <mat-divider></mat-divider>
+    <button color="primary" mat-button routerLink="/customer"><b>Wallet</b></button>
+    <mat-divider></mat-divider>
+  </mat-drawer>
+  <div class="sidenav-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Central Instrumentation Facility</span>
+        <span class="spacer"></span>
+
+        <button mat-icon-button>
+          <mat-icon>person</mat-icon>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon></mat-icon>
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+  <!-- ORDER FORM-->
+  <div class="wrapper">
+    <div id="formContent">
+
+      <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(orderFormNMR)">
+        <select id="userType" required name="userType">
+          <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
+        </select>
+        <select id="userType" required name="userType">
+          <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
+        </select>
+        <select id="userType" required name="userType">
+          <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
+        </select>
+        <select id="userType" required name="userType">
+            <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
+          </select>
+          <select id="userType" required name="userType">
+            <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
+          </select>
+          <select id="numberOfSamples" required name="userType"  >
+            <option ng-repeat="i in range(1, 5)" [value]="i">{{ i }}</option>
+          </select><img src="" alt="" srcset=""><br>
+          <label class="message">Extra info.</label>
+        <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex"
+          required [ngClass]="{'invalid-textbox' :orderFormNMR.submitted && !email.valid }">
+        <div *ngIf="orderFormNMR.submitted && email?.errors.pattern">
+          <label class="validation-message">Invalid email address.</label>
+        </div>
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password"
+          required minlength="4" [ngClass]="{'invalid-textbox' :orderFormNMR.submitted && !password.valid }">
+        <div *ngIf="orderFormNMR.submitted && password?.errors.minlength">
+          <label class="validation-message">Minimum 4 characters.</label>
+        </div>
+        <input type="submit" value="Confirm">
+      </form>
+    </div>
+  </div>
+  <!-- Error message -->
+  <div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div>
+
+</mat-drawer-container>

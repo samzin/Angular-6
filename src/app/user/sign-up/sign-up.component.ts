@@ -14,10 +14,12 @@ export class SignUpComponent implements OnInit {
   serverErrorMessages: string;
   public userTypes=['Select User Type','Campus','Colleges','Govt.','Industry','Other University'];
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
+    
   }
+
 
   onSubmit(form: NgForm) {
     this.userService.postUser(form.value).subscribe(

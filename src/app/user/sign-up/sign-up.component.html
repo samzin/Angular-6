@@ -10,16 +10,16 @@
   <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
   required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
   <div *ngIf="signUpForm.submitted && email.errors">
-    <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
-    <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+    <label *ngIf="email?.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="email?.errors.pattern" class="validation-message">Invalid email address.</label>
   </div>
   <select  id="userType" required name="userType">
-    <option *ngFor="let x of userTypes" [value]="x.id" >{{x}}</option>
+    <option *ngFor="let x of userTypes" [value]="x" >{{x}}</option>
   </select>
-  <div *ngIf="signUpForm.submitted && password.errors">
+ <!-- <div *ngIf="signUpForm.submitted && password.errors">
     <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
     <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
-  </div>
+  </div>-->
   <input type="submit" value="Sign Up">
 </form>
 

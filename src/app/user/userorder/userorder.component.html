@@ -1,8 +1,10 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav">
-    <button color="primary" mat-button routerLink="/customer">customer2</button>
-    <button color="primary" mat-button routerLink="/customer">customer2</button>
-    <button color="primary" mat-button routerLink="/customer">customer1</button>
+      
+
+    <button color="primary" mat-button routerLink="/orderform"><b>New Order</b></button> <mat-divider></mat-divider>
+    <button color="primary" mat-button routerLink="/customer"><b>Old Orders</b></button> <mat-divider></mat-divider>
+    <button color="primary" mat-button routerLink="/customer"><b>Wallet</b></button> <mat-divider></mat-divider>
   </mat-drawer>
   <div class="sidenav-content">
     <mat-toolbar color="primary">
@@ -12,130 +14,17 @@
         </button>
         <span>Central Instrumentation Facility</span>
         <span class="spacer"></span>
-        <button mat-icon-button (click)="drawer.toggle()">
+
+        <button mat-icon-button >
           <mat-icon>person</mat-icon>
           <mat-icon>arrow_drop_down</mat-icon>
         </button>
-        <button mat-icon-button (click)="drawer.toggle()">
+        <button mat-icon-button >
           <mat-icon></mat-icon>
           <mat-icon>add_shopping_cart</mat-icon>
         </button>
       </mat-toolbar-row>
     </mat-toolbar>
   </div>
-  <mat-grid-list [cols]="breakpoint" rowHeight="2:2.3" (window:resize)="onResize($event)">
-    <mat-grid-tile>
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div class="example-header-image"></div>
-          <mat-card-title>NMR 500 MHz</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="assets/img/nmr-1.jpg" alt="NMR 500 MHz">
-        <mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>Register</button>
-          <button mat-button>Count</button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-    <!-- 2-->
-    <mat-grid-tile>
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div  class="example-header-image"></div>
-          <mat-card-title>LC-MS/MS</mat-card-title>
-
-        </mat-card-header>
-        <img mat-card-image src="assets/img/lcmsms.png" alt="LCMSMS">
-        <mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button>Register</button>
-            <button mat-button>Count</button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-    <!--3-->
-    <mat-grid-tile style="left: 0px; width: calc(((100% - 0px) * 1) + 0px); margin-top: 0px; padding-top: calc(((200% - 100px) * 1) + 0px);">
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div  class="example-header-image"></div>
-          <mat-card-title>FESEM EDS</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="assets/img/fesm.jpg" alt="FESEM EDS">
-        <mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button>Register</button>
-            <button mat-button>Count</button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-   <!--4-->
-   <mat-grid-tile style="left: 0px; width: calc(((100% - 0px) * 1) + 0px); margin-top: 0px; padding-top: calc(((200% - 100px) * 1) + 0px);">
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div  class="example-header-image"></div>
-          <mat-card-title>Confocal Microscope</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="assets/img/confocal.png" alt="Confocal Microscope">
-        <mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button>Register</button>
-            <button mat-button>Count</button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-    <!--5-->
-    <mat-grid-tile style="left: 0px; width: calc(((100% - 0px) * 1) + 0px); margin-top: 0px; padding-top: calc(((200% - 100px) * 1) + 0px);">
-        <mat-card class="example-card">
-          <mat-card-header>
-            <div  class="example-header-image"></div>
-            <mat-card-title>CD Spectrophotometer</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="assets/img/cdspectrometer.jpg" alt="CD Spectrophotometer">
-          <mat-card-content>
-          </mat-card-content>
-          <mat-card-actions>
-              <button mat-button>Register</button>
-              <button mat-button>Count</button>
-          </mat-card-actions>
-        </mat-card>
-      </mat-grid-tile>
-    <!--6-->
-    <mat-grid-tile style="left: 0px; width: calc(((100% - 0px) * 1) + 0px); margin-top: 0px; padding-top: calc(((200% - 100px) * 1) + 0px);">
-        <mat-card class="example-card">
-          <mat-card-header>
-            <div  class="example-header-image"></div>
-            <mat-card-title>Single Crystal XRD</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="assets/img/single.png" alt="Single Crystal XRD">
-          <mat-card-content>
-          </mat-card-content>
-          <mat-card-actions>
-              <button mat-button>Register</button>
-              <button mat-button>Count</button>
-          </mat-card-actions>
-        </mat-card>
-      </mat-grid-tile>
-      <!--7-->
-    <mat-grid-tile style="left: 0px; width: calc(((100% - 0px) * 1) + 0px); margin-top: 0px; padding-top: calc(((200% - 100px) * 1) + 0px);">
-        <mat-card class="example-card">
-          <mat-card-header>
-            <div  class="example-header-image"></div>
-            <mat-card-title>GC-MS-MS</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="assets/img/gcmsms.jpg" alt="GC-MS-MS">
-          <mat-card-content>
-          </mat-card-content>
-          <mat-card-actions>
-              <button mat-button>Register</button>
-              <button mat-button>Count</button>
-          </mat-card-actions>
-        </mat-card>
-      </mat-grid-tile>
-  </mat-grid-list>
-
+  
 </mat-drawer-container>
