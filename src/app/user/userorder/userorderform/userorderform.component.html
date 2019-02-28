@@ -1,14 +1,11 @@
 <mat-drawer-container class="container" autosize>
+
   <mat-drawer #drawer class="sidenav">
-
-
     <button color="primary" mat-button routerLink="/orderform"><b>New Order</b></button>
-    <mat-divider></mat-divider>
     <button color="primary" mat-button routerLink="/customer"><b>Old Orders</b></button>
-    <mat-divider></mat-divider>
     <button color="primary" mat-button routerLink="/customer"><b>Wallet</b></button>
-    <mat-divider></mat-divider>
   </mat-drawer>
+
   <div class="sidenav-content">
     <mat-toolbar color="primary">
       <mat-toolbar-row>
@@ -34,38 +31,63 @@
   <div class="wrapper">
     <div id="formContent">
 
-      <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(orderFormNMR)">
-        <select id="userType" required name="userType">
-          <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
-        </select>
-        <select id="userType" required name="userType">
-          <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
-        </select>
-        <select id="userType" required name="userType">
-          <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
-        </select>
-        <select id="userType" required name="userType">
-            <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
+      <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(model)">
+
+        <div class="form-group">
+          <label for="userType">User Type</label>
+          <select class="form-control"  id="userType" required [(ngModel)]="model.userType" name="userType">
+            <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>
           </select>
-          <select id="userType" required name="userType">
-            <option *ngFor="let x of userTypes" [value]="x">{{x}}</option>
+        </div>
+
+        <div class="form-group">
+          <label for="analysis">Analysis</label>
+          <select class="form-control"  id="analysis" required [(ngModel)]="model.analysisname" name="analysis"
+                  [disabled]="(model.userType === 'Select User Type')" required>
+            <option *ngFor="let analysis of analysisList" [value]="analysis.analysisname">{{analysis.analysisname}}</option>
           </select>
-          <select id="numberOfSamples" required name="userType"  >
-            <option ng-repeat="i in range(1, 5)" [value]="i">{{ i }}</option>
-          </select><img src="" alt="" srcset=""><br>
-          <label class="message">Extra info.</label>
-        <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex"
-          required [ngClass]="{'invalid-textbox' :orderFormNMR.submitted && !email.valid }">
-        <div *ngIf="orderFormNMR.submitted && email?.errors.pattern">
-          <label class="validation-message">Invalid email address.</label>
         </div>
-        <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password"
-          required minlength="4" [ngClass]="{'invalid-textbox' :orderFormNMR.submitted && !password.valid }">
-        <div *ngIf="orderFormNMR.submitted && password?.errors.minlength">
-          <label class="validation-message">Minimum 4 characters.</label>
+
+        <div class="form-group">
+          <label for="solvent">Solvent : {{model.analysisname}}</label>
+          <select class="form-control"  id="solvent" [(ngModel)]="model.solventname" name="solvent"
+                  [disabled]="(model.analysisname !=='B')" required>
+            <option *ngFor="let solvent of solventList" [value]="solvent.solventname">{{solvent.solventname}}</option>
+          </select>
         </div>
+
+        <div class="form-group">
+          <label for="subAnalysis">Sub Analysis</label>
+          <select class="form-control"  id="subAnalysis" required [(ngModel)]="model.sub_Analysisname" name="subAnalysis"
+                  [disabled]="(model.solventname ==='')" required>
+            <option *ngFor="let subAnalysis of subAnalysisList" [value]="subAnalysis.sub_Analysisname">{{subAnalysis.sub_Analysisname}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Rates : {{rateObject.rate}} </label>
+        </div>
+
+        <div class="form-group">
+          <label>Rates/Hr : {{rateObject.hrs_Rate}} </label>
+        </div>
+
+        <div class="form-group">
+          <label for="sample">No. of Samples</label>
+          <select class="form-control"  id="sample" required [(ngModel)]="model.sampleLimit" name="sample">
+            <option *ngFor="let x of numberOfSamples" [value]="x">{{x}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="sampleNames">Enter Samples</label>
+          <input type="text" class="form-control" id="sampleNames" required
+                 [(ngModel)]="model.sampleNames" name="name">
+        </div>
+
         <input type="submit" value="Confirm">
       </form>
+
     </div>
   </div>
   <!-- Error message -->
