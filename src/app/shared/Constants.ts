@@ -1,6 +1,20 @@
 export class Constants {
   public static USER_TYPES: string[] = ['Select User Type', 'Campus', 'Colleges', 'Govt.', 'Industry', 'Other University'];
 
+  public static USER_TYPE_OBJECTS: any[] = [
+    {
+      "userTypeName": "Campus",
+      "userTypeId": 1
+    },
+    {
+      "userTypeName": "Colleges",
+      "userTypeId": 2
+    },
+    {
+      "userTypeName": "Govt.",
+      "userTypeId": 3
+    }
+  ];
   public static ANALYSIS_LIST: any [] = [
     {
       'aid': 0,

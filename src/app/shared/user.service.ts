@@ -3,6 +3,7 @@ import { User } from './user.model';
 import {HttpService} from '../common-services/http.service';
 import {API, Constants} from './Constants';
 import {Observable} from 'rxjs';
+import {RegistrationModel} from './models/registartion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class UserService {
   constructor(private httpService: HttpService) {
   }
 
-  postUser(user: User) {
-    return this.httpService.post('/register', user);
+  postUser(user: RegistrationModel) {
+    return this.httpService.post('/authentication/register', user);
   }
 
   createUserTabOrder(analysisId, body): Observable<any> {
@@ -22,7 +23,7 @@ export class UserService {
   }
 
   login(authCredentials) {
-    return this.httpService.post('/authenticate', authCredentials);
+    return this.httpService.post('/authentication/login', authCredentials);
   }
 
   getUserProfile() {

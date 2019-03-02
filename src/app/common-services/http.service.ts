@@ -10,7 +10,13 @@ const API_BASE_URL = environment.apiBaseUrl;
 
 export class HttpService {
 
-  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+  noAuthHeader = { headers: new HttpHeaders({
+     'NoAuth': 'True',
+     'Access-Control-Allow-Origin': '*',
+     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+     'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+     'Access-Control-Allow-Credentials': 'true'
+    })};
 
   constructor(private http: HttpClient) { }
 

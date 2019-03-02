@@ -1,21 +1,20 @@
 <div>
   <img src="/assets/img/users.png" id="icon" alt="User Icon" />
 </div>
-<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
-  <input type="text" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" placeholder="Full Name"
-  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
-  <div *ngIf="signUpForm.submitted && !fullName.valid">
-    <label class="validation-message">This field is required.</label>
-  </div>
-  <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(registartionModel)">
+  
+  <input type="text" #email="ngModel" [(ngModel)]="registartionModel.emailId" name="email" placeholder="Email"
   required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
   <div *ngIf="signUpForm.submitted && email.errors">
     <label *ngIf="email?.errors.required" class="validation-message">This field is required.</label>
     <label *ngIf="email?.errors.pattern" class="validation-message">Invalid email address.</label>
   </div>
-  <select  id="userType" required name="userType">
-    <option *ngFor="let x of userTypes" [value]="x" >{{x}}</option>
-  </select>
+  <div class="form-group">
+    <label for="userType">User Type</label>
+    <select class="form-control"  id="userType" required [(ngModel)]="registartionModel.userType" name="userType">
+      <option *ngFor="let userType of userTypes" [ngValue]="userType">{{userType.userTypeName}}</option>
+    </select>
+  </div>
  <!-- <div *ngIf="signUpForm.submitted && password.errors">
     <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
     <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>

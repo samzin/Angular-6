@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { UserService } from '../../shared/user.service';
 import { Constants } from './../../shared/Constants';
+import { RegistrationModel } from 'src/app/shared/models/registartion.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,16 +14,19 @@ export class SignUpComponent {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
-  public userTypes = Constants.USER_TYPES;
+  public userTypes = Constants.USER_TYPE_OBJECTS;
+  public registartionModel = new RegistrationModel();
 
   constructor(public userService: UserService) { }
 
-  onSubmit(form: NgForm) {
-    this.userService.postUser(form.value).subscribe(
+  onSubmit(registartion: RegistrationModel) {
+    console.log('registartion  '+JSON.stringify(registartion));
+    this.userService.postUser(registartion).subscribe(
       res => {
+        console.log('login success  '+JSON.stringify(registartion));
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
-        this.resetForm(form);
+        //this.resetForm(form);
       },
       err => {
         if (err.status === 422) {
