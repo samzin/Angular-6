@@ -22,13 +22,12 @@ import {TaborderModel} from '../../../shared/models/taborder.model';
 
 export class UserorderformComponent implements OnInit {
 
-  public userTypes = Constants.USER_TYPES;
+  public serverErrorMessages = false;
   public analysisList = Constants.ANALYSIS_LIST;
   public solventList = Constants.SOLVENT_LIST;
   public subAnalysisList = Constants.SUBANALYSIS;
   public rateObject = Constants.RATE_OBJECT;
-  public defaultAnalysis = 'Select Analysis';
-  public numberOfSamples = Array(100).fill(null).map( (x, i) => i );
+  public numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
 
   constructor(public userService: UserService) { }
 

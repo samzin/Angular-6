@@ -34,32 +34,23 @@
       <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(model)">
 
         <div class="form-group">
-          <label for="userType">User Type</label>
-          <select class="form-control"  id="userType" required [(ngModel)]="model.userType" name="userType">
-            <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="analysis">Analysis</label>
-          <select class="form-control"  id="analysis" required [(ngModel)]="model.analysisname" name="analysis"
-                  [disabled]="(model.userType === 'Select User Type')" required>
+          <select class="form-control"  id="analysis" required [(ngModel)]="model.analysisname" name="analysis" required>
+            <option value="" disabled>Select Analysis</option>
             <option *ngFor="let analysis of analysisList" [value]="analysis.analysisname">{{analysis.analysisname}}</option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="solvent">Solvent : {{model.analysisname}}</label>
-          <select class="form-control"  id="solvent" [(ngModel)]="model.solventname" name="solvent"
-                  [disabled]="(model.analysisname !=='B')" required>
+        <div class="form-group" *ngIf="(model.analysisname === 'B')">
+          <select class="form-control"  id="solvent" [(ngModel)]="model.solventname" name="solvent" required>
+            <option value="" disabled>Select Solvent</option>
             <option *ngFor="let solvent of solventList" [value]="solvent.solventname">{{solvent.solventname}}</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="subAnalysis">Sub Analysis</label>
           <select class="form-control"  id="subAnalysis" required [(ngModel)]="model.sub_Analysisname" name="subAnalysis"
-                  [disabled]="(model.solventname ==='')" required>
+                  [disabled]="false" required>
+            <option value="" disabled>Select SubAnalysis</option>
             <option *ngFor="let subAnalysis of subAnalysisList" [value]="subAnalysis.sub_Analysisname">{{subAnalysis.sub_Analysisname}}</option>
           </select>
         </div>
@@ -75,6 +66,7 @@
         <div class="form-group">
           <label for="sample">No. of Samples</label>
           <select class="form-control"  id="sample" required [(ngModel)]="model.sampleLimit" name="sample">
+            <option value="" disabled>Select No. of Samples</option>
             <option *ngFor="let x of numberOfSamples" [value]="x">{{x}}</option>
           </select>
         </div>

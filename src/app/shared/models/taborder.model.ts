@@ -17,7 +17,7 @@ export class TaborderModel {
     this.sub_Analysisname = '';
     this.rate = '';
     this.hrs_Rate = '';
-    this.sampleLimit = 0;
+    this.sampleLimit = 1;
     this.sampleNames = '';
   }
 }
