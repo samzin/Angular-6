@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import { UserService } from '../../shared/user.service';
+import {LoginModel} from '../../shared/models/login.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,21 +10,20 @@ import { UserService } from '../../shared/user.service';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  
-  public static emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  constructor(private userService: UserService,private router : Router) { }
 
-  model ={
-    email :'',
-    password:''
-  };
+  public login = new LoginModel();
   serverErrorMessages: string;
-  ngOnInit() {
-    if(this.userService.isLoggedIn())
-    this.router.navigateByUrl('/userprofile');
+
+  constructor(private userService: UserService, private router: Router) {
   }
 
-  onSubmit(loginModel : any){
+  ngOnInit() {
+    if (this.userService.isLoggedIn()) {
+      this.router.navigateByUrl('/userprofile');
+    }
+  }
+
+  onSubmit(loginModel: LoginModel) {
     this.userService.login(loginModel).subscribe(
       res => {
         this.userService.setToken(res['token']);

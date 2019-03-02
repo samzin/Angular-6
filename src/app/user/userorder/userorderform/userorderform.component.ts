@@ -27,6 +27,7 @@ export class UserorderformComponent implements OnInit {
   public solventList = Constants.SOLVENT_LIST;
   public subAnalysisList = Constants.SUBANALYSIS;
   public rateObject = Constants.RATE_OBJECT;
+  public defaultAnalysis = 'Select Analysis';
   public numberOfSamples = Array(100).fill(null).map( (x, i) => i );
 
   constructor(public userService: UserService) { }

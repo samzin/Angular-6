@@ -28,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatListModule } from '@angular/material';
     UserProfileComponent,
     SignInComponent,
     UserorderComponent,
-    UserorderformComponent
+    UserorderformComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

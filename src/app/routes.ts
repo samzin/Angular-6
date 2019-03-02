@@ -6,10 +6,17 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserorderComponent } from './user/userorder/userorder.component';
 import { UserorderformComponent } from './user/userorder/userorderform/userorderform.component';
 import { AuthGuard } from './auth/auth.guard';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 export const appRoutes: Routes = [
     {
-        path: 'signup', component: UserComponent,
+        path: '',
+        redirectTo: '/login',
+        pathMatch: 'full'
+    },
+    {
+        path: 'signup',
+        component: UserComponent,
         children: [{ path: '', component: SignUpComponent }]
     },
     {
@@ -26,6 +33,6 @@ export const appRoutes: Routes = [
         path: 'orderform', component: UserorderformComponent
     },
     {
-        path: '', redirectTo: '/login', pathMatch: 'full'
+      path: 'dashboard', component: DashboardComponent
     }
 ];
