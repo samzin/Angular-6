@@ -78,7 +78,11 @@
               <div class="form-group">
                 <label for="sampleNames">Enter Samples</label>
                 <input type="text" class="form-control" id="sampleNames" required
-                       [(ngModel)]="model.sample_Code" name="name">
+                       [(ngModel)]="model.sample_Code" (keyup)="checkLimitForSamples(model.sample_Code)" name="name">
+              </div>
+
+              <div class="col-md-12" *ngIf="showSampleLimitErrorMessage">
+                <label class="validation-message">{{sampleLimitErrorMessage}}</label>
               </div>
               <input type="submit" value="Confirm">
             </form>

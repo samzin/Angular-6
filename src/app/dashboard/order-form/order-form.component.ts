@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../shared/user.service';
-import {CIFConstants, Constants} from '../../shared/Constants';
+import {CIFConstants, Constants, Validation} from '../../shared/Constants';
 import {TaborderModel} from '../../shared/models/taborder.model';
 import {RateModel} from '../../shared/models/rate.model';
 
@@ -21,6 +21,7 @@ export class OrderFormComponent implements OnInit {
   solventRate = 0;
 
   public serverErrorMessages = false;
+  public showSampleLimitErrorMessage = false;
   public analysisList = [];
   public solventList = [];
   public solventProviderList = [];
@@ -29,6 +30,7 @@ export class OrderFormComponent implements OnInit {
 
   public showSolventForAnalysis = CIFConstants.ANALYSIS_NAME_FOR_SOLVENT;
   public showSolventByUserType = CIFConstants.USER_TYPE;
+  public sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
   public numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
 
   constructor(public userService: UserService) { }
@@ -133,6 +135,19 @@ export class OrderFormComponent implements OnInit {
         this.rateObject = Constants.RATE_OBJECT;
       }
     );
+  }
+
+  checkLimitForSamples(sampleCode) {
+    const sampleSplit = sampleCode.split(',');
+    let sampleSplitLength = sampleSplit.length;
+    if (sampleSplit.includes('')) {
+      sampleSplitLength = sampleSplitLength - 1;
+    }
+    if (this.selctedNumberOfSamples < sampleSplitLength) {
+      this.showSampleLimitErrorMessage = true;
+    } else {
+      this.showSampleLimitErrorMessage = false;
+    }
   }
 
   onSubmit(tabOrder: TaborderModel) {

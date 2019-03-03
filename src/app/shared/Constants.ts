@@ -174,6 +174,10 @@ export class Constants {
 
 }
 
+export class Validation {
+  public static ERROR_SAMPLE_CODE_VALIDATION = 'Please Enter no sample names equal to No. of samples Selected.';
+}
+
 export class CIFConstants {
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
   public static USER_TYPE = 'Campus';
