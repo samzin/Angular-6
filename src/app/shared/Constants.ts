@@ -175,7 +175,7 @@ export class Constants {
 }
 
 export class CIFConstants {
-  public static SOLVENT_NAME = 'NMR 500 MHz';
+  public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
   public static USER_TYPE = 'Campus';
 }
 

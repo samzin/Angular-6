@@ -27,9 +27,9 @@ export class UserService {
     return this.httpService.post(URL, body);
   }
 
-  getAllSolventByAnalysisId(body): Observable<any> {
-    const URL = API.SOLVENT_LIST.replace('$analysisId$', body.aid);
-    return this.httpService.post(URL, body);
+  getAllSolventByAnalysisId(analysisId): Observable<any> {
+    const URL = API.SOLVENT_LIST.replace('$analysisId$', analysisId);
+    return this.httpService.get(URL);
   }
 
   getRateBySubanalysisId(body): Observable<any> {
