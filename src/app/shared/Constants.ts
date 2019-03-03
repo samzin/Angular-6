@@ -3,94 +3,136 @@ export class Constants {
 
   public static USER_TYPE_OBJECTS: any[] = [
     {
-      'userTypeName': 'Campus',
-      'userTypeId': 1
+      'userTypeId': 1,
+      'userTypeName': 'SPPU-Campus'
     },
     {
-      'userTypeName': 'Colleges',
-      'userTypeId': 2
+      'userTypeId': 2,
+      'userTypeName': 'SPPU-Colleges'
     },
     {
-      'userTypeName': 'Govt.',
-      'userTypeId': 3
+      'userTypeId': 3,
+      'userTypeName': 'Govt.'
+    },
+    {
+      'userTypeId': 4,
+      'userTypeName': 'Industry'
+    },
+    {
+      'userTypeId': 5,
+      'userTypeName': 'Other University'
     }
   ];
 
   public static ANALYSIS_LIST: any [] = [
     {
-      'aid': 0,
-      'analysisname': 'A'
-    },
-    {
       'aid': 1,
-      'analysisname': 'B'
+      'analysisname': 'NMR 500 MHz'
     },
     {
       'aid': 2,
-      'analysisname': 'C'
+      'analysisname': 'LC-MS/MS'
     },
     {
       'aid': 3,
-      'analysisname': 'D'
+      'analysisname': 'FESEM EDS'
     },
     {
       'aid': 4,
-      'analysisname': 'E'
+      'analysisname': 'Confocal Microscope'
+    },
+    {
+      'aid': 5,
+      'analysisname': 'CD Spectrophotometer'
+    },
+    {
+      'aid': 6,
+      'analysisname': 'Single Crystal XRD'
+    },
+    {
+      'aid': 7,
+      'analysisname': 'GC-MS-MS'
     }
   ];
 
   public static SOLVENT_LIST: any[] = [
     {
       'aid': 1,
-      'rate': 12,
-      'solid': 123,
-      'solventname': 'Solvent-A'
+      'rate': 150,
+      'solid': 1,
+      'solventname': 'D2O & DMSO-D6'
     },
     {
-      'aid': 2,
-      'rate': 20,
-      'solid': 40,
-      'solventname': 'Solvent-B'
+      'aid': 1,
+      'rate': 300,
+      'solid': 2,
+      'solventname': 'Actone -D6'
     },
     {
-      'aid': 3,
-      'rate': 40,
-      'solid': 20,
-      'solventname': 'Solvent-C'
+      'aid': 1,
+      'rate': 400,
+      'solid': 3,
+      'solventname': 'Benzene -D6'
     },
     {
-      'aid': 4,
-      'rate': 50,
-      'solid': 50,
-      'solventname': 'Solvent-D'
+      'aid': 1,
+      'rate': 500,
+      'solid': 4,
+      'solventname': 'Methanol -D4'
+    },
+    {
+      'aid': 1,
+      'rate': 600,
+      'solid': 5,
+      'solventname': 'Acetonitrile -D3'
+    },
+    {
+      'aid': 1,
+      'rate': 0,
+      'solid': 6,
+      'solventname': 'CDCl3'
+    }
+  ];
+
+  public static SOLVENT_PROVIDER_LIST: any[] = [
+    {
+      'uid': 1,
+      'providername': 'Provided by User'
+    },
+    {
+      'uid': 2,
+      'providername': 'Provided by CIF'
     }
   ];
 
   public static SUBANALYSIS: any[] = [
     {
-      'aid': 1,
-      'sub_Analysisname': 'Sub A',
-      'subid': 1
+      'subid': 1,
+      'subAnalysisname': 'HRMS(Small Molecules)Only Mass'
     },
     {
-      'aid': 2,
-      'sub_Analysisname': 'Sub B',
-      'subid': 2
+      'subid': 2,
+      'subAnalysisname': 'HRMS(Small Molecules) Chromatogram'
     },
     {
-      'aid': 3,
-      'sub_Analysisname': 'Sub C',
-      'subid': 3
+      'subid': 3,
+      'subAnalysisname': 'LC-MS(Small Molecules) Chromatogram(LC+MS)'
     },
     {
-      'aid': 4,
-      'sub_Analysisname': 'Sub D',
-      'subid': 4
+      'subid': 4,
+      'subAnalysisname': 'HRMS/MS(Small Molecules) Chromatogram'
     },
     {
-      'aid': 5,
-      'sub_Analysisname': 'Sub E',
-      'subid': 5
+      'subid': 5,
+      'subAnalysisname': 'LC-MS/MS(Small Molecules) Chromatogram'
+    },
+    {
+      'subid': 6,
+      'subAnalysisname': 'HRMS(Bio Molecules) Mass/Chromatogram'
+    },
+    {
+      'subid': 7,
+      'subAnalysisname': 'HRMS/MS (BioMolecules)* Identification'
     }
   ];
 
@@ -132,9 +174,19 @@ export class Constants {
 
 }
 
+export class CIFConstants {
+  public static SOLVENT_NAME = 'NMR 500 MHz';
+  public static USER_TYPE = 'Campus';
+}
+
 export class LocalStorage {
   public static ANALYSIS_ID: 'analysis_id';
 }
+
 export class API {
   public static USER_TAB_ORDER = '/cif/userorder/$analysisId$/taborder';
+  public static ANALYSIS_LIST = '/cif/userorder/analysis';
+  public static SUB_ANALYSIS_LIST = '/cif/userorder/subanalysis';
+  public static SOLVENT_LIST = '/cif/userorder/$analysisId$/solvents';
+  public static RATE = '/cif/userorder/rate';
 }

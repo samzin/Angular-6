@@ -17,6 +17,26 @@ export class UserService {
     return this.httpService.post('/authentication/register', user);
   }
 
+  getAllAnalysisList(): Observable<any> {
+    const URL = API.ANALYSIS_LIST;
+    return this.httpService.get(URL);
+  }
+
+  getAllSubAnalysisList(body): Observable<any> {
+    const URL = API.SUB_ANALYSIS_LIST;
+    return this.httpService.post(URL, body);
+  }
+
+  getAllSolventByAnalysisId(body): Observable<any> {
+    const URL = API.SOLVENT_LIST.replace('$analysisId$', body.aid);
+    return this.httpService.post(URL, body);
+  }
+
+  getRateBySubanalysisId(body): Observable<any> {
+    const URL = API.RATE;
+    return this.httpService.post(URL, body);
+  }
+
   createUserTabOrder(analysisId, body): Observable<any> {
     const URL = API.USER_TAB_ORDER.replace('$analysisId$', analysisId);
     return this.httpService.post(URL, body);

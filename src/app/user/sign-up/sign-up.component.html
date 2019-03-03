@@ -6,11 +6,10 @@
   <div class="form-group">
 
     <input type="text" #email="ngModel" [(ngModel)]="registartionModel.emailId" name="email" placeholder="Email"
-           required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+           required email="" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
 
-    <div *ngIf="signUpForm.submitted && email.errors">
-      <label *ngIf="email?.errors.required" class="validation-message">This field is required.</label>
-      <label *ngIf="email?.errors.pattern" class="validation-message">Invalid email address.</label>
+    <div *ngIf="signUpForm.submitted && email.invalid">
+      <label class="validation-message">Invalid email address.</label>
     </div>
   </div>
 

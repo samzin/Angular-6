@@ -13,51 +13,73 @@
           <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(model)">
 
               <div class="form-group">
-                <select class="form-control"  id="analysis" required [(ngModel)]="model.analysisname" name="analysis" required>
+                <select class="form-control" id="analysis" [(ngModel)]="selectedAnalysisName"
+                        (change) = "selectedAnalysis(selectedAnalysisName)"
+                        name="analysis" required>
                   <option value="" disabled>Select Analysis</option>
-                  <option *ngFor="let analysis of analysisList" [value]="analysis.analysisname">{{analysis.analysisname}}</option>
+                  <option *ngFor="let analysis of analysisList" [ngValue]="analysis.analysisname">{{analysis.analysisname}}</option>
                 </select>
               </div>
 
-              <div class="form-group" *ngIf="(model.analysisname === 'B')">
-                <select class="form-control"  id="solvent" [(ngModel)]="model.solventname" name="solvent" required>
-                  <option value="" disabled>Select Solvent</option>
-                  <option *ngFor="let solvent of solventList" [value]="solvent.solventname">{{solvent.solventname}}</option>
+              <div class="form-group" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
+                <select class="form-control"  id="solvent" [(ngModel)]="selectedSolventName"
+                        [disabled]="!selectedAnalysisName"
+                        (change) = "setSelectedSolvent(selectedSolventName)" name="solvent" required>
+                  <option value="" disabled="">Select Solvent</option>
+                  <option *ngFor="let solvent of solventList" [ngValue]="solvent.solventname">{{solvent.solventname}}</option>
+                </select>
+              </div>
+
+              <div class="form-group" *ngIf="(model.userType === showSolventByUserType)">
+                <select class="form-control"  id="solventProvider" [(ngModel)]="selectedSolventName"
+                        name="solventProvider" required>
+                  <option value="" disabled>Select Solvent Provider</option>
+                  <option *ngFor="let solventProvider of solventProviderList" [value]="solventProvider.solventname">{{solventProvider.solventname}}</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <select class="form-control"  id="subAnalysis" required [(ngModel)]="model.sub_Analysisname" name="subAnalysis"
-                        [disabled]="false" required>
+                <select class="form-control"  id="subAnalysis" [(ngModel)]="selectedSubAnalysisName" name="subAnalysis"
+                        [disabled]="!selectedAnalysisName" required>
                   <option value="" disabled>Select SubAnalysis</option>
-                  <option *ngFor="let subAnalysis of subAnalysisList" [value]="subAnalysis.sub_Analysisname">{{subAnalysis.sub_Analysisname}}</option>
+                  <option *ngFor="let subAnalysis of subAnalysisList" [value]="subAnalysis.subAnalysisname">{{subAnalysis.subAnalysisname}}</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label>Rates : {{rateObject.rate}} </label>
+                <div class="col-md-6">
+                  <label>Rates : {{rateObject.rate}} </label>
+                </div>
+                <div class="col-md-6">
+                  <label>Rates/Hr : {{rateObject.hrs_Rate}} </label>
+                </div>
+                <div class="col-md-12" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
+                  <label>Solvent Rate : {{solventRate}} </label>
+                </div>
               </div>
 
               <div class="form-group">
-                <label>Rates/Hr : {{rateObject.hrs_Rate}} </label>
-              </div>
+                <div class="col-md-6">
+                  <label for="numberOfSamples">No. of Samples</label>
+                  <select class="form-control"  id="numberOfSamples" required [(ngModel)]="selctedNumberOfSamples" name="numberOfSamples">
+                    <option value="" disabled>Select No. of Samples</option>
+                    <option *ngFor="let x of numberOfSamples" [value]="x">{{x}}</option>
+                  </select>
+                </div>
 
-              <div class="form-group">
-                <label for="sample">No. of Samples</label>
-                <select class="form-control"  id="sample" required [(ngModel)]="model.sampleLimit" name="sample">
-                  <option value="" disabled>Select No. of Samples</option>
-                  <option *ngFor="let x of numberOfSamples" [value]="x">{{x}}</option>
-                </select>
+                <div class="col-md-6">
+                  <label for="extra_Hrs">No. of Hours</label>
+                  <input type="text" class="form-control" id="extra_Hrs" required
+                         [(ngModel)]="model.extra_Hrs" name="extra_Hrs">
+                </div>
               </div>
 
               <div class="form-group">
                 <label for="sampleNames">Enter Samples</label>
                 <input type="text" class="form-control" id="sampleNames" required
-                       [(ngModel)]="model.sampleNames" name="name">
+                       [(ngModel)]="model.sample_Code" name="name">
               </div>
-
               <input type="submit" value="Confirm">
-
             </form>
       </div>
 
