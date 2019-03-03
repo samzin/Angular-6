@@ -47,6 +47,11 @@ export class UserService {
     return this.httpService.get(URL);
   }
 
+  deleteOrderByBillNumber(bill, index): Observable<any> {
+    const URL = API.DELETE_ORDER.replace('$bill$', bill).replace('$index$', index);
+    return this.httpService.get(URL);
+  }
+
   login(authCredentials) {
     return this.httpService.post('/authentication/login', authCredentials);
   }

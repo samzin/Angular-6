@@ -37,4 +37,30 @@ export class OrderListComponent implements OnInit {
     console.log('onSuccessGettingAllOrders : ', JSON.stringify(err));
     this.orderList = Constants.ORDER_LIST;
   }
+
+  editSelectedOrder(order) {
+    console.log('editSelectedOrder : ' + JSON.stringify(order));
+  }
+
+  deleteSelectedOrder(order) {
+    console.log('deleteSelectedOrder : ' + JSON.stringify(order));
+    order.billNo = 'TY21BH';
+    order.index = 1;
+    this.userService.deleteOrderByBillNumber(order.billNo, order.index).subscribe(
+      res => {
+        this.successDeleteSelectedOrder(res);
+      },
+      err => {
+        this.errorDeleteSelectedOrder(err);
+      }
+    );
+  }
+
+  successDeleteSelectedOrder(response) {
+    console.log('successDeleteSelectedOrder : ' + JSON.stringify(response));
+  }
+
+  errorDeleteSelectedOrder(err) {
+    console.log('errorDeleteSelectedOrder : ' + JSON.stringify(err));
+  }
 }

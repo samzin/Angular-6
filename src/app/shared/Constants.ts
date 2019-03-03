@@ -193,4 +193,5 @@ export class API {
   public static SUB_ANALYSIS_LIST = '/cif/userorder/subanalysis';
   public static SOLVENT_LIST = '/cif/userorder/$analysisId$/solvents';
   public static RATE = '/cif/userorder/rate';
+  public static DELETE_ORDER = '/cif/userorder/$bill$/$index$';
 }

@@ -3,8 +3,8 @@
     Orders will be listed here
   </div>
   <div class="col-md-8">
-    <table class="mat-table">
-      <thead>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
@@ -16,6 +16,14 @@
         <td>Swapnil<!--{{order.aid}}--></td>
         <td>Nakhate<!--{{order.sub_Analysisname}}--></td>
         <td>swapnil@yopmail.com<!--{{order.subid}}--></td>
+        <td>
+          <span class="order-action" (click)="editSelectedOrder(order)">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </span>
+          <span class="order-action" (click)="deleteSelectedOrder(order)">
+            <span class="glyphicon glyphicon-trash"></span>
+          </span>
+        </td>
       </tr>
       </tbody>
     </table>
