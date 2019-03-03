@@ -22,6 +22,11 @@ export class UserService {
     return this.httpService.post(URL, body);
   }
 
+  getAllUserOrders(analysisId): Observable<any> {
+    const URL = API.USER_TAB_ORDER.replace('$analysisId$', analysisId);
+    return this.httpService.get(URL);
+  }
+
   login(authCredentials) {
     return this.httpService.post('/authentication/login', authCredentials);
   }

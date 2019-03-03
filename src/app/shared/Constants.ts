@@ -1,20 +1,21 @@
 export class Constants {
-  public static USER_TYPES: string[] = ['Select User Type', 'Campus', 'Colleges', 'Govt.', 'Industry', 'Other University'];
+  public static USER_TYPES: string[] = ['Campus', 'Colleges', 'Govt.', 'Industry', 'Other University'];
 
   public static USER_TYPE_OBJECTS: any[] = [
     {
-      "userTypeName": "Campus",
-      "userTypeId": 1
+      'userTypeName': 'Campus',
+      'userTypeId': 1
     },
     {
-      "userTypeName": "Colleges",
-      "userTypeId": 2
+      'userTypeName': 'Colleges',
+      'userTypeId': 2
     },
     {
-      "userTypeName": "Govt.",
-      "userTypeId": 3
+      'userTypeName': 'Govt.',
+      'userTypeId': 3
     }
   ];
+
   public static ANALYSIS_LIST: any [] = [
     {
       'aid': 0,
@@ -101,8 +102,39 @@ export class Constants {
     'utid': 0
   };
 
+  public static ORDER_LIST: any[] =  [
+    {
+      'aid': 1,
+      'sub_Analysisname': 'Sub A',
+      'subid': 1
+    },
+    {
+      'aid': 2,
+      'sub_Analysisname': 'Sub B',
+      'subid': 2
+    },
+    {
+      'aid': 3,
+      'sub_Analysisname': 'Sub C',
+      'subid': 3
+    },
+    {
+      'aid': 4,
+      'sub_Analysisname': 'Sub D',
+      'subid': 4
+    },
+    {
+      'aid': 5,
+      'sub_Analysisname': 'Sub E',
+      'subid': 5
+    }
+  ];
+
 }
 
+export class LocalStorage {
+  public static ANALYSIS_ID: 'analysis_id';
+}
 export class API {
   public static USER_TAB_ORDER = '/cif/userorder/$analysisId$/taborder';
 }

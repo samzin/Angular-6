@@ -1,0 +1,62 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+body{
+  font-family: Roboto,Arial, Helvetica, sans-serif;
+}
+:host {
+  display: block;
+}
+.mat-toolbar-row {
+  height: 45px;
+}
+.mat-toolbar.mat-primary[_ngcontent-c1] {
+  background: #377799;
+  color: #fff;
+  font: 535 16px/32px Roboto,"Helvetica Neue",sans-serif;
+}
+.mat-toolbar-multiple-rows {
+  min-height: 40px;
+}
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+.container .mat-drawer {
+  min-width: 175px;
+}
+
+.container .mat-drawer .mat-button {
+  display:block;
+  width: 100%;
+  text-align: left;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.example-card {
+  max-width: 200px;
+}
+
+
+
+.example-header-image {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+

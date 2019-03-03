@@ -1,0 +1,29 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav">
+    <button color="primary" mat-button routerLink="/orderform"><b>New Order</b></button> <mat-divider></mat-divider>
+    <button color="primary" mat-button routerLink="/customer"><b>Old Orders</b></button> <mat-divider></mat-divider>
+    <button color="primary" mat-button routerLink="/customer"><b>Wallet</b></button> <mat-divider></mat-divider>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Central Instrumentation Facility</span>
+        <span class="spacer"></span>
+
+        <button mat-icon-button >
+          <mat-icon>person</mat-icon>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <button mat-icon-button >
+          <mat-icon></mat-icon>
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+</mat-drawer-container>

@@ -29,6 +29,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {OrderFormComponent} from './dashboard/order-form/order-form.component';
+import {OrderListComponent} from './dashboard/order-list/order-list.component';
+import {AppHeaderComponent} from './common-components/app-header/app-header.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     SignInComponent,
     UserorderComponent,
     UserorderformComponent,
-    DashboardComponent
+    DashboardComponent,
+    OrderFormComponent,
+    OrderListComponent,
+    AppHeaderComponent
   ],
   imports: [
     BrowserModule,

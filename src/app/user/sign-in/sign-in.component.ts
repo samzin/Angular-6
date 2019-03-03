@@ -26,13 +26,24 @@ export class SignInComponent implements OnInit {
   onSubmit(loginModel: LoginModel) {
     this.userService.login(loginModel).subscribe(
       res => {
+        this.onLoginSuccess();
         this.userService.setToken(res['token']);
         this.router.navigateByUrl('/userprofile');
       },
       err => {
+        this.onLoginSuccess();
+        this.onLoginError();
         this.serverErrorMessages = err.error.message;
       }
     );
+  }
+
+  onLoginSuccess() {
+    this.router.navigateByUrl('/dashboard');
+  }
+
+  onLoginError() {
+    console.log('Error while login');
   }
 
 }
