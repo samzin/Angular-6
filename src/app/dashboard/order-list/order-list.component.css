@@ -1,3 +1,10 @@
 .order-action {
   padding-left: 5px;
 }
+.order-listing {
+  padding: 10px;
+}
+
+.order-header {
+  margin: 10px 0px;
+}

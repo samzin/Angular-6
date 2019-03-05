@@ -32,6 +32,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {OrderFormComponent} from './dashboard/order-form/order-form.component';
 import {OrderListComponent} from './dashboard/order-list/order-list.component';
 import {AppHeaderComponent} from './common-components/app-header/app-header.component';
+import {OrderHistoryComponent} from './dashboard/order-history/order-history.component';
+import {NewOrdersComponent} from './dashboard/new-orders/new-orders.component';
+import {WalletComponent} from './dashboard/wallet/wallet.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import {AppHeaderComponent} from './common-components/app-header/app-header.comp
     DashboardComponent,
     OrderFormComponent,
     OrderListComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
+    OrderHistoryComponent,
+    NewOrdersComponent,
+    WalletComponent
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,4 @@
-<!--
 <app-header></app-header>
--->
 
-<div class="container">
-  <div class="row">
-    <div class="order-header">
-      <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#orderModal">Add Order</button>
-    </div>
+<router-outlet></router-outlet>
 
-    <div class="container order-listing">
-      <app-order-listing></app-order-listing>
-    </div>
-
-    <app-order-form [formType]="createOrderLabal"></app-order-form>
-  </div>
-</div>

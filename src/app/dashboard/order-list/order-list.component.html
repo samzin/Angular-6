@@ -1,31 +1,60 @@
 <div class="container">
+
+  <div class="order-header">
+    <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#orderModal">Add Order</button>
+  </div>
+
   <div class="row">
-    Orders will be listed here
-  </div>
-  <div class="col-md-8">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Order Id</th>
+            <th>Analysis Name</th>
+            <th>Sub Analysis Name</th>
+            <th>Solvent Name</th>
+            <th>Sample Code</th>
+            <th>Rate</th>
+            <th>Rate/Hrs</th>
+            <th>Extra Hrs.</th>
+            <th>Taxable Amount</th>
+            <th>CGST</th>
+            <th>SGST</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orderList">
+          <td>{{order.orderid}}</td>
+          <td>{{order.analysisname}}</td>
+          <td>{{order.sub_analysisname}}</td>
+          <td>{{order.solventname}}</td>
+          <td>{{order.samplecode}}</td>
+          <td>{{order.rate}}</td>
+          <td>{{order.hrs_rate}}</td>
+          <td>{{order.extrahrs}}</td>
+          <td>{{order.taxableamt}}</td>
+          <td>{{order.cgst}}</td>
+          <td>{{order.sgst}}</td>
+          <td>{{order.amount}}</td>
+          <td>{{order.date}}</td>
+          <td>
+              <span class="order-action" (click)="editSelectedOrder(order)">
+                <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#orderModal"></span>
+              </span>
+              <span class="order-action" (click)="deleteSelectedOrder(order)">
+                <span class="glyphicon glyphicon-trash"></span>
+              </span>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let order of orderList">
-        <td>Swapnil<!--{{order.aid}}--></td>
-        <td>Nakhate<!--{{order.sub_Analysisname}}--></td>
-        <td>swapnil@yopmail.com<!--{{order.subid}}--></td>
-        <td>
-          <span class="order-action" (click)="editSelectedOrder(order)">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </span>
-          <span class="order-action" (click)="deleteSelectedOrder(order)">
-            <span class="glyphicon glyphicon-trash"></span>
-          </span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
+
+  <app-order-form [formType]="createOrderLabal"></app-order-form>
+
+  <app-order-form [formType]="editOrderLabel" [model]="orderModel"></app-order-form>
 </div>

@@ -30,7 +30,7 @@
                 </select>
               </div>
 
-              <div class="form-group" *ngIf="(model.userType === showSolventByUserType)">
+              <div class="form-group" *ngIf="(showSolventByUserType === model.uid)">
                 <select class="form-control"  id="solventProvider" [(ngModel)]="selectedSolventName"
                         name="solventProvider" required>
                   <option value="" disabled>Select Solvent Provider</option>

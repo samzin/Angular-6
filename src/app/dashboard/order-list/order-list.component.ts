@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../shared/user.service';
 import {Constants, LocalStorage} from '../../shared/Constants';
+import {TaborderModel} from '../../shared/models/taborder.model';
 
 @Component({
   selector : 'app-order-listing',
@@ -11,6 +12,11 @@ import {Constants, LocalStorage} from '../../shared/Constants';
 export class OrderListComponent implements OnInit {
 
   orderList = [];
+  editOrderLabel = 'Edit';
+  createOrderLabal = 'Create';
+  orderModel = new TaborderModel();
+  index = 1;
+
   constructor(private userService: UserService) {
 
   }
@@ -40,6 +46,18 @@ export class OrderListComponent implements OnInit {
 
   editSelectedOrder(order) {
     console.log('editSelectedOrder : ' + JSON.stringify(order));
+    this.orderModel = new TaborderModel();
+    this.orderModel.billNo = order.orderid;
+    this.orderModel.aid = this.index;
+    this.orderModel.solvent_id = this.index;
+    this.orderModel.subid = this.index;
+    this.orderModel.extra_Hrs = order.extrahrs;
+    this.orderModel.hrs_Rate = order.hrs_rate;
+    this.orderModel.rate = order.rate;
+    this.orderModel.sample_Code = order.samplecode;
+    this.orderModel.cgst = order.cgst;
+    this.orderModel.sgstp = order.sgst;
+    /*this.index = this.index + 1;*/
   }
 
   deleteSelectedOrder(order) {

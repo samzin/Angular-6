@@ -146,30 +146,65 @@ export class Constants {
 
   public static ORDER_LIST: any[] =  [
     {
-      'aid': 1,
-      'sub_Analysisname': 'Sub A',
-      'subid': 1
+      'analysisname': 'LC-MS/MS',
+      'sub_analysisname': 'HRMS(Small Molecules)Only Mass',
+      'solventname': '',
+      'samplecode': 'sg',
+      'rate': '2000',
+      'hrs_rate': '500',
+      'extrahrs': '1',
+      'taxableamt': '2500',
+      'cgst': '225',
+      'sgst': '225',
+      'amount': '2950',
+      'date': '2018-07-29',
+      'orderid': '70'
     },
     {
-      'aid': 2,
-      'sub_Analysisname': 'Sub B',
-      'subid': 2
+      'analysisname': 'Confocal Microscope',
+      'sub_analysisname': 'Confocal Microscope',
+      'solventname': '',
+      'samplecode': 'sg',
+      'rate': '1000',
+      'hrs_rate': '500',
+      'extrahrs': '1',
+      'taxableamt': '1500',
+      'cgst': '125',
+      'sgst': '125',
+      'amount': '1950',
+      'date': '2018-07-29',
+      'orderid': '71'
     },
     {
-      'aid': 3,
-      'sub_Analysisname': 'Sub C',
-      'subid': 3
+      'analysisname': 'LC-MS/MS',
+      'sub_analysisname': 'HRMS(Small Molecules)Only Mass',
+      'solventname': '',
+      'samplecode': 'h',
+      'rate': '2000',
+      'hrs_rate': '500',
+      'extrahrs': '1',
+      'taxableamt': '2500',
+      'cgst': '225',
+      'sgst': '225',
+      'amount': '2950',
+      'date': '2018-07-29',
+      'orderid': '72'
     },
     {
-      'aid': 4,
-      'sub_Analysisname': 'Sub D',
-      'subid': 4
+      'analysisname': 'LC-MS/MS',
+      'sub_analysisname': 'HRMS(Small Molecules)Only Mass',
+      'solventname': '',
+      'samplecode': 'd',
+      'rate': '2000',
+      'hrs_rate': '500',
+      'extrahrs': '1',
+      'taxableamt': '2500',
+      'cgst': '225',
+      'sgst': '225',
+      'amount': '2950',
+      'date': '2018-07-29',
+      'orderid': '73'
     },
-    {
-      'aid': 5,
-      'sub_Analysisname': 'Sub E',
-      'subid': 5
-    }
   ];
 
 }
@@ -180,7 +215,7 @@ export class Validation {
 
 export class CIFConstants {
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
-  public static USER_TYPE = 'Campus';
+  public static USER_TYPE_ID = 1;
 }
 
 export class LocalStorage {

@@ -7,6 +7,10 @@ import { UserorderComponent } from './user/userorder/userorder.component';
 import { UserorderformComponent } from './user/userorder/userorderform/userorderform.component';
 import { AuthGuard } from './auth/auth.guard';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {NewOrdersComponent} from './dashboard/new-orders/new-orders.component';
+import {OrderHistoryComponent} from './dashboard/order-history/order-history.component';
+import {WalletComponent} from './dashboard/wallet/wallet.component';
+import {OrderListComponent} from './dashboard/order-list/order-list.component';
 
 export const appRoutes: Routes = [
     {
@@ -33,6 +37,13 @@ export const appRoutes: Routes = [
         path: 'orderform', component: UserorderformComponent
     },
     {
-      path: 'dashboard', component: DashboardComponent
+      path: 'dashboard',
+      component: DashboardComponent,
+      children: [
+        {path: '', component: OrderListComponent},
+        {path: 'new-orders', component: NewOrdersComponent},
+        {path: 'order-history', component: OrderHistoryComponent},
+        {path: 'wallet', component: WalletComponent}
+      ]
     }
 ];

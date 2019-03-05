@@ -8,9 +8,6 @@ import {Component} from '@angular/core';
 
 export class DashboardComponent {
 
-  createOrderLabal = 'Create';
-  editOrderLabal = 'Edit';
-
   constructor() {
 
   }

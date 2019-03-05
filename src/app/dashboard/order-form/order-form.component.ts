@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import {CIFConstants, Constants, Validation} from '../../shared/Constants';
 import {TaborderModel} from '../../shared/models/taborder.model';
@@ -9,11 +9,11 @@ import {RateModel} from '../../shared/models/rate.model';
   templateUrl: 'order-form.component.html'
 })
 
-export class OrderFormComponent implements OnInit {
+export class OrderFormComponent implements OnInit, OnChanges {
 
   @Input() formType: String;
+  @Input() model?: TaborderModel = new TaborderModel();
 
-  model = new TaborderModel();
   selectedAnalysisName = '';
   selectedSubAnalysisName = '';
   selectedSolventName = '';
@@ -24,16 +24,25 @@ export class OrderFormComponent implements OnInit {
   public showSampleLimitErrorMessage = false;
   public analysisList = [];
   public solventList = [];
-  public solventProviderList = [];
+  public solventProviderList = Constants.SOLVENT_PROVIDER_LIST;
   public subAnalysisList = [];
   public rateObject = new RateModel();
 
   public showSolventForAnalysis = CIFConstants.ANALYSIS_NAME_FOR_SOLVENT;
-  public showSolventByUserType = CIFConstants.USER_TYPE;
+  public showSolventByUserType = CIFConstants.USER_TYPE_ID;
   public sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
   public numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
 
   constructor(public userService: UserService) { }
+
+
+  ngOnChanges(changes: SimpleChanges) {
+    // changes.prop contains the old and the new value...
+    if (changes.model) {
+      console.log('changes : ' + JSON.stringify(changes.model.currentValue));
+      this.getAllAnalysis();
+    }
+  }
 
   ngOnInit() {
     this.getAllAnalysis();
@@ -42,12 +51,30 @@ export class OrderFormComponent implements OnInit {
   getAllAnalysis() {
     this.userService.getAllAnalysisList().subscribe(res => {
         console.log('Success analysis list.');
-        this.analysisList = Constants.ANALYSIS_LIST;
+        this.successGetAnalysisName();
       }, err => {
+        this.successGetAnalysisName();
         console.log('Error analysis list.', JSON.stringify(err));
-        this.analysisList = Constants.ANALYSIS_LIST;
       }
     );
+  }
+
+  successGetAnalysisName() {
+    this.analysisList = Constants.ANALYSIS_LIST;
+    if (this.model.aid) {
+      this.getAnalysisName();
+    }
+  }
+
+  getAnalysisName() {
+    const selectedAnalysisId = this.model.aid;
+    const selectedAnalysisArray = this.analysisList.filter(function (analysis) {
+      return analysis.aid === selectedAnalysisId;
+    });
+    if (selectedAnalysisArray.length === 1) {
+      this.selectedAnalysisName = selectedAnalysisArray[0].analysisname;
+      this.selectedAnalysis(this.selectedAnalysisName);
+    }
   }
 
   selectedAnalysis(selectedAnalysisName) {
