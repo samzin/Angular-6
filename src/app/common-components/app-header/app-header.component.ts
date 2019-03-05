@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {CIFConstants} from '../../shared/Constants';
 
 @Component({
   selector : 'app-header',
@@ -7,6 +8,8 @@ import {Component} from '@angular/core';
 })
 
 export class AppHeaderComponent {
+
+  appName = CIFConstants.APP_NAME;
 
   constructor() {
 

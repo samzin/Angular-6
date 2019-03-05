@@ -214,6 +214,7 @@ export class Validation {
 }
 
 export class CIFConstants {
+  public static APP_NAME = 'Central Instrumentation Facility';
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
   public static USER_TYPE_ID = 1;
 }
