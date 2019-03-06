@@ -10,7 +10,7 @@ const API_BASE_URL = environment.apiBaseUrl;
 
 export class HttpService {
 
-  noAuthHeader = { headers: new HttpHeaders({
+  httpHeader = { headers: new HttpHeaders({
      'NoAuth': 'True',
      'Access-Control-Allow-Origin': '*',
      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
@@ -25,14 +25,14 @@ export class HttpService {
   }
 
   post(url, body: any): Observable<any> {
-    return this.http.post(API_BASE_URL + url, body, this.noAuthHeader);
+    return this.http.post(API_BASE_URL + url, body, this.httpHeader);
   }
 
   put(url, body: any): Observable<any> {
-    return this.http.put(API_BASE_URL + url, body, this.noAuthHeader);
+    return this.http.put(API_BASE_URL + url, body, this.httpHeader);
   }
 
   delete(url): Observable<any> {
-    return this.http.delete(API_BASE_URL + url, this.noAuthHeader);
+    return this.http.delete(API_BASE_URL + url, this.httpHeader);
   }
 }

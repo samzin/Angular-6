@@ -28,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material';
+import { ToastrModule } from 'ng6-toastr-notifications';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {OrderFormComponent} from './dashboard/order-form/order-form.component';
 import {OrderListComponent} from './dashboard/order-list/order-list.component';
@@ -35,6 +36,7 @@ import {AppHeaderComponent} from './common-components/app-header/app-header.comp
 import {OrderHistoryComponent} from './dashboard/order-history/order-history.component';
 import {NewOrdersComponent} from './dashboard/new-orders/new-orders.component';
 import {WalletComponent} from './dashboard/wallet/wallet.component';
+import {ToasterNotificationService} from './common-services/toaster-notification.service';
 
 @NgModule({
   declarations: [
@@ -65,13 +67,18 @@ import {WalletComponent} from './dashboard/wallet/wallet.component';
     MatGridListModule,
     MatListModule,
     RouterModule.forRoot(appRoutes),
+    ToastrModule.forRoot(),
     HttpClientModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },AuthGuard,UserService],
+  },
+    AuthGuard,
+    UserService,
+    ToasterNotificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

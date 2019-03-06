@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {CIFConstants} from '../../shared/Constants';
+import {Router} from '@angular/router';
 
 @Component({
   selector : 'app-header',
@@ -11,8 +12,12 @@ export class AppHeaderComponent {
 
   appName = CIFConstants.APP_NAME;
 
-  constructor() {
+  constructor(private router: Router) {
+  }
 
+  logOut() {
+    localStorage.clear();
+    this.router.navigateByUrl('/');
   }
 
 }

@@ -217,6 +217,20 @@ export class CIFConstants {
   public static APP_NAME = 'Central Instrumentation Facility';
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
   public static USER_TYPE_ID = 1;
+  public static ORDER_ID = 'Order Id';
+  public static ANALYSIS_NAME = 'Analysis Name';
+  public static SUB_ANALYSIS_NAME = 'Sub Analysis Name';
+  public static SOLVENT_NAME = 'Solvent Name';
+  public static SAMPLE_CODE = 'Sample Code';
+  public static RATE = 'Rate';
+  public static RATE_PER_HOUR = 'Rate/Hr';
+  public static EXTRA_HRS = 'Extra Hrs.';
+  public static TAXABLE_AMOUNT = 'Tax. Amt.';
+  public static CGST = 'CGST';
+  public static SGST = 'SGST';
+  public static AMOUNT = 'Amt.';
+  public static DATE = 'Date';
+  public static ACTION = 'Action';
 }
 
 export class LocalStorage {
@@ -230,4 +244,14 @@ export class API {
   public static SOLVENT_LIST = '/cif/userorder/$analysisId$/solvents';
   public static RATE = '/cif/userorder/rate';
   public static DELETE_ORDER = '/cif/userorder/$bill$/$index$';
+}
+
+export class APIResponse {
+  public static ERROR_LOGIN = 'Error while login.';
+  public static SUCCESS_GETTING_ORDERS = 'Successfully fetched orders list.';
+  public static ERROR_GETTING_ORDERS = 'Error fetching orders list.';
+  public static SUCCESS_DELETING_ORDERS = 'Successfully deleted Order.';
+  public static ERROR_DELETING_ORDERS = 'Error deleting Order.';
+  public static SUCCESS_CREATING_ORDER = 'Successfully created order.';
+  public static ERROR_CREATING_ORDER = 'Error while created order.';
 }

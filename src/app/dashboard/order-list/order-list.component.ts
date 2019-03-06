@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../shared/user.service';
-import {Constants, LocalStorage} from '../../shared/Constants';
+import {Constants, CIFConstants, LocalStorage, APIResponse} from '../../shared/Constants';
 import {TaborderModel} from '../../shared/models/taborder.model';
+import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 
 @Component({
   selector : 'app-order-listing',
@@ -16,8 +17,9 @@ export class OrderListComponent implements OnInit {
   createOrderLabal = 'Create';
   orderModel = new TaborderModel();
   index = 1;
+  CIFConstants = CIFConstants;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private toasterNotification: ToasterNotificationService) {
 
   }
 
@@ -37,11 +39,13 @@ export class OrderListComponent implements OnInit {
   onSuccessGettingAllOrders(response) {
     console.log('onSuccessGettingAllOrders : ', JSON.stringify(response));
     this.orderList = Constants.ORDER_LIST;
+    this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
   }
 
   onErrorGettingAllOrders(err) {
     console.log('onSuccessGettingAllOrders : ', JSON.stringify(err));
     this.orderList = Constants.ORDER_LIST;
+    this.toasterNotification.showError(APIResponse.ERROR_GETTING_ORDERS);
   }
 
   editSelectedOrder(order) {
@@ -76,9 +80,11 @@ export class OrderListComponent implements OnInit {
 
   successDeleteSelectedOrder(response) {
     console.log('successDeleteSelectedOrder : ' + JSON.stringify(response));
+    this.toasterNotification.showSuccess(APIResponse.SUCCESS_DELETING_ORDERS);
   }
 
   errorDeleteSelectedOrder(err) {
     console.log('errorDeleteSelectedOrder : ' + JSON.stringify(err));
+    this.toasterNotification.showError(APIResponse.ERROR_DELETING_ORDERS);
   }
 }

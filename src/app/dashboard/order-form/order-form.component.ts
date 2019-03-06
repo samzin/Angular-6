@@ -1,8 +1,9 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { UserService } from '../../shared/user.service';
-import {CIFConstants, Constants, Validation} from '../../shared/Constants';
+import {APIResponse, CIFConstants, Constants, Validation} from '../../shared/Constants';
 import {TaborderModel} from '../../shared/models/taborder.model';
 import {RateModel} from '../../shared/models/rate.model';
+import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 
 @Component({
   selector: 'app-order-form',
@@ -33,13 +34,11 @@ export class OrderFormComponent implements OnInit, OnChanges {
   public sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
   public numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private toasterNotification: ToasterNotificationService) { }
 
 
   ngOnChanges(changes: SimpleChanges) {
-    // changes.prop contains the old and the new value...
     if (changes.model) {
-      console.log('changes : ' + JSON.stringify(changes.model.currentValue));
       this.getAllAnalysis();
     }
   }
@@ -183,10 +182,18 @@ export class OrderFormComponent implements OnInit, OnChanges {
     this.userService.createUserTabOrder(analysisId, tabOrder)
       .subscribe(
         response => {
-          console.log('response : ' + JSON.stringify(response));
+          this.onSuccessOrder(response);
         }, error => {
-          console.log('error : ' + JSON.stringify(error));
+          this.onErrorOrder(error);
         });
+  }
+
+  onSuccessOrder(response) {
+    this.toasterNotification.showSuccess(APIResponse.SUCCESS_CREATING_ORDER);
+  }
+
+  onErrorOrder(error) {
+    this.toasterNotification.showError(APIResponse.ERROR_CREATING_ORDER);
   }
 
 }
