@@ -56,6 +56,11 @@ export class UserService {
     return this.httpService.post('/authentication/login', authCredentials);
   }
 
+  payByWallet(userId, body): Observable<any> {
+    const URL = API.PAY_BY_WALLET.replace('$uid$', userId);
+    return this.httpService.post(URL, body);
+  }
+
   getUserProfile() {
     return this.httpService.get('/userProfile');
   }

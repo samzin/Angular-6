@@ -4,6 +4,7 @@ import {Constants, CIFConstants, LocalStorage, APIResponse} from '../../shared/C
 import {TaborderModel} from '../../shared/models/taborder.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector : 'app-order-listing',
@@ -21,8 +22,7 @@ export class OrderListComponent implements OnInit {
   CIFConstants = CIFConstants;
 
   constructor(private userService: UserService, private toasterNotification: ToasterNotificationService,
-              private appLoader: AppLoaderService) {
-
+              private appLoader: AppLoaderService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -98,6 +98,10 @@ export class OrderListComponent implements OnInit {
     this.stopLoader();
     console.log('errorDeleteSelectedOrder : ' + JSON.stringify(err));
     this.toasterNotification.showError(APIResponse.ERROR_DELETING_ORDERS);
+  }
+
+  redirectToCheckOut() {
+    this.router.navigateByUrl('/dashboard/checkout');
   }
 
   startLoader() {

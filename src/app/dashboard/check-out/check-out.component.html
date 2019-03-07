@@ -1,0 +1,47 @@
+<div class="container checkout-container">
+
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a data-toggle="tab" href="#wallet">Wallet</a>
+    </li>
+    <li><a data-toggle="tab" href="#otherPayment">Other Payment Options</a></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <div id="wallet" class="tab-pane fade in active">
+      <h4>Pay by Wallet</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+      <div class="col-md-4">
+        <form #walletForm="ngForm" (ngSubmit)="walletForm.valid && onSubmit(amountByWallet)">
+          <div class="form-group">
+            <div class="row">
+              <label for="wallet_amount">Enter Amount</label>
+              <input type="text" #walletAmountRef="ngModel" pattern="[0-9]*" class="form-control"
+                     id="wallet_amount" required [(ngModel)]="amountByWallet" name="wallet_amount">
+              <div *ngIf="walletForm.submitted && walletForm.invalid">
+                <label *ngIf="walletAmountRef?.errors.pattern" class="validation-message">Wallet amount is not valid.</label>
+                <label *ngIf="walletAmountRef?.errors.required" class="validation-message">Wallet amount is required.</label>
+              </div>
+              <div *ngIf="walletForm.submitted && isError">
+                <label class="validation-message">Wallet amount is not valid.</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <input type="submit" class="btn btn-primary" value="Done">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="otherPayment" class="tab-pane fade">
+      <h4>Choose other option for Payment</h4>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+  </div>
+</div>

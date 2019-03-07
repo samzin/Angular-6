@@ -11,6 +11,7 @@ import {NewOrdersComponent} from './dashboard/new-orders/new-orders.component';
 import {OrderHistoryComponent} from './dashboard/order-history/order-history.component';
 import {WalletComponent} from './dashboard/wallet/wallet.component';
 import {OrderListComponent} from './dashboard/order-list/order-list.component';
+import {CheckOutComponent} from './dashboard/check-out/check-out.component';
 
 export const appRoutes: Routes = [
     {
@@ -43,7 +44,8 @@ export const appRoutes: Routes = [
         {path: '', component: OrderListComponent},
         {path: 'new-orders', component: NewOrdersComponent},
         {path: 'order-history', component: OrderHistoryComponent},
-        {path: 'wallet', component: WalletComponent}
+        {path: 'wallet', component: WalletComponent},
+        {path: 'checkout', component: CheckOutComponent}
       ]
     }
 ];

@@ -245,6 +245,7 @@ export class API {
   public static SOLVENT_LIST = '/userorder/$analysisId$/solvents';
   public static RATE = '/userorder/rate';
   public static DELETE_ORDER = '/userorder/$bill$/$index$';
+  public static PAY_BY_WALLET = '/wallet/$uid$';
 }
 
 export class APIResponse {
@@ -255,6 +256,8 @@ export class APIResponse {
   public static ERROR_DELETING_ORDERS = 'Error deleting Order.';
   public static SUCCESS_CREATING_ORDER = 'Successfully created order.';
   public static ERROR_CREATING_ORDER = 'Error while created order.';
+  public static SUCCESS_PAY_BY_WALLET = 'Paid by wallet successfully.';
+  public static ERROR_PAY_BY_WALLET = 'Error while making payment by wallet.';
   public static ERROR_GETTING_ANALYSIS_LIST = 'Error fetching all Analysis.';
   public static ERROR_GETTING_SUB_ANALYSIS_LIST = 'Error fetching all Sub Analysis.';
   public static ERROR_GETTING_SOLVENTS_LIST = 'Error fetching all Solvents.';

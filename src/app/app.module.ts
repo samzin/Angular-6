@@ -38,6 +38,7 @@ import {OrderHistoryComponent} from './dashboard/order-history/order-history.com
 import {NewOrdersComponent} from './dashboard/new-orders/new-orders.component';
 import {WalletComponent} from './dashboard/wallet/wallet.component';
 import {ToasterNotificationService} from './common-services/toaster-notification.service';
+import {CheckOutComponent} from './dashboard/check-out/check-out.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {ToasterNotificationService} from './common-services/toaster-notification
     AppHeaderComponent,
     OrderHistoryComponent,
     NewOrdersComponent,
-    WalletComponent
+    WalletComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,
