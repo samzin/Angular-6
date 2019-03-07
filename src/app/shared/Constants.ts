@@ -254,4 +254,8 @@ export class APIResponse {
   public static ERROR_DELETING_ORDERS = 'Error deleting Order.';
   public static SUCCESS_CREATING_ORDER = 'Successfully created order.';
   public static ERROR_CREATING_ORDER = 'Error while created order.';
+  public static ERROR_GETTING_ANALYSIS_LIST = 'Error fetching all Analysis.';
+  public static ERROR_GETTING_SUB_ANALYSIS_LIST = 'Error fetching all Sub Analysis.';
+  public static ERROR_GETTING_SOLVENTS_LIST = 'Error fetching all Solvents.';
+  public static ERROR_GETTING_RATE_FOR_ANALYSIS = 'Error fetching rates for selected Analysis.';
 }

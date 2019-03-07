@@ -3,6 +3,7 @@ import {UserService} from '../../shared/user.service';
 import {Constants, CIFConstants, LocalStorage, APIResponse} from '../../shared/Constants';
 import {TaborderModel} from '../../shared/models/taborder.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
+import {AppLoaderService} from '../../common-services/app-loader.service';
 
 @Component({
   selector : 'app-order-listing',
@@ -19,11 +20,17 @@ export class OrderListComponent implements OnInit {
   index = 1;
   CIFConstants = CIFConstants;
 
-  constructor(private userService: UserService, private toasterNotification: ToasterNotificationService) {
+  constructor(private userService: UserService, private toasterNotification: ToasterNotificationService,
+              private appLoader: AppLoaderService) {
 
   }
 
   ngOnInit(): void {
+    this.getAllOrders();
+  }
+
+  getAllOrders() {
+    this.startLoader();
     // let analysisId = localStorage.getItem(LocalStorage.ANALYSIS_ID);
     const analysisId = 1;
     this.userService.getAllUserOrders(analysisId).subscribe(
@@ -37,12 +44,14 @@ export class OrderListComponent implements OnInit {
   }
 
   onSuccessGettingAllOrders(response) {
+    this.stopLoader();
     console.log('onSuccessGettingAllOrders : ', JSON.stringify(response));
     this.orderList = Constants.ORDER_LIST;
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
   }
 
   onErrorGettingAllOrders(err) {
+    this.stopLoader();
     console.log('onSuccessGettingAllOrders : ', JSON.stringify(err));
     this.orderList = Constants.ORDER_LIST;
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ORDERS);
@@ -68,6 +77,7 @@ export class OrderListComponent implements OnInit {
     console.log('deleteSelectedOrder : ' + JSON.stringify(order));
     order.billNo = 'TY21BH';
     order.index = 1;
+    this.startLoader();
     this.userService.deleteOrderByBillNumber(order.billNo, order.index).subscribe(
       res => {
         this.successDeleteSelectedOrder(res);
@@ -79,12 +89,22 @@ export class OrderListComponent implements OnInit {
   }
 
   successDeleteSelectedOrder(response) {
+    this.stopLoader();
     console.log('successDeleteSelectedOrder : ' + JSON.stringify(response));
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_DELETING_ORDERS);
   }
 
   errorDeleteSelectedOrder(err) {
+    this.stopLoader();
     console.log('errorDeleteSelectedOrder : ' + JSON.stringify(err));
     this.toasterNotification.showError(APIResponse.ERROR_DELETING_ORDERS);
+  }
+
+  startLoader() {
+    this.appLoader.start();
+  }
+
+  stopLoader() {
+    this.appLoader.stop();
   }
 }

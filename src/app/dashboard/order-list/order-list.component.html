@@ -5,7 +5,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 table-responsive">
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -26,29 +26,29 @@
           </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let order of orderList">
-          <td>{{order.orderid}}</td>
-          <td>{{order.analysisname}}</td>
-          <td>{{order.sub_analysisname}}</td>
-          <td>{{order.solventname}}</td>
-          <td>{{order.samplecode}}</td>
-          <td>{{order.rate}}</td>
-          <td>{{order.hrs_rate}}</td>
-          <td>{{order.extrahrs}}</td>
-          <td>{{order.taxableamt}}</td>
-          <td>{{order.cgst}}</td>
-          <td>{{order.sgst}}</td>
-          <td>{{order.amount}}</td>
-          <td>{{order.date}}</td>
-          <td>
-              <span class="order-action" (click)="editSelectedOrder(order)">
-                <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#orderModal"></span>
-              </span>
-              <span class="order-action" (click)="deleteSelectedOrder(order)">
-                <span class="glyphicon glyphicon-trash"></span>
-              </span>
-          </td>
-        </tr>
+          <tr *ngFor="let order of orderList">
+            <td>{{order.orderid}}</td>
+            <td>{{order.analysisname}}</td>
+            <td>{{order.sub_analysisname}}</td>
+            <td>{{order.solventname}}</td>
+            <td>{{order.samplecode}}</td>
+            <td>{{order.rate}}</td>
+            <td>{{order.hrs_rate}}</td>
+            <td>{{order.extrahrs}}</td>
+            <td>{{order.taxableamt}}</td>
+            <td>{{order.cgst}}</td>
+            <td>{{order.sgst}}</td>
+            <td>{{order.amount}}</td>
+            <td>{{order.date}}</td>
+            <td>
+                <span class="order-action" (click)="editSelectedOrder(order)">
+                  <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#orderModal"></span>
+                </span>
+                <span class="order-action" (click)="deleteSelectedOrder(order)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </span>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

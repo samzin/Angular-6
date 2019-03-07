@@ -29,6 +29,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material';
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {OrderFormComponent} from './dashboard/order-form/order-form.component';
 import {OrderListComponent} from './dashboard/order-list/order-list.component';
@@ -58,6 +59,7 @@ import {ToasterNotificationService} from './common-services/toaster-notification
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NgxUiLoaderModule,
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,

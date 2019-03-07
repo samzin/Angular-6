@@ -4,6 +4,7 @@ import {APIResponse, CIFConstants, Constants, Validation} from '../../shared/Con
 import {TaborderModel} from '../../shared/models/taborder.model';
 import {RateModel} from '../../shared/models/rate.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
+import {AppLoaderService} from '../../common-services/app-loader.service';
 
 @Component({
   selector: 'app-order-form',
@@ -34,7 +35,8 @@ export class OrderFormComponent implements OnInit, OnChanges {
   public sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
   public numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
 
-  constructor(public userService: UserService, private toasterNotification: ToasterNotificationService) { }
+  constructor(public userService: UserService, private toasterNotification: ToasterNotificationService,
+              private appLoader: AppLoaderService) { }
 
 
   ngOnChanges(changes: SimpleChanges) {
@@ -48,21 +50,29 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   getAllAnalysis() {
+    this.startLoader();
     this.userService.getAllAnalysisList().subscribe(res => {
-        console.log('Success analysis list.');
-        this.successGetAnalysisName();
+        this.successGetAnalysisName(res);
       }, err => {
-        this.successGetAnalysisName();
-        console.log('Error analysis list.', JSON.stringify(err));
+        this.errorGetAnalysisName(err);
       }
     );
   }
 
-  successGetAnalysisName() {
+  successGetAnalysisName(response) {
+    console.log('Success analysis list.');
+    this.stopLoader();
     this.analysisList = Constants.ANALYSIS_LIST;
     if (this.model.aid) {
       this.getAnalysisName();
     }
+  }
+
+  errorGetAnalysisName(err) {
+    console.log('Error analysis list.', JSON.stringify(err));
+    this.stopLoader();
+    this.toasterNotification.showError(APIResponse.ERROR_GETTING_ANALYSIS_LIST);
+    this.successGetAnalysisName(err);
   }
 
   getAnalysisName() {
@@ -92,29 +102,48 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   getAllSubAnalysis() {
+    this.startLoader();
     const body = {
       analysisName : this.selectedAnalysisName
     };
     this.userService.getAllSubAnalysisList(body).subscribe(res => {
-        console.log('Success analysis list :');
-        this.subAnalysisList = Constants.SUBANALYSIS;
+        this.successGetAllSubAnalysis();
       }, err => {
-        console.log('Error analysis list : ');
-        this.subAnalysisList = Constants.SUBANALYSIS;
+        this.errorGetAllSubAnalysis();
       }
     );
   }
 
+  successGetAllSubAnalysis() {
+    this.stopLoader();
+    this.subAnalysisList = Constants.SUBANALYSIS;
+  }
+  errorGetAllSubAnalysis() {
+    this.stopLoader();
+    this.toasterNotification.showError(APIResponse.ERROR_GETTING_SUB_ANALYSIS_LIST);
+    this.subAnalysisList = Constants.SUBANALYSIS;
+  }
+
   getAllSolvents() {
+    this.startLoader();
     const analysisId = this.model.aid;
     this.userService.getAllSolventByAnalysisId(analysisId).subscribe(res => {
-        console.log('Success getAllSolvent :');
-        this.solventList = Constants.SOLVENT_LIST;
+        this.successGetAllSolvents();
       }, err => {
-        console.log('Error getAllSolvent list : ');
-        this.solventList = Constants.SOLVENT_LIST;
+        this.errorGetAllSolvents();
       }
     );
+  }
+
+  successGetAllSolvents() {
+    this.stopLoader();
+    this.solventList = Constants.SOLVENT_LIST;
+  }
+
+  errorGetAllSolvents() {
+    this.stopLoader();
+    this.toasterNotification.showError(APIResponse.ERROR_GETTING_SOLVENTS_LIST);
+    this.solventList = Constants.SOLVENT_LIST;
   }
 
   setSelectedSolvent(solventName) {
@@ -153,14 +182,24 @@ export class OrderFormComponent implements OnInit, OnChanges {
       subid: this.model.subid,
       utid: this.model.uid,
     };
+    this.startLoader();
     this.userService.getRateBySubanalysisId(body).subscribe(res => {
-        console.log('Success getAllSolvent :');
-        this.rateObject = Constants.RATE_OBJECT;
+        this.successGetRateObject(res);
       }, err => {
-        console.log('Error getAllSolvent list : ');
-        this.rateObject = Constants.RATE_OBJECT;
+        this.errorGetRateObject(err);
       }
     );
+  }
+
+  successGetRateObject(response) {
+    this.stopLoader();
+    this.rateObject = Constants.RATE_OBJECT;
+  }
+
+  errorGetRateObject(err) {
+    this.stopLoader();
+    this.toasterNotification.showError(APIResponse.ERROR_GETTING_RATE_FOR_ANALYSIS);
+    this.rateObject = Constants.RATE_OBJECT;
   }
 
   checkLimitForSamples(sampleCode) {
@@ -179,6 +218,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
   onSubmit(tabOrder: TaborderModel) {
     console.log('tabOrder : ' + JSON.stringify(tabOrder));
     const analysisId = 1;
+    this.startLoader();
     this.userService.createUserTabOrder(analysisId, tabOrder)
       .subscribe(
         response => {
@@ -189,11 +229,21 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   onSuccessOrder(response) {
+    this.stopLoader();
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_CREATING_ORDER);
   }
 
   onErrorOrder(error) {
+    this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_CREATING_ORDER);
+  }
+
+  startLoader() {
+    this.appLoader.start();
+  }
+
+  stopLoader() {
+    this.appLoader.stop();
   }
 
 }

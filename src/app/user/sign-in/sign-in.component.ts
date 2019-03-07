@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 import {LoginModel} from '../../shared/models/login.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
+import {AppLoaderService} from '../../common-services/app-loader.service';
 import {APIResponse} from '../../shared/Constants';
 
 @Component({
@@ -16,7 +17,8 @@ export class SignInComponent implements OnInit {
   public login = new LoginModel();
   serverErrorMessages: string;
 
-  constructor(private userService: UserService, private router: Router, private toasterNotification: ToasterNotificationService) {
+  constructor(private userService: UserService, private router: Router, private toasterNotification: ToasterNotificationService,
+              private appLoader: AppLoaderService) {
   }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(loginModel: LoginModel) {
+    this.startLoader();
     this.userService.login(loginModel).subscribe(
       res => {
         this.onLoginSuccess(res);
@@ -37,16 +40,25 @@ export class SignInComponent implements OnInit {
   }
 
   onLoginSuccess(response) {
+    this.stopLoader();
     this.router.navigateByUrl('/dashboard');
     this.userService.setToken(response['token']);
     // this.router.navigateByUrl('/userprofile');
   }
 
   onLoginError(err) {
+    this.stopLoader();
     console.log('Error while login :', JSON.stringify(err));
     this.toasterNotification.showError(APIResponse.ERROR_LOGIN);
     this.router.navigateByUrl('/dashboard');
     this.serverErrorMessages = err.error.message;
   }
 
+  startLoader() {
+    this.appLoader.start();
+  }
+
+  stopLoader() {
+    this.appLoader.stop();
+  }
 }
