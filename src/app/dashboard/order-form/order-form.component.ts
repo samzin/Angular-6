@@ -62,7 +62,8 @@ export class OrderFormComponent implements OnInit, OnChanges {
   successGetAnalysisName(response) {
     console.log('Success analysis list.');
     this.stopLoader();
-    this.analysisList = Constants.ANALYSIS_LIST;
+    this.analysisList = response;
+    // this.analysisList = Constants.ANALYSIS_LIST;
     if (this.model.aid) {
       this.getAnalysisName();
     }
@@ -72,7 +73,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
     console.log('Error analysis list.', JSON.stringify(err));
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ANALYSIS_LIST);
-    this.successGetAnalysisName(err);
+    // this.successGetAnalysisName(err);
   }
 
   getAnalysisName() {
@@ -104,46 +105,49 @@ export class OrderFormComponent implements OnInit, OnChanges {
   getAllSubAnalysis() {
     this.startLoader();
     const body = {
-      analysisName : this.selectedAnalysisName
+      aid : this.model.aid
     };
     this.userService.getAllSubAnalysisList(body).subscribe(res => {
-        this.successGetAllSubAnalysis();
+        this.successGetAllSubAnalysis(res);
       }, err => {
         this.errorGetAllSubAnalysis();
       }
     );
   }
 
-  successGetAllSubAnalysis() {
+  successGetAllSubAnalysis(response) {
     this.stopLoader();
-    this.subAnalysisList = Constants.SUBANALYSIS;
+    this.subAnalysisList = response;
+    // this.subAnalysisList = Constants.SUBANALYSIS;
   }
+
   errorGetAllSubAnalysis() {
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_SUB_ANALYSIS_LIST);
-    this.subAnalysisList = Constants.SUBANALYSIS;
+    // this.subAnalysisList = Constants.SUBANALYSIS;
   }
 
   getAllSolvents() {
     this.startLoader();
     const analysisId = this.model.aid;
     this.userService.getAllSolventByAnalysisId(analysisId).subscribe(res => {
-        this.successGetAllSolvents();
+        this.successGetAllSolvents(res);
       }, err => {
-        this.errorGetAllSolvents();
+        this.errorGetAllSolvents(err);
       }
     );
   }
 
-  successGetAllSolvents() {
+  successGetAllSolvents(response) {
     this.stopLoader();
-    this.solventList = Constants.SOLVENT_LIST;
+    this.solventList = response;
+    // this.solventList = Constants.SOLVENT_LIST;
   }
 
-  errorGetAllSolvents() {
+  errorGetAllSolvents(err) {
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_SOLVENTS_LIST);
-    this.solventList = Constants.SOLVENT_LIST;
+    // this.solventList = Constants.SOLVENT_LIST;
   }
 
   setSelectedSolvent(solventName) {
@@ -193,13 +197,14 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   successGetRateObject(response) {
     this.stopLoader();
-    this.rateObject = Constants.RATE_OBJECT;
+    this.rateObject = response;
+    // this.rateObject = Constants.RATE_OBJECT;
   }
 
   errorGetRateObject(err) {
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_RATE_FOR_ANALYSIS);
-    this.rateObject = Constants.RATE_OBJECT;
+    // this.rateObject = Constants.RATE_OBJECT;
   }
 
   checkLimitForSamples(sampleCode) {

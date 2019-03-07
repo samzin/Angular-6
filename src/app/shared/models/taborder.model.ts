@@ -38,6 +38,6 @@ export class TaborderModel {
     this.subid = 0;
     this.taxable_Amount = 0;
     this.total_Amount = 0;
-    this.uid = 0;
+    this.uid = 1;
   }
 }

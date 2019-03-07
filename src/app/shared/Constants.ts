@@ -218,6 +218,7 @@ export class CIFConstants {
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
   public static USER_TYPE_ID = 1;
   public static ORDER_ID = 'Order Id';
+  public static ORDER_INDEX = 'Index';
   public static ANALYSIS_NAME = 'Analysis Name';
   public static SUB_ANALYSIS_NAME = 'Sub Analysis Name';
   public static SOLVENT_NAME = 'Solvent Name';
