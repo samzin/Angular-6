@@ -1,0 +1,18 @@
+#demo {
+  width: 150px;
+  position: absolute;
+  z-index: 9999;
+  background-color: #222222;
+  height: 100vh;
+  overflow: hidden;
+}
+.navbar {
+  border-radius: unset;
+}
+.navbar-inverse {
+  margin-bottom: auto;
+}
+.nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active {
+  text-decoration: none;
+  background-color: unset;
+}

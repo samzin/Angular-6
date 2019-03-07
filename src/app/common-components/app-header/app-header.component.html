@@ -1,24 +1,35 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/">{{appName}}</a>
+      <a href="#demo" data-toggle="collapse" class="navbar-brand btn">
+        <span class="glyphicon glyphicon-align-justify"></span>
+      </a>
+      <a class="navbar-brand">{{appName}}</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li>
-        <a routerLink="/dashboard">Dashboard</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/dashboard/new-orders">New Order</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/dashboard/order-history">Old Orders</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/dashboard/wallet">Wallet</a>
-      </li>
-      <li>
-        <a (click)="logOut()">Logout</a>
-      </li>
-    </ul>
   </div>
 </nav>
+
+
+<div id="demo" class="collapse">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li>
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/new-orders">New Order</a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/order-history">Old Orders</a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/wallet">Wallet</a>
+        </li>
+        <li>
+          <a (click)="logOut()"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
