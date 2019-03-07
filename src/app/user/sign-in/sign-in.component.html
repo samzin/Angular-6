@@ -1,6 +1,7 @@
-<div>
-    <img src="assets/img/single_user.png" id="icon" alt="User Icon" />
+  <div>
+      <img src="assets/img/single_user.png" id="icon" alt="User Icon" />
   </div>
+
   <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(login)">
 
     <div class="form-group">
@@ -11,18 +12,20 @@
       </div>
     </div>
 
-    <input type="password" class="form-control" name="password" [(ngModel)]="login.password"
-           placeholder="Password" #password="ngModel" required minlength="6"
-           [ngClass]="{ 'invalid-textbox': signInForm.submitted && password.invalid }" />
-    <div *ngIf="signInForm.submitted && password.invalid">
-      <label class="validation-message" *ngIf="password?.errors.required">Password is required</label>
-      <label class="validation-message" *ngIf="password?.errors.minlength">Password must be at least 6 characters</label>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" [(ngModel)]="login.password"
+             placeholder="Password" #password="ngModel" required minlength="6"
+             [ngClass]="{ 'invalid-textbox': signInForm.submitted && password.invalid }" />
+      <div *ngIf="signInForm.submitted && password.invalid">
+        <label class="validation-message" *ngIf="password?.errors.required">Password is required</label>
+        <label class="validation-message" *ngIf="password?.errors.minlength">Password must be at least 6 characters</label>
+      </div>
     </div>
 
     <input type="submit" value="Sign In">
 
   </form>
   <!-- Error message -->
-<div class="alert" *ngIf="serverErrorMessages">
+  <div class="alert" *ngIf="serverErrorMessages">
     {{serverErrorMessages}}
   </div>
