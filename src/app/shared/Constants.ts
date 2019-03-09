@@ -241,7 +241,7 @@ export class LocalStorage {
 export class API {
   public static USER_TAB_ORDER = '/userorder/$analysisId$/taborder';
   public static ANALYSIS_LIST = '/userorder/analysis';
-  public static SUB_ANALYSIS_LIST = '/userorder/subanalysis';
+  public static SUB_ANALYSIS_LIST = '/userorder/$analysisId$/subanalysis';
   public static SOLVENT_LIST = '/userorder/$analysisId$/solvents';
   public static RATE = '/userorder/rate';
   public static DELETE_ORDER = '/userorder/$bill$/$index$';

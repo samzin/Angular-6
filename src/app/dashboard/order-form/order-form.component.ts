@@ -182,6 +182,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   getRateObject() {
+    alert
     const body = {
       subid: this.model.subid,
       utid: this.model.uid,

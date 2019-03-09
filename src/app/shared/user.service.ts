@@ -23,7 +23,7 @@ export class UserService {
   }
 
   getAllSubAnalysisList(body): Observable<any> {
-    const URL = API.SUB_ANALYSIS_LIST;
+    const URL = API.SUB_ANALYSIS_LIST.replace('$analysisId$', body.aid);;
     return this.httpService.post(URL, body);
   }
 
