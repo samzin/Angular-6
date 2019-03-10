@@ -8,7 +8,7 @@ export class Constants {
   public static USER_TYPE_INDUSTRY = 'Industry';
   public static USER_TYPE_UNIVERSITY = 'Other University';
 
-  public static PAYMENT_TYPES: string[] = ['By Check', 'By DD', 'By Cash'];
+  public static PAYMENT_TYPES: string[] = [ 'By Challan', 'By Cheque', 'By DD', 'By Budget Head'];
 
   public static USER_TYPE_OBJECTS: any[] = [
     {
@@ -236,9 +236,10 @@ export class Constants {
   ];
 
   public static PAYMENT_TYPE_WALLET = 'Wallet';
-  public static PAYMENT_TYPE_BY_CHEQUE = 'By Check';
+  public static PAYMENT_TYPE_BY_CHEQUE = 'By Cheque';
   public static PAYMENT_TYPE_BY_DD = 'By DD';
-  public static PAYMENT_TYPE_CASH = 'By Cash';
+  public static PAYMENT_TYPE_CHALLAN = 'By Challan';
+  public static PAYMENT_TYPE_BUDGET_HEAD = 'By Budget Head';
 
 }
 
@@ -250,6 +251,7 @@ export class CIFConstants {
   public static APP_NAME = 'Central Instrumentation Facility';
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
   public static ANALYSIS_NAME_FOR_INHOUSE_EXPERT = 'Confocal Microscope';
+  public static ANALYSIS_NAME_WITH_SINGLE_CRYSTAL = 'Single Crystal XRD';
   public static USER_TYPE_ID = 1;
   public static ORDER_ID = 'Order Id';
   public static ORDER_INDEX = 'Index';
@@ -283,6 +285,7 @@ export class API {
   public static DELETE_ORDER = '/userorder/$bill$/$index$';
   public static PAY_BY_WALLET = '/wallet/$uid$';
   public static USER_PROFILE_DETAILS = '/authentication/$uid$/userprofile';
+  public static UPDATE_USER_PROFILE = '/authentication/userprofile';
 }
 
 export class APIResponse {

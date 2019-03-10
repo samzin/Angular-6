@@ -17,7 +17,8 @@ export class CheckOutComponent {
   paymentTypes = Constants.PAYMENT_TYPES;
   paymentByChequeLabel = Constants.PAYMENT_TYPE_BY_CHEQUE;
   paymentByDDLabel = Constants.PAYMENT_TYPE_BY_DD;
-  paymentByCashLabel = Constants.PAYMENT_TYPE_CASH;
+  paymentByChalan = Constants.PAYMENT_TYPE_CHALLAN;
+  paymentByBudgetHead = Constants.PAYMENT_TYPE_BUDGET_HEAD;
   selectedPaymentType = '';
 
   constructor(public userService: UserService, private toasterNotification: ToasterNotificationService,

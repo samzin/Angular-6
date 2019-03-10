@@ -18,6 +18,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   selectedAnalysisName = '';
   selectedSubAnalysisName = '';
+  providername = '';
   selectedSolventName = '';
   selctedNumberOfSamples = 1;
   solventRate = 0;
@@ -27,11 +28,14 @@ export class OrderFormComponent implements OnInit, OnChanges {
   public analysisList = [];
   public solventList = [];
   public solventProviderList = Constants.SOLVENT_PROVIDER_LIST;
+  public userId = parseInt(localStorage.getItem('user_id'));
+  public userTypeId = parseInt(localStorage.getItem('user_type_id'));
   public subAnalysisList = [];
   public rateObject = new RateModel();
 
   public showSolventForAnalysis = CIFConstants.ANALYSIS_NAME_FOR_SOLVENT;
   public showInhouseExpert = CIFConstants.ANALYSIS_NAME_FOR_INHOUSE_EXPERT;
+  public showLiquidNitrogen = CIFConstants.ANALYSIS_NAME_WITH_SINGLE_CRYSTAL;
   public showSolventByUserType = CIFConstants.USER_TYPE_ID;
   public sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
   public numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
@@ -75,6 +79,23 @@ export class OrderFormComponent implements OnInit, OnChanges {
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ANALYSIS_LIST);
     // this.successGetAnalysisName(err);
+  }
+
+  showSolventProvider() {
+    if ( (this.userTypeId === 1 || this.userTypeId === 2) &&
+      this.selectedAnalysisName === CIFConstants.ANALYSIS_NAME_FOR_SOLVENT) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  disableSolvent() {
+    if (this.providername === 'Provided by User') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getAnalysisName() {

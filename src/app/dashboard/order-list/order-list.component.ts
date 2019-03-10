@@ -46,14 +46,13 @@ export class OrderListComponent implements OnInit {
   onSuccessGettingAllOrders(response) {
     this.stopLoader();
     console.log('onSuccessGettingAllOrders : ', JSON.stringify(response));
-    this.orderList = Constants.ORDER_LIST;
+    this.orderList = response;
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
   }
 
   onErrorGettingAllOrders(err) {
     this.stopLoader();
     console.log('onSuccessGettingAllOrders : ', JSON.stringify(err));
-    this.orderList = Constants.ORDER_LIST;
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ORDERS);
   }
 
@@ -75,8 +74,8 @@ export class OrderListComponent implements OnInit {
 
   deleteSelectedOrder(order) {
     console.log('deleteSelectedOrder : ' + JSON.stringify(order));
-    order.billNo = 'TY21BH';
-    order.index = 1;
+    /*order.billNo = 'TY21BH';
+    order.index = 1;*/
     this.startLoader();
     this.userService.deleteOrderByBillNumber(order.billNo, order.index).subscribe(
       res => {

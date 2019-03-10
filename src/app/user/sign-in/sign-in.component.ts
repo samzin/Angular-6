@@ -41,16 +41,18 @@ export class SignInComponent implements OnInit {
 
   onLoginSuccess(response) {
     this.stopLoader();
-    if(response.message) {
+    if (response.message) {
       this.toasterNotification.showError(response.message);
     } else {
-      if(response.isUserApproved){
-        localStorage.setItem('user_id',response.uid);
-        localStorage.setItem('user_type_id',response.utid);
+      if (response.isUserApproved) {
+        localStorage.setItem('user_id', response.uid);
+        localStorage.setItem('user_type_id', response.utid);
         this.router.navigateByUrl('/dashboard');
       } else {
+        localStorage.setItem('user_id', response.uid);
+        localStorage.setItem('user_type_id', response.utid);
         this.router.navigateByUrl('/dashboard/profile');
-      }  
+      }
     }
   }
 

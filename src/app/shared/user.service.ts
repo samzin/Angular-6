@@ -67,7 +67,7 @@ export class UserService {
   }
 
   updateUserDetails(uid, body): Observable<any> {
-    const URL = API.USER_PROFILE_DETAILS.replace('$uid$', uid);
+    const URL = API.UPDATE_USER_PROFILE;
     return this.httpService.put(URL, body);
   }
 

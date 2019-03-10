@@ -11,6 +11,10 @@ export class TaborderModel {
   ordid: Number;
   rate: Number;
   sample_Code: String;
+  special_notes: String;
+  solvent_provider: String;
+  inHouseExpert: boolean;
+  liquidNitrogen: boolean;
   sgst: Number;
   sgstp: Number;
   solvent_Rate: Number;
@@ -24,10 +28,14 @@ export class TaborderModel {
 
   constructor() {
     this.billNo = '';
+    this.special_notes = '';
+    this.solvent_provider = '';
     this.cgst = 0;
     this.cgstp = 0;
     this.extra_Hrs = 0;
     this.hrs_Rate = 0;
+    this.inHouseExpert = false;
+    this.liquidNitrogen = false;
     this.order_Date = new Date();
     this.ordid = 0;
     this.rate = 0;
