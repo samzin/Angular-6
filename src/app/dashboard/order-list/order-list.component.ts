@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../shared/user.service';
-import {Constants, CIFConstants, LocalStorage, APIResponse} from '../../shared/Constants';
+import {Constants, CIFConstants, LocalStorageLabels, APIResponse} from '../../shared/Constants';
 import {TaborderModel} from '../../shared/models/taborder.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';

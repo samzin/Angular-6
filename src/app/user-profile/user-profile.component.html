@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-offset-3 col-md-6">
+    <div class="header-profile-details">
+      <h4>Update Profile Details</h4>
+    </div>
     <form #profileDetailsForm="ngForm" (ngSubmit)="profileDetailsForm.valid && updateUserProfileDetails(userDetails)">
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" required [(ngModel)]="userDetails.firstName" name="firstName">
+        <input type="text" class="form-control col-md-6" id="firstName" required [(ngModel)]="userDetails.firstName" name="firstName">
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
@@ -42,20 +45,24 @@
 
       <div class="form-group">
         <label for="userEmail">User email Id</label>
-        <input type="text" class="form-control" id="userEmail" required [(ngModel)]="userDetails.emailId" name="userEmail">
+        <input type="text" class="form-control" id="userEmail" required disabled [(ngModel)]="userDetails.emailId" name="userEmail">
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" required [(ngModel)]="userDetails.password" name="password">
+        <input type="password" class="form-control" id="password" required
+               (blur)="checkPassword()" [(ngModel)]="userDetails.password" name="password">
       </div>
 
       <div class="form-group">
         <label for="reenterPassword">Re-enter Password</label>
-        <input type="reenterPassword" class="form-control" id="reenterPassword" required
+        <input type="password" class="form-control" id="reenterPassword" required
                [(ngModel)]="reenterPassword" name="reenterPassword" (blur)="checkPassword()">
       </div>
-      <input type="submit" value="Update Profile" />
+      <div *ngIf="showPasswordMismatchError" class="alert">
+        Password and Confirm Passwords do not match.
+      </div>
+      <button type="submit" class="btn btn-primary" value="Update Profile">Update Profile</button>
     </form>
   </div>
 </div>

@@ -5,7 +5,7 @@ import { UserService } from '../../shared/user.service';
 import {LoginModel} from '../../shared/models/login.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';
-import {APIResponse, LocalStorage} from '../../shared/Constants';
+import {APIResponse, LocalStorageLabels} from '../../shared/Constants';
 
 @Component({
   selector: 'app-sign-in',
@@ -44,13 +44,11 @@ export class SignInComponent implements OnInit {
     if (response.message) {
       this.toasterNotification.showError(response.message);
     } else {
+      localStorage.setItem('user_id', response.uid);
+      localStorage.setItem('user_type_id', response.utid);
       if (response.isUserApproved) {
-        localStorage.setItem('user_id', response.uid);
-        localStorage.setItem('user_type_id', response.utid);
         this.router.navigateByUrl('/dashboard');
       } else {
-        localStorage.setItem('user_id', response.uid);
-        localStorage.setItem('user_type_id', response.utid);
         this.router.navigateByUrl('/dashboard/profile');
       }
     }
@@ -60,7 +58,6 @@ export class SignInComponent implements OnInit {
     this.stopLoader();
     console.log('Error while login :', JSON.stringify(err));
     this.toasterNotification.showError(APIResponse.ERROR_LOGIN);
-    this.router.navigateByUrl('/dashboard');
     this.serverErrorMessages = err.error.message;
   }
 

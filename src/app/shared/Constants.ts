@@ -1,7 +1,5 @@
 export class Constants {
 
-  public static USER_TYPES: string[] = ['SPPU-Campus', 'SPPU-Colleges', 'Govt.', 'Industry', 'Other University'];
-
   public static USER_TYPE_CAMPUS = 'SPPU-Campus';
   public static USER_TYPE_COLLEGE = 'SPPU-Colleges';
   public static USER_TYPE_GOVERNAMENT = 'Govt.';
@@ -33,76 +31,6 @@ export class Constants {
     }
   ];
 
-  public static ANALYSIS_LIST: any [] = [
-    {
-      'aid': 1,
-      'analysisname': 'NMR 500 MHz'
-    },
-    {
-      'aid': 2,
-      'analysisname': 'LC-MS/MS'
-    },
-    {
-      'aid': 3,
-      'analysisname': 'FESEM EDS'
-    },
-    {
-      'aid': 4,
-      'analysisname': 'Confocal Microscope'
-    },
-    {
-      'aid': 5,
-      'analysisname': 'CD Spectrophotometer'
-    },
-    {
-      'aid': 6,
-      'analysisname': 'Single Crystal XRD'
-    },
-    {
-      'aid': 7,
-      'analysisname': 'GC-MS-MS'
-    }
-  ];
-
-  public static SOLVENT_LIST: any[] = [
-    {
-      'aid': 1,
-      'rate': 150,
-      'solid': 1,
-      'solventname': 'D2O & DMSO-D6'
-    },
-    {
-      'aid': 1,
-      'rate': 300,
-      'solid': 2,
-      'solventname': 'Actone -D6'
-    },
-    {
-      'aid': 1,
-      'rate': 400,
-      'solid': 3,
-      'solventname': 'Benzene -D6'
-    },
-    {
-      'aid': 1,
-      'rate': 500,
-      'solid': 4,
-      'solventname': 'Methanol -D4'
-    },
-    {
-      'aid': 1,
-      'rate': 600,
-      'solid': 5,
-      'solventname': 'Acetonitrile -D3'
-    },
-    {
-      'aid': 1,
-      'rate': 0,
-      'solid': 6,
-      'solventname': 'CDCl3'
-    }
-  ];
-
   public static SOLVENT_PROVIDER_LIST: any[] = [
     {
       'uid': 1,
@@ -114,128 +42,6 @@ export class Constants {
     }
   ];
 
-  public static SUBANALYSIS: any[] = [
-    {
-      'subid': 1,
-      'subAnalysisname': 'HRMS(Small Molecules)Only Mass'
-    },
-    {
-      'subid': 2,
-      'subAnalysisname': 'HRMS(Small Molecules) Chromatogram'
-    },
-    {
-      'subid': 3,
-      'subAnalysisname': 'LC-MS(Small Molecules) Chromatogram(LC+MS)'
-    },
-    {
-      'subid': 4,
-      'subAnalysisname': 'HRMS/MS(Small Molecules) Chromatogram'
-    },
-    {
-      'subid': 5,
-      'subAnalysisname': 'LC-MS/MS(Small Molecules) Chromatogram'
-    },
-    {
-      'subid': 6,
-      'subAnalysisname': 'HRMS(Bio Molecules) Mass/Chromatogram'
-    },
-    {
-      'subid': 7,
-      'subAnalysisname': 'HRMS/MS (BioMolecules)* Identification'
-    }
-  ];
-
-  public static RATE_OBJECT: any = {
-    'hrs_Rate': '400',
-    'rate': '5000',
-    'rid': 0,
-    'subid': 0,
-    'utid': 0
-  };
-
-  public static USER_PROFILE: any = {
-    'address': 'Parbhani',
-    'contact': '7588676767',
-    'deptName': 'CSE',
-    'emailId': 'swapnil.nakhate1010@gmail.com',
-    'gstIn': 'string',
-    'guideEmailId': 'swapnil.nakhate@techprimelab.com',
-    'guideName': 'Swapnil Nakhate',
-    'instName': 'Swapnil',
-    'stateCode': '2',
-    'uid': 10,
-    'firstName': 'Swapnil',
-    'lastName': 'Nakhate',
-    'userType': {
-      'userTypeId': 1,
-      'userTypeName': 'Industry'
-    }
-  };
-
-  public static ORDER_LIST: any[] =  [
-    {
-      'analysisname': 'LC-MS/MS',
-      'sub_analysisname': 'HRMS(Small Molecules)Only Mass',
-      'solventname': '',
-      'samplecode': 'sg',
-      'rate': '2000',
-      'hrs_rate': '500',
-      'extrahrs': '1',
-      'taxableamt': '2500',
-      'cgst': '225',
-      'sgst': '225',
-      'amount': '2950',
-      'date': '2018-07-29',
-      'orderid': '70'
-    },
-    {
-      'analysisname': 'Confocal Microscope',
-      'sub_analysisname': 'Confocal Microscope',
-      'solventname': '',
-      'samplecode': 'sg',
-      'rate': '1000',
-      'hrs_rate': '500',
-      'extrahrs': '1',
-      'taxableamt': '1500',
-      'cgst': '125',
-      'sgst': '125',
-      'amount': '1950',
-      'date': '2018-07-29',
-      'orderid': '71'
-    },
-    {
-      'analysisname': 'LC-MS/MS',
-      'sub_analysisname': 'HRMS(Small Molecules)Only Mass',
-      'solventname': '',
-      'samplecode': 'h',
-      'rate': '2000',
-      'hrs_rate': '500',
-      'extrahrs': '1',
-      'taxableamt': '2500',
-      'cgst': '225',
-      'sgst': '225',
-      'amount': '2950',
-      'date': '2018-07-29',
-      'orderid': '72'
-    },
-    {
-      'analysisname': 'LC-MS/MS',
-      'sub_analysisname': 'HRMS(Small Molecules)Only Mass',
-      'solventname': '',
-      'samplecode': 'd',
-      'rate': '2000',
-      'hrs_rate': '500',
-      'extrahrs': '1',
-      'taxableamt': '2500',
-      'cgst': '225',
-      'sgst': '225',
-      'amount': '2950',
-      'date': '2018-07-29',
-      'orderid': '73'
-    },
-  ];
-
-  public static PAYMENT_TYPE_WALLET = 'Wallet';
   public static PAYMENT_TYPE_BY_CHEQUE = 'By Cheque';
   public static PAYMENT_TYPE_BY_DD = 'By DD';
   public static PAYMENT_TYPE_CHALLAN = 'By Challan';
@@ -270,7 +76,7 @@ export class CIFConstants {
   public static ACTION = 'Action';
 }
 
-export class LocalStorage {
+export class LocalStorageLabels {
   public static ANALYSIS_ID: 'analysis_id';
   public static USER_ID: 'user_id';
   public static USER_TYPE_ID: 'user_type_id';

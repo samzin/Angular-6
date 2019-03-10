@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
 import {UserModel} from '../shared/models/user.model';
-import {APIResponse, Constants, LocalStorage} from '../shared/Constants';
+import {APIResponse, Constants, LocalStorageLabels} from '../shared/Constants';
 import {ToasterNotificationService} from '../common-services/toaster-notification.service';
 import {AppLoaderService} from '../common-services/app-loader.service';
 
@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
 
   userDetails: UserModel = new UserModel();
   reenterPassword: String;
+  showPasswordMismatchError = false;
   userTypeCampus = Constants.USER_TYPE_CAMPUS;
   userTypeCollege = Constants.USER_TYPE_COLLEGE;
   userTypeGovernment = Constants.USER_TYPE_GOVERNAMENT;
@@ -45,14 +46,11 @@ export class UserProfileComponent implements OnInit {
     this.userDetails = response;
     this.stopLoader();
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_PROFILE_DETAILS);
-    // this.userDetails = Constants.USER_PROFILE;
   }
 
   errorGettingUserDetails(err) {
     this.stopLoader();
-    console.log('Error getting user profile : ' + JSON.stringify(err));
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_PROFILE_DETAILS);
-    // this.userDetails = Constants.USER_PROFILE;
   }
 
   checkIfUserOfIndustry() {
@@ -68,26 +66,27 @@ export class UserProfileComponent implements OnInit {
   }
 
   checkPassword() {
-    console.log('comparing password');
+    if (this.reenterPassword === this.userDetails.password) {
+      this.showPasswordMismatchError = false;
+    } else {
+      this.showPasswordMismatchError = true;
+    }
   }
 
   updateUserProfileDetails(userDetails) {
-    console.log('userDetails : ' + JSON.stringify(userDetails));
     this.startLoader();
-    const userId = localStorage.getItem('user_id');
+    const userId = localStorage.getItem(LocalStorageLabels.USER_ID);
     const profileDetails = this.userDetails;
     this.userService.updateUserDetails(userId, profileDetails).subscribe(
       res => {
         this.successUpdateUserProfileDetails(res);
-      },
-      err => {
+      }, err => {
         this.errorUpdateUserProfileDetails(err);
       }
     );
   }
 
   successUpdateUserProfileDetails(response) {
-    // this.userDetails = response;
     this.stopLoader();
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_UPDATE_PROFILE_DETAILS);
   }
@@ -98,12 +97,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   startLoader() {
-    console.log('Start loader');
     this.appLoader.start();
   }
 
   stopLoader() {
-    console.log('Stop loader');
     this.appLoader.stop();
   }
 
