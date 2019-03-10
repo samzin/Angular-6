@@ -65,6 +65,11 @@ export class UserService {
     return this.httpService.get('/userProfile');
   }
 
+  updateUserDetails(body): Observable<any> {
+    const URL = API.USER_PROFILE_DETAILS;
+    return this.httpService.put(URL, body);
+  }
+
   setToken(token: string) {
     localStorage.setItem('token', token);
   }

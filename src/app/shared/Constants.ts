@@ -1,5 +1,12 @@
 export class Constants {
-  public static USER_TYPES: string[] = ['Campus', 'Colleges', 'Govt.', 'Industry', 'Other University'];
+
+  public static USER_TYPES: string[] = ['SPPU-Campus', 'SPPU-Colleges', 'Govt.', 'Industry', 'Other University'];
+
+  public static USER_TYPE_CAMPUS = 'SPPU-Campus';
+  public static USER_TYPE_COLLEGE = 'SPPU-Colleges';
+  public static USER_TYPE_GOVERNAMENT = 'Govt.';
+  public static USER_TYPE_INDUSTRY = 'Industry';
+  public static USER_TYPE_UNIVERSITY = 'Other University';
 
   public static PAYMENT_TYPES: string[] = ['By Check', 'By DD', 'By Cash'];
 
@@ -157,10 +164,11 @@ export class Constants {
     'instName': 'Swapnil',
     'stateCode': '2',
     'uid': 10,
-    'userName': 'SwapnilN',
+    'firstName': 'Swapnil',
+    'lastName': 'Nakhate',
     'userType': {
       'userTypeId': 1,
-      'userTypeName': 'User'
+      'userTypeName': 'Industry'
     }
   };
 
@@ -262,6 +270,8 @@ export class CIFConstants {
 
 export class LocalStorage {
   public static ANALYSIS_ID: 'analysis_id';
+  public static USER_ID: 'user_id';
+  public static USER_TYPE_ID: 'user_type_id';
 }
 
 export class API {
@@ -272,6 +282,7 @@ export class API {
   public static RATE = '/userorder/rate';
   public static DELETE_ORDER = '/userorder/$bill$/$index$';
   public static PAY_BY_WALLET = '/wallet/$uid$';
+  public static USER_PROFILE_DETAILS = '/authentication/userprofile';
 }
 
 export class APIResponse {
@@ -290,4 +301,6 @@ export class APIResponse {
   public static ERROR_GETTING_RATE_FOR_ANALYSIS = 'Error fetching rates for selected Analysis.';
   public static SUCCESS_GETTING_PROFILE_DETAILS = 'Successfully fetched User Details.';
   public static ERROR_GETTING_PROFILE_DETAILS = 'Error while fetching user details.';
+  public static SUCCESS_UPDATE_PROFILE_DETAILS = 'Successfully updated User Details.';
+  public static ERROR_UPDATE_PROFILE_DETAILS = 'Error updating user details.';
 }
