@@ -30,7 +30,8 @@ export class UserProfileComponent implements OnInit {
 
   getUserProfileDetails() {
     this.startLoader();
-    this.userService.getUserProfile().subscribe(
+    const uid = localStorage.getItem(LocalStorage.USER_ID);
+    this.userService.getUserProfile(uid).subscribe(
       res => {
         this.successGettingUserDetails(res);
       },
@@ -70,13 +71,12 @@ export class UserProfileComponent implements OnInit {
     console.log('comparing password');
   }
 
-
   updateUserProfileDetails(userDetails) {
     console.log('userDetails : ' + JSON.stringify(userDetails));
     this.startLoader();
     const userId = localStorage.getItem(LocalStorage.USER_ID);
     const profileDetails = this.userDetails;
-    this.userService.updateUserDetails(profileDetails).subscribe(
+    this.userService.updateUserDetails(userId, profileDetails).subscribe(
       res => {
         this.successUpdateUserProfileDetails(res);
       },

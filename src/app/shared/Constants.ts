@@ -282,7 +282,7 @@ export class API {
   public static RATE = '/userorder/rate';
   public static DELETE_ORDER = '/userorder/$bill$/$index$';
   public static PAY_BY_WALLET = '/wallet/$uid$';
-  public static USER_PROFILE_DETAILS = '/authentication/userprofile';
+  public static USER_PROFILE_DETAILS = '/authentication/$uid$/userprofile';
 }
 
 export class APIResponse {

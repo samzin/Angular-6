@@ -61,12 +61,13 @@ export class UserService {
     return this.httpService.post(URL, body);
   }
 
-  getUserProfile() {
-    return this.httpService.get('/userProfile');
+  getUserProfile(uid) {
+    const URL = API.USER_PROFILE_DETAILS.replace('$uid$', uid);
+    return this.httpService.get(URL);
   }
 
-  updateUserDetails(body): Observable<any> {
-    const URL = API.USER_PROFILE_DETAILS;
+  updateUserDetails(uid, body): Observable<any> {
+    const URL = API.USER_PROFILE_DETAILS.replace('$uid$', uid);
     return this.httpService.put(URL, body);
   }
 
