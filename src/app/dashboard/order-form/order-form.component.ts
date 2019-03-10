@@ -165,7 +165,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   setSelectedSubAnalysis(subAnalysisName) {
     const selectedSubAnalysis = this.subAnalysisList.filter(function (subAnalysis) {
-      return subAnalysis.subAnalysisname === subAnalysisName;
+      return subAnalysis.sub_Analysisname === subAnalysisName;
     });
     if (selectedSubAnalysis.length === 1) {
       this.model.subid = selectedSubAnalysis[0].subid;
@@ -183,7 +183,6 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   getRateObject() {
-    alert
     const body = {
       subid: this.model.subid,
       utid: this.model.uid,
