@@ -30,7 +30,7 @@ export class UserProfileComponent implements OnInit {
 
   getUserProfileDetails() {
     this.startLoader();
-    const uid = localStorage.getItem(LocalStorage.USER_ID);
+    const uid = localStorage.getItem('user_id');
     this.userService.getUserProfile(uid).subscribe(
       res => {
         this.successGettingUserDetails(res);

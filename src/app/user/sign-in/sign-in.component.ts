@@ -5,7 +5,7 @@ import { UserService } from '../../shared/user.service';
 import {LoginModel} from '../../shared/models/login.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';
-import {APIResponse} from '../../shared/Constants';
+import {APIResponse, LocalStorage} from '../../shared/Constants';
 
 @Component({
   selector: 'app-sign-in',
@@ -41,9 +41,17 @@ export class SignInComponent implements OnInit {
 
   onLoginSuccess(response) {
     this.stopLoader();
-    this.userService.setToken(response['token']);
-    this.router.navigateByUrl('/dashboard');
-    // this.router.navigateByUrl('/userprofile');
+    if(response.message) {
+      this.toasterNotification.showError(response.message);
+    } else {
+      if(response.isUserApproved){
+        localStorage.setItem('user_id',response.uid);
+        localStorage.setItem('user_type_id',response.utid);
+        this.router.navigateByUrl('/dashboard');
+      } else {
+        this.router.navigateByUrl('/dashboard/profile');
+      }  
+    }
   }
 
   onLoginError(err) {
