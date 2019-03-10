@@ -29,9 +29,6 @@ export const appRoutes: Routes = [
         children: [{ path: '', component: SignInComponent }]
     },
     {
-        path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard]
-    },
-    {
         path: 'order', component: UserorderComponent
     },
     {
@@ -45,7 +42,8 @@ export const appRoutes: Routes = [
         {path: 'new-orders', component: NewOrdersComponent},
         {path: 'order-history', component: OrderHistoryComponent},
         {path: 'wallet', component: WalletComponent},
-        {path: 'checkout', component: CheckOutComponent}
+        {path: 'checkout', component: CheckOutComponent},
+        {path: 'profile', component: UserProfileComponent}
       ]
     }
 ];

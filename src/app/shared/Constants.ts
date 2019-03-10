@@ -1,5 +1,12 @@
 export class Constants {
-  public static USER_TYPES: string[] = ['Campus', 'Colleges', 'Govt.', 'Industry', 'Other University'];
+
+  public static USER_TYPES: string[] = ['SPPU-Campus', 'SPPU-Colleges', 'Govt.', 'Industry', 'Other University'];
+
+  public static USER_TYPE_CAMPUS = 'SPPU-Campus';
+  public static USER_TYPE_COLLEGE = 'SPPU-Colleges';
+  public static USER_TYPE_GOVERNAMENT = 'Govt.';
+  public static USER_TYPE_INDUSTRY = 'Industry';
+  public static USER_TYPE_UNIVERSITY = 'Other University';
 
   public static PAYMENT_TYPES: string[] = ['By Check', 'By DD', 'By Cash'];
 
@@ -146,6 +153,25 @@ export class Constants {
     'utid': 0
   };
 
+  public static USER_PROFILE: any = {
+    'address': 'Parbhani',
+    'contact': '7588676767',
+    'deptName': 'CSE',
+    'emailId': 'swapnil.nakhate1010@gmail.com',
+    'gstIn': 'string',
+    'guideEmailId': 'swapnil.nakhate@techprimelab.com',
+    'guideName': 'Swapnil Nakhate',
+    'instName': 'Swapnil',
+    'stateCode': '2',
+    'uid': 10,
+    'firstName': 'Swapnil',
+    'lastName': 'Nakhate',
+    'userType': {
+      'userTypeId': 1,
+      'userTypeName': 'Industry'
+    }
+  };
+
   public static ORDER_LIST: any[] =  [
     {
       'analysisname': 'LC-MS/MS',
@@ -244,6 +270,8 @@ export class CIFConstants {
 
 export class LocalStorage {
   public static ANALYSIS_ID: 'analysis_id';
+  public static USER_ID: 'user_id';
+  public static USER_TYPE_ID: 'user_type_id';
 }
 
 export class API {
@@ -254,6 +282,7 @@ export class API {
   public static RATE = '/userorder/rate';
   public static DELETE_ORDER = '/userorder/$bill$/$index$';
   public static PAY_BY_WALLET = '/wallet/$uid$';
+  public static USER_PROFILE_DETAILS = '/authentication/userprofile';
 }
 
 export class APIResponse {
@@ -270,4 +299,8 @@ export class APIResponse {
   public static ERROR_GETTING_SUB_ANALYSIS_LIST = 'Error fetching all Sub Analysis.';
   public static ERROR_GETTING_SOLVENTS_LIST = 'Error fetching all Solvents.';
   public static ERROR_GETTING_RATE_FOR_ANALYSIS = 'Error fetching rates for selected Analysis.';
+  public static SUCCESS_GETTING_PROFILE_DETAILS = 'Successfully fetched User Details.';
+  public static ERROR_GETTING_PROFILE_DETAILS = 'Error while fetching user details.';
+  public static SUCCESS_UPDATE_PROFILE_DETAILS = 'Successfully updated User Details.';
+  public static ERROR_UPDATE_PROFILE_DETAILS = 'Error updating user details.';
 }

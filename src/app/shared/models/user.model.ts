@@ -2,6 +2,8 @@ import {UserTypeModel} from './userType.model';
 
 export class UserModel {
   uid: Number;
+  firstName: Number;
+  lastName: Number;
   address: string;
   contact: string;
   deptName: string;
@@ -12,6 +14,7 @@ export class UserModel {
   instName: string;
   stateCode: string;
   userName: string;
+  password: string;
   userType: UserTypeModel;
 
   constructor() {
