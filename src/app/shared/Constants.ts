@@ -1,6 +1,8 @@
 export class Constants {
   public static USER_TYPES: string[] = ['Campus', 'Colleges', 'Govt.', 'Industry', 'Other University'];
 
+  public static PAYMENT_TYPES: string[] = ['By Check', 'By DD', 'By Cash'];
+
   public static USER_TYPE_OBJECTS: any[] = [
     {
       'userTypeId': 1,
@@ -207,6 +209,11 @@ export class Constants {
     },
   ];
 
+  public static PAYMENT_TYPE_WALLET = 'Wallet';
+  public static PAYMENT_TYPE_BY_CHEQUE = 'By Check';
+  public static PAYMENT_TYPE_BY_DD = 'By DD';
+  public static PAYMENT_TYPE_CASH = 'By Cash';
+
 }
 
 export class Validation {
@@ -216,6 +223,7 @@ export class Validation {
 export class CIFConstants {
   public static APP_NAME = 'Central Instrumentation Facility';
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
+  public static ANALYSIS_NAME_FOR_INHOUSE_EXPERT = 'Confocal Microscope';
   public static USER_TYPE_ID = 1;
   public static ORDER_ID = 'Order Id';
   public static ORDER_INDEX = 'Index';

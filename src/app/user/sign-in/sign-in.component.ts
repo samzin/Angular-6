@@ -41,8 +41,8 @@ export class SignInComponent implements OnInit {
 
   onLoginSuccess(response) {
     this.stopLoader();
-    this.router.navigateByUrl('/dashboard');
     this.userService.setToken(response['token']);
+    this.router.navigateByUrl('/dashboard');
     // this.router.navigateByUrl('/userprofile');
   }
 

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {APIResponse} from '../../shared/Constants';
+import {APIResponse, Constants} from '../../shared/Constants';
 import {UserService} from '../../shared/user.service';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';
@@ -14,6 +14,11 @@ export class CheckOutComponent {
 
   amountByWallet = 0;
   isError = false;
+  paymentTypes = Constants.PAYMENT_TYPES;
+  paymentByChequeLabel = Constants.PAYMENT_TYPE_BY_CHEQUE;
+  paymentByDDLabel = Constants.PAYMENT_TYPE_BY_DD;
+  paymentByCashLabel = Constants.PAYMENT_TYPE_CASH;
+  selectedPaymentType = '';
 
   constructor(public userService: UserService, private toasterNotification: ToasterNotificationService,
               private appLoader: AppLoaderService) {

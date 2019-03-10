@@ -48,14 +48,21 @@
               </div>
 
               <div class="form-group">
-                <div class="col-md-6">
-                  <label>Rates : {{rateObject.rate}} </label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Rates : {{rateObject.rate}} </label>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Rates/Hr : {{rateObject.hrs_Rate}} </label>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <label>Rates/Hr : {{rateObject.hrs_Rate}} </label>
-                </div>
-                <div class="col-md-12" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
-                  <label>Solvent Rate : {{solventRate}} </label>
+                <div class="row">
+                  <div class="col-md-6" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
+                    <label>Solvent Rate : {{solventRate}} </label>
+                  </div>
+                  <div class="col-md-6" *ngIf="(selectedAnalysisName == showInhouseExpert)">
+                    <label>InHouse Expert</label>
+                  </div>
                 </div>
               </div>
 

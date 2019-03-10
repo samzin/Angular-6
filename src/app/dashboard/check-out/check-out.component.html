@@ -10,37 +10,66 @@
   <div class="tab-content">
 
     <div id="wallet" class="tab-pane fade in active">
-      <h4>Pay by Wallet</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-      <div class="col-md-4">
-        <form #walletForm="ngForm" (ngSubmit)="walletForm.valid && onSubmit(amountByWallet)">
-          <div class="form-group">
-            <div class="row">
-              <label for="wallet_amount">Enter Amount</label>
-              <input type="text" #walletAmountRef="ngModel" pattern="[0-9]*" class="form-control"
-                     id="wallet_amount" required [(ngModel)]="amountByWallet" name="wallet_amount">
-              <div *ngIf="walletForm.submitted && walletForm.invalid">
-                <label *ngIf="walletAmountRef?.errors.pattern" class="validation-message">Wallet amount is not valid.</label>
-                <label *ngIf="walletAmountRef?.errors.required" class="validation-message">Wallet amount is required.</label>
-              </div>
-              <div *ngIf="walletForm.submitted && isError">
-                <label class="validation-message">Wallet amount is not valid.</label>
+      <div class="row">
+        <h4>Pay by Wallet</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="col-md-4">
+          <form #walletForm="ngForm" (ngSubmit)="walletForm.valid && onSubmit(amountByWallet)">
+            <div class="form-group">
+              <div class="row">
+                <label for="wallet_amount">Enter Amount</label>
+                <input type="text" #walletAmountRef="ngModel" pattern="[0-9]*" class="form-control"
+                       id="wallet_amount" required [(ngModel)]="amountByWallet" name="wallet_amount">
+                <div *ngIf="walletForm.submitted && walletForm.invalid">
+                  <label *ngIf="walletAmountRef?.errors.pattern" class="validation-message">Wallet amount is not valid.</label>
+                  <label *ngIf="walletAmountRef?.errors.required" class="validation-message">Wallet amount is required.</label>
+                </div>
+                <div *ngIf="walletForm.submitted && isError">
+                  <label class="validation-message">Wallet amount is not valid.</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <input type="submit" class="btn btn-primary" value="Done">
+            <div class="form-group">
+              <div class="row">
+                <input type="submit" class="btn btn-primary" value="Done">
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
 
     <div id="otherPayment" class="tab-pane fade">
-      <h4>Choose other option for Payment</h4>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="row">
+        <h4>Choose other option for Payment</h4>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="row">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <select class="form-control" id="analysis" [(ngModel)]="selectedPaymentType" name="analysis" required>
+                  <option value="" disabled>Select Payment Type</option>
+                  <option *ngFor="let paymentType of paymentTypes" [ngValue]="paymentType">{{paymentType}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div *ngIf="selectedPaymentType === paymentByChequeLabel">
+                {{paymentByChequeLabel}}
+              </div>
+              <div *ngIf="selectedPaymentType === paymentByDDLabel">
+                {{paymentByDDLabel}}
+              </div>
+              <div *ngIf="selectedPaymentType === paymentByCashLabel">
+                {{paymentByCashLabel}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>

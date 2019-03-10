@@ -31,6 +31,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
   public rateObject = new RateModel();
 
   public showSolventForAnalysis = CIFConstants.ANALYSIS_NAME_FOR_SOLVENT;
+  public showInhouseExpert = CIFConstants.ANALYSIS_NAME_FOR_INHOUSE_EXPERT;
   public showSolventByUserType = CIFConstants.USER_TYPE_ID;
   public sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
   public numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );

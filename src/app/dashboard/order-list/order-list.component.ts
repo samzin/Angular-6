@@ -61,9 +61,9 @@ export class OrderListComponent implements OnInit {
     console.log('editSelectedOrder : ' + JSON.stringify(order));
     this.orderModel = new TaborderModel();
     this.orderModel.billNo = order.orderid;
-    this.orderModel.aid = this.index;
+    this.orderModel.aid.aid = this.index;
     this.orderModel.solvent_id = this.index;
-    this.orderModel.subid = this.index;
+    this.orderModel.subid.subid = this.index;
     this.orderModel.extra_Hrs = order.extrahrs;
     this.orderModel.hrs_Rate = order.hrs_rate;
     this.orderModel.rate = order.rate;
