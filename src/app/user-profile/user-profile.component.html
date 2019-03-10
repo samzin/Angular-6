@@ -8,21 +8,38 @@
       </thead>
       <tbody>
           <tr>
-            <td>User Name</td>
+            <td>Name <span class="glyphicon glyphicon-asterisk"></span></td>
             <td>{{userDetails.userName}}</td>
           </tr>
           <tr>
-            <td>Last Name</td>
+            <td>Contact <span class="glyphicon glyphicon-asterisk"></span></td>
             <td>{{userDetails.contact}}</td>
           </tr>
           <tr>
-            <td>Email</td>
-            <td>{{userDetails.emailId}}</td>
+            <td>Company Name</td>
+            <td>{{userDetails.contact}}</td>
+          </tr>
+          <tr>
+            <td>Company Address</td>
+            <td>{{userDetails.address}}</td>
+          </tr>
+          <tr>
+            <td>Select State</td>
+            <td>{{userDetails.contact}}</td>
+          </tr>
+          <tr>
+            <td>GSTIN</td>
+            <td>{{userDetails.gstIn}}</td>
+          </tr>
+          <tr>
+            <td>User Type</td>
+            <td>{{userDetails.userType.userTypeName}}</td>
           </tr>
           <tr>
             <td>Department</td>
             <td>{{userDetails.deptName}}</td>
           </tr>
+
           <tr>
             <td colspan="2">Guide Details : </td>
           </tr>
@@ -34,11 +51,19 @@
             <td>Email Id </td>
             <td>{{userDetails.guideEmailId}}</td>
           </tr>
-          <!--<tr>
-            <td>Gude Details :</td>
-            <td>Name : {{userDetails.guideName}}</td>
-            <td>Email Id : {{userDetails.guideEmailId}}</td>
-          </tr>-->
+
+          <tr>
+            <td>User Email Id</td>
+            <td>{{userDetails.emailId}}</td>
+          </tr>
+          <tr>
+            <td>Password <span class="glyphicon glyphicon-asterisk"></span></td>
+            <td>{{userDetails.password}}</td>
+          </tr>
+          <tr>
+            <td>Confirm Password <span class="glyphicon glyphicon-asterisk"></span></td>
+            <td>{{userDetails.emailId}}</td>
+          </tr>
       </tbody>
     </table>
     <!--<input type="button" (click)="onLogout()" value="Logout" />-->

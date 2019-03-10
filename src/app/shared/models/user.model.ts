@@ -12,6 +12,7 @@ export class UserModel {
   instName: string;
   stateCode: string;
   userName: string;
+  password: string;
   userType: UserTypeModel;
 
   constructor() {
