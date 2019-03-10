@@ -146,6 +146,24 @@ export class Constants {
     'utid': 0
   };
 
+  public static USER_PROFILE: any = {
+    'address': 'Parbhani',
+    'contact': '7588676767',
+    'deptName': 'CSE',
+    'emailId': 'swapnil.nakhate1010@gmail.com',
+    'gstIn': 'string',
+    'guideEmailId': 'swapnil.nakhate@techprimelab.com',
+    'guideName': 'Swapnil Nakhate',
+    'instName': 'Swapnil',
+    'stateCode': '2',
+    'uid': 10,
+    'userName': 'SwapnilN',
+    'userType': {
+      'userTypeId': 1,
+      'userTypeName': 'User'
+    }
+  };
+
   public static ORDER_LIST: any[] =  [
     {
       'analysisname': 'LC-MS/MS',
@@ -270,4 +288,6 @@ export class APIResponse {
   public static ERROR_GETTING_SUB_ANALYSIS_LIST = 'Error fetching all Sub Analysis.';
   public static ERROR_GETTING_SOLVENTS_LIST = 'Error fetching all Solvents.';
   public static ERROR_GETTING_RATE_FOR_ANALYSIS = 'Error fetching rates for selected Analysis.';
+  public static SUCCESS_GETTING_PROFILE_DETAILS = 'Successfully fetched User Details.';
+  public static ERROR_GETTING_PROFILE_DETAILS = 'Error while fetching user details.';
 }
