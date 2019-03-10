@@ -47,6 +47,11 @@ export class UserService {
     return this.httpService.get(URL);
   }
 
+  getUserOrdersHistory(analysisId): Observable<any> {
+    const URL = API.USER_TAB_ORDER.replace('$analysisId$', analysisId);
+    return this.httpService.get(URL);
+  }
+
   deleteOrderByBillNumber(bill, index): Observable<any> {
     const URL = API.DELETE_ORDER.replace('$bill$', bill).replace('$index$', index);
     return this.httpService.get(URL);

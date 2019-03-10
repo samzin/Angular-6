@@ -31,6 +31,37 @@ export class Constants {
     }
   ];
 
+  public static ORDERS_HISTORY: any[] = [
+    {
+      'ordid_tot': '1',
+      'order_date': '2018-07-29',
+      'bill_no': 'AVDC4533',
+      'total_amount': '23470',
+      'wallet_used': '23470',
+    },
+    {
+      'ordid_tot': '2',
+      'order_date': '2018-08-1',
+      'bill_no': 'AVDC4566',
+      'total_amount': '22370',
+      'wallet_used': '23470'
+    },
+    {
+      'ordid_tot': '3',
+      'order_date': '2018-09-2',
+      'bill_no': 'AVDC4522',
+      'total_amount': '23470',
+      'wallet_used': '23470',
+    },
+    {
+      'ordid_tot': '4',
+      'order_date': '2018-10-3',
+      'bill_no': 'AVDC4511',
+      'total_amount': '23450',
+      'wallet_used': '23230'
+    }
+  ];
+
   public static SOLVENT_PROVIDER_LIST: any[] = [
     {
       'uid': 1,

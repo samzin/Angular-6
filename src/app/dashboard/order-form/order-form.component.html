@@ -21,22 +21,22 @@
                 </select>
               </div>
 
-            <div class="form-group" *ngIf="showSolventProvider()">
-              <select class="form-control"  id="solventProvider" [(ngModel)]="providername"
-                      name="solventProvider" required>
-                <option value="" disabled>Select Solvent Provider</option>
-                <option *ngFor="let solventProvider of solventProviderList" [value]="solventProvider.providername">{{solventProvider.providername}}</option>
-              </select>
-            </div>
-
-            <div class="form-group" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
-                <select class="form-control"  id="solvent" [(ngModel)]="selectedSolventName"
-                        [disabled]="!selectedAnalysisName || disableSolvent()"
-                        (change) = "setSelectedSolvent(selectedSolventName)" name="solvent" required>
-                  <option value="" disabled="">Select Solvent</option>
-                  <option *ngFor="let solvent of solventList" [ngValue]="solvent.solventname">{{solvent.solventname}}</option>
+              <div class="form-group" *ngIf="showSolventProvider()">
+                <select class="form-control"  id="solventProvider" [(ngModel)]="providername"
+                        name="solventProvider" required>
+                  <option value="" disabled>Select Solvent Provider</option>
+                  <option *ngFor="let solventProvider of solventProviderList" [value]="solventProvider.providername">{{solventProvider.providername}}</option>
                 </select>
               </div>
+
+              <div class="form-group" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
+                  <select class="form-control"  id="solvent" [(ngModel)]="selectedSolventName"
+                          [disabled]="!selectedAnalysisName || disableSolvent()"
+                          (change) = "setSelectedSolvent(selectedSolventName)" name="solvent" required>
+                    <option value="" disabled="">Select Solvent</option>
+                    <option *ngFor="let solvent of solventList" [ngValue]="solvent.solventname">{{solvent.solventname}}</option>
+                  </select>
+                </div>
 
               <div class="form-group">
                 <select class="form-control"  id="subAnalysis" [(ngModel)]="selectedSubAnalysisName" name="subAnalysis"
@@ -97,15 +97,17 @@
                 <label> In House Expert</label>
               </div>
 
-            <div class="form-group" *ngIf="(selectedAnalysisName == showLiquidNitrogen)">
+              <div class="form-group" *ngIf="(selectedAnalysisName == showLiquidNitrogen)">
               <input type="checkbox" id="liquidNitrogen" [(ngModel)]="model.liquidNitrogen" name="liquidNitrogen">
               <label> With Liquid Nitrogen</label>
             </div>
 
-            <div class="col-md-12" *ngIf="showSampleLimitErrorMessage">
-                <label class="validation-message">{{sampleLimitErrorMessage}}</label>
+              <div class="col-md-12" *ngIf="showSampleLimitErrorMessage">
+                  <label class="validation-message">{{sampleLimitErrorMessage}}</label>
               </div>
-              <input type="submit" value="Confirm">
+
+              <button type="submit" value="Confirm" class="btn btn-primary">Confirm</button>
+
             </form>
       </div>
 
