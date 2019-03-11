@@ -45,6 +45,7 @@ export class SignInComponent implements OnInit {
       this.toasterNotification.showError(response.message);
     } else {
       localStorage.setItem('user_id', response.uid);
+      localStorage.setItem('bill_no', response.billno);
       localStorage.setItem('user_type_id', response.utid);
       if (response.isUserApproved) {
         this.router.navigateByUrl('/dashboard');

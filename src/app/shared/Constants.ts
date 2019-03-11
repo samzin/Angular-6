@@ -122,6 +122,7 @@ export class API {
   public static SOLVENT_LIST = '/userorder/$analysisId$/solvents';
   public static RATE = '/userorder/rate';
   public static DELETE_ORDER = '/userorder/$bill$/$index$';
+  public static CONFIRM_ORDER = '/userorder/$bill$/confirm';
   public static PAY_BY_WALLET = '/wallet/$uid$';
   public static USER_PROFILE_DETAILS = '/authentication/$uid$/userprofile';
   public static UPDATE_USER_PROFILE = '/authentication/userprofile';
@@ -133,6 +134,8 @@ export class APIResponse {
   public static ERROR_GETTING_ORDERS = 'Error fetching orders list.';
   public static SUCCESS_DELETING_ORDERS = 'Successfully deleted Order.';
   public static ERROR_DELETING_ORDERS = 'Error deleting Order.';
+  public static SUCCESS_CONFIRM_ORDERS = 'Order confirmed. Please Proceed to checkout.';
+  public static ERROR_CONFIRM_ORDERS = 'Unable to confirm Order.';
   public static SUCCESS_CREATING_ORDER = 'Successfully created order.';
   public static ERROR_CREATING_ORDER = 'Error while created order.';
   public static SUCCESS_PAY_BY_WALLET = 'Paid by wallet successfully.';

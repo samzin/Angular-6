@@ -57,6 +57,11 @@ export class UserService {
     return this.httpService.get(URL);
   }
 
+  confirmOrder(bill): Observable<any> {
+    const URL = API.CONFIRM_ORDER.replace('$bill$', bill);
+    return this.httpService.get(URL);
+  }
+
   login(authCredentials) {
     return this.httpService.post('/authentication/login', authCredentials);
   }

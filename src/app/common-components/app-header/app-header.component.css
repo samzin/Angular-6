@@ -3,7 +3,7 @@
   position: absolute;
   z-index: 9999;
   background-color: #222222;
-  height: 100vh;
+  height: calc(100% - 52px);
   overflow: hidden;
 }
 .navbar {

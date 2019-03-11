@@ -19,6 +19,7 @@ export class OrderListComponent implements OnInit {
   createOrderLabal = 'Create';
   orderModel = new TaborderModel();
   index = 1;
+  disableCheckout = true;
   CIFConstants = CIFConstants;
 
   constructor(private userService: UserService, private toasterNotification: ToasterNotificationService,
@@ -31,33 +32,32 @@ export class OrderListComponent implements OnInit {
 
   getAllOrders() {
     this.startLoader();
-    // let analysisId = localStorage.getItem(LocalStorage.ANALYSIS_ID);
+    // const billNo = localStorage.getItem('bill_no');
     const billNo = 'JNBL5438';
-    this.userService.getAllUserOrders(billNo).subscribe(
-      res => {
-        this.onSuccessGettingAllOrders(res);
-      },
-      err => {
-        this.onErrorGettingAllOrders(err);
-      }
-    );
+    if (billNo) {
+      this.userService.getAllUserOrders(billNo).subscribe(
+        res => {
+          this.onSuccessGettingAllOrders(res);
+        },
+        err => {
+          this.onErrorGettingAllOrders(err);
+        }
+      );
+    }
   }
 
   onSuccessGettingAllOrders(response) {
     this.stopLoader();
-    console.log('onSuccessGettingAllOrders : ', JSON.stringify(response));
     this.orderList = response;
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
   }
 
   onErrorGettingAllOrders(err) {
     this.stopLoader();
-    console.log('onSuccessGettingAllOrders : ', JSON.stringify(err));
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ORDERS);
   }
 
   editSelectedOrder(order) {
-    console.log('editSelectedOrder : ' + JSON.stringify(order));
     this.orderModel = new TaborderModel();
     this.orderModel.billNo = order.orderid;
     this.orderModel.aid.aid = this.index;
@@ -73,7 +73,6 @@ export class OrderListComponent implements OnInit {
   }
 
   deleteSelectedOrder(order) {
-    console.log('deleteSelectedOrder : ' + JSON.stringify(order));
     /*order.billNo = 'TY21BH';
     order.index = 1;*/
     this.startLoader();
@@ -89,14 +88,40 @@ export class OrderListComponent implements OnInit {
 
   successDeleteSelectedOrder(response) {
     this.stopLoader();
-    console.log('successDeleteSelectedOrder : ' + JSON.stringify(response));
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_DELETING_ORDERS);
   }
 
   errorDeleteSelectedOrder(err) {
     this.stopLoader();
-    console.log('errorDeleteSelectedOrder : ' + JSON.stringify(err));
     this.toasterNotification.showError(APIResponse.ERROR_DELETING_ORDERS);
+  }
+
+  confirmOrder() {
+    this.startLoader();
+    // const billNo = localStorage.getItem('bill_no');
+    const billNo = 'JNBL5438';
+    this.userService.confirmOrder(billNo).subscribe(
+      res => {
+        this.successConfirmOrder(res);
+      },
+      err => {
+        this.errorConfirmOrder(err);
+      }
+    );
+  }
+
+  successConfirmOrder(response) {
+    this.stopLoader();
+    if (response) {
+      this.disableCheckout = false;
+    }
+    this.toasterNotification.showSuccess(APIResponse.SUCCESS_CONFIRM_ORDERS);
+  }
+
+  errorConfirmOrder(err) {
+    this.stopLoader();
+    this.disableCheckout = false;
+    this.toasterNotification.showError(APIResponse.ERROR_CONFIRM_ORDERS);
   }
 
   redirectToCheckOut() {
