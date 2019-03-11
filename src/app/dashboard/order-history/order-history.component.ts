@@ -7,7 +7,8 @@ import {AppLoaderService} from '../../common-services/app-loader.service';
 
 @Component({
   selector : 'app-order-history',
-  templateUrl : 'order-history.component.html'
+  templateUrl : 'order-history.component.html',
+  styleUrls : ['order-history.component.css']
 })
 
 export class OrderHistoryComponent implements OnInit {

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {CIFConstants} from '../../shared/Constants';
 import {Router} from '@angular/router';
+declare let $: any;
 
 @Component({
   selector : 'app-header',
@@ -18,6 +19,12 @@ export class AppHeaderComponent {
   logOut() {
     localStorage.clear();
     this.router.navigateByUrl('/');
+  }
+
+  hideMenu() {
+    if ($('#demo').hasClass('in')) {
+      $('#demo').removeClass('in');
+    }
   }
 
 }

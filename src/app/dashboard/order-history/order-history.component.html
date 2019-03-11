@@ -1,23 +1,25 @@
 <div class="container">
   <div class="col-md-12 table-responsive">
-    <h4>Order History</h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
+    <div class="order-history-container">
+      <h4 class="text-center order-history-header">Order History</h4>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
         <tr>
           <th>Order Date</th>
           <th>Bill No.</th>
           <th>Total Amount</th>
           <th>Amount Paid</th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr *ngFor="let order of orderHistoryList">
           <td>{{order.order_date}}</td>
           <td>{{order.bill_no}}</td>
           <td>{{order.total_amount}}</td>
           <td>{{order.wallet_used}}</td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
