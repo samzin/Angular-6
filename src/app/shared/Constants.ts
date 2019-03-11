@@ -101,7 +101,9 @@ export class CIFConstants {
   public static EXTRA_HRS = 'Extra Hrs.';
   public static TAXABLE_AMOUNT = 'Tax. Amt.';
   public static CGST = 'CGST';
+  public static CGSTP = 'CGSTP';
   public static SGST = 'SGST';
+  public static SGSTP = 'SGSTP';
   public static AMOUNT = 'Amt.';
   public static DATE = 'Date';
   public static ACTION = 'Action';
@@ -114,7 +116,7 @@ export class LocalStorageLabels {
 }
 
 export class API {
-  public static USER_TAB_ORDER = '/userorder/$analysisId$/taborder';
+  public static USER_TAB_ORDER = '/userorder/$bill$/taborder';
   public static ANALYSIS_LIST = '/userorder/analysis';
   public static SUB_ANALYSIS_LIST = '/userorder/$analysisId$/subanalysis';
   public static SOLVENT_LIST = '/userorder/$analysisId$/solvents';

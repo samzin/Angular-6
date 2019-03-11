@@ -19,27 +19,31 @@
             <th>{{CIFConstants.EXTRA_HRS}}</th>
             <th>{{CIFConstants.TAXABLE_AMOUNT}}</th>
             <th>{{CIFConstants.CGST}}</th>
+            <th>{{CIFConstants.CGSTP}}</th>
             <th>{{CIFConstants.SGST}}</th>
+            <th>{{CIFConstants.SGSTP}}</th>
             <th>{{CIFConstants.AMOUNT}}</th>
             <th>{{CIFConstants.DATE}}</th>
             <th>{{CIFConstants.ACTION}}</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="orderList.length > 0">
           <tr *ngFor="let order of orderList">
-            <td>{{order.orderid}}</td>
-            <td>{{order.analysisname}}</td>
-            <td>{{order.sub_analysisname}}</td>
-            <td>{{order.solventname}}</td>
-            <td>{{order.samplecode}}</td>
-            <td>{{order.rate}}</td>
-            <td>{{order.hrs_rate}}</td>
-            <td>{{order.extrahrs}}</td>
-            <td>{{order.taxableamt}}</td>
-            <td>{{order.cgst}}</td>
-            <td>{{order.sgst}}</td>
-            <td>{{order.amount}}</td>
-            <td>{{order.date}}</td>
+            <td>{{order.billNo}}</td>
+            <td>{{order.aid?.analysisname ? order.aid.analysisname : '-'}}</td>
+            <td>{{order.subid?.sub_Analysisname ? order.subid.sub_Analysisname : '-'}}</td>
+            <td >{{order.solventname ? order.solventname : '-'}}</td>
+            <td>{{order.sample_Code ? order.sample_Code : '-'}}</td>
+            <td>{{order.rate ? order.rate : '-'}}</td>
+            <td>{{order.hrs_Rate ? order.hrs_Rate : '-'}}</td>
+            <td>{{order.extra_Hrs ? order.extra_Hrs : '-'}}</td>
+            <td>{{order.taxable_Amount ? order.taxable_Amount : '-'}}</td>
+            <td>{{order.cgst ? order.cgst : '-'}}</td>
+            <td>{{order.cgstp ? order.cgstp : '-'}}</td>
+            <td>{{order.sgst ? order.sgst : '-'}}</td>
+            <td>{{order.sgstp ? order.sgstp : '-'}}</td>
+            <td>{{order.total_Amount ? order.total_Amount : '-'}}</td>
+            <td>{{order.order_Date ? order.order_Date : '-'}}</td>
             <td>
                 <span class="order-action" (click)="editSelectedOrder(order)">
                   <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#orderModal"></span>
@@ -48,6 +52,11 @@
                   <span class="glyphicon glyphicon-trash"></span>
                 </span>
             </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="orderList.length <= 0">
+          <tr>
+            <td colspan="16" class="align-text-center">No analysis added till now.</td>
           </tr>
         </tbody>
       </table>

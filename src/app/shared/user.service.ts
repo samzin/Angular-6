@@ -42,8 +42,8 @@ export class UserService {
     return this.httpService.post(URL, body);
   }
 
-  getAllUserOrders(analysisId): Observable<any> {
-    const URL = API.USER_TAB_ORDER.replace('$analysisId$', analysisId);
+  getAllUserOrders(billNo): Observable<any> {
+    const URL = API.USER_TAB_ORDER.replace('$bill$', billNo);
     return this.httpService.get(URL);
   }
 

@@ -32,8 +32,8 @@ export class OrderListComponent implements OnInit {
   getAllOrders() {
     this.startLoader();
     // let analysisId = localStorage.getItem(LocalStorage.ANALYSIS_ID);
-    const analysisId = 1;
-    this.userService.getAllUserOrders(analysisId).subscribe(
+    const billNo = 'JNBL5438';
+    this.userService.getAllUserOrders(billNo).subscribe(
       res => {
         this.onSuccessGettingAllOrders(res);
       },
