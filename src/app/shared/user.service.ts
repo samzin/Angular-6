@@ -23,7 +23,7 @@ export class UserService {
   }
 
   getAllSubAnalysisList(body): Observable<any> {
-    const URL = API.SUB_ANALYSIS_LIST.replace('$analysisId$', body.aid);;
+    const URL = API.SUB_ANALYSIS_LIST.replace('$analysisId$', body.aid);
     return this.httpService.post(URL, body);
   }
 
@@ -67,6 +67,11 @@ export class UserService {
   }
 
   payByWallet(userId, body): Observable<any> {
+    const URL = API.PAY_BY_WALLET.replace('$uid$', userId);
+    return this.httpService.post(URL, body);
+  }
+
+  payOrder(userId, body): Observable<any> {
     const URL = API.PAY_BY_WALLET.replace('$uid$', userId);
     return this.httpService.post(URL, body);
   }

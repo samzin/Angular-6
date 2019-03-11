@@ -3,6 +3,7 @@ import {APIResponse, Constants} from '../../shared/Constants';
 import {UserService} from '../../shared/user.service';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';
+import {PaymentModel} from '../../shared/models/payment.model';
 
 @Component({
   selector : 'app-check-out',
@@ -13,7 +14,12 @@ import {AppLoaderService} from '../../common-services/app-loader.service';
 export class CheckOutComponent {
 
   amountByWallet = 0;
+  amountPaid = 0;
+  chequeNumber = 0;
+  bankName = '';
+  chequeDate = new Date();
   isError = false;
+  paymentModel = new PaymentModel();
   paymentTypes = Constants.PAYMENT_TYPES;
   paymentByChequeLabel = Constants.PAYMENT_TYPE_BY_CHEQUE;
   paymentByDDLabel = Constants.PAYMENT_TYPE_BY_DD;
@@ -41,6 +47,17 @@ export class CheckOutComponent {
       amount : amountByWallet
     };
     this.userService.getAllSubAnalysisList(body).subscribe(res => {
+        this.successPayByWallet(res);
+      }, err => {
+        this.errorPayByWallet();
+      }
+    );
+  }
+
+  onSubmitPayment(paymentModel) {
+    // paymentModel.paymentType = this.selectedPaymentType;
+    const userId = localStorage.getItem('user_id');
+    this.userService.payOrder(userId, paymentModel).subscribe(res => {
         this.successPayByWallet(res);
       }, err => {
         this.errorPayByWallet();

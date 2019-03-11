@@ -47,7 +47,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <select class="form-control" id="analysis" [(ngModel)]="selectedPaymentType" name="analysis" required>
+                <select class="form-control" id="analysis" [(ngModel)]="paymentModel.paymentType" name="analysis" required>
                   <option value="" disabled>Select Payment Type</option>
                   <option *ngFor="let paymentType of paymentTypes" [ngValue]="paymentType">{{paymentType}}</option>
                 </select>
@@ -56,19 +56,27 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
-              <div *ngIf="selectedPaymentType === paymentByChequeLabel">
-                {{paymentByChequeLabel}}
-              </div>
-              <div *ngIf="selectedPaymentType === paymentByDDLabel">
-                {{paymentByDDLabel}}
-              </div>
-              <div *ngIf="selectedPaymentType === paymentByChalan">
-                {{paymentByChalan}}
-              </div>
-              <div *ngIf="selectedPaymentType === paymentByBudgetHead">
-                {{paymentByBudgetHead}}
-              </div>
+            <div class="col-md-4">
+              <form #paymentForm="ngForm" (ngSubmit)="paymentForm.valid && onSubmitPayment(paymentModel)">
+                  <div class="form-group">
+                    <label>Amount to be Paid :</label>
+                    <input type="text" class="form-control" id="chequeAmount" [(ngModel)]="paymentModel.amount" name="chequeAmount">
+                  </div>
+                  <div class="form-group">
+                    <label>Bank Name : </label>
+                    <input type="text" class="form-control" id="bankName" [(ngModel)]="paymentModel.bankName" name="bankName">
+                  </div>
+                  <div class="form-group">
+                    <label>Cheque/Challan/DD Date : </label>
+                    <input type="date" class="form-control" id="chequeDate" [(ngModel)]="paymentModel.checkDate" name="chequeDate">
+                  </div>
+                  <div class="form-group">
+                    <label>Cheque/Challan/DD No. : </label>
+                    <input type="text" class="form-control" id="chequeNumber" [(ngModel)]="paymentModel.checkNumber" name="chequeNumber">
+                  </div>
+                <button type="submit" value="Pay" class="btn btn-primary">Pay</button>
+              </form>
+
             </div>
           </div>
         </div>
