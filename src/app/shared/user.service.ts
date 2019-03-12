@@ -43,7 +43,7 @@ export class UserService {
   }
 
   getAllUserOrders(billNo): Observable<any> {
-    const URL = API.USER_TAB_ORDER.replace('$bill$', billNo);
+    const URL = API.USER_TAB_ORDER_LIST.replace('$bill$', billNo);
     return this.httpService.get(URL);
   }
 
@@ -82,7 +82,7 @@ export class UserService {
   }
 
   updateUserDetails(uid, body): Observable<any> {
-    const URL = API.UPDATE_USER_PROFILE;
+    const URL = API.UPDATE_USER_PROFILE.replace('$uid$', uid);
     return this.httpService.put(URL, body);
   }
 

@@ -13,11 +13,11 @@
           <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(model)">
 
               <div class="form-group">
-                <select class="form-control" id="analysis" [(ngModel)]="selectedAnalysisName"
-                        (change) = "selectedAnalysis(selectedAnalysisName)"
+                <select class="form-control" id="analysis" [(ngModel)]="selectedAnalysisModel"
+                        (change) = "selectedAnalysis(selectedAnalysisModel)"
                         name="analysis" required>
                   <option value="" disabled>Select Analysis</option>
-                  <option *ngFor="let analysis of analysisList" [ngValue]="analysis.analysisname">{{analysis.analysisname}}</option>
+                  <option *ngFor="let analysis of analysisList" [ngValue]="analysis">{{analysis.analysisname}}</option>
                 </select>
               </div>
 
@@ -29,9 +29,9 @@
                 </select>
               </div>
 
-              <div class="form-group" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
+              <div class="form-group" *ngIf="(selectedAnalysisModel.analysisname == showSolventForAnalysis)">
                   <select class="form-control"  id="solvent" [(ngModel)]="selectedSolventName"
-                          [disabled]="!selectedAnalysisName || disableSolvent()"
+                          [disabled]="!selectedAnalysisModel.aid || disableSolvent()"
                           (change) = "setSelectedSolvent(selectedSolventName)" name="solvent" required>
                     <option value="" disabled="">Select Solvent</option>
                     <option *ngFor="let solvent of solventList" [ngValue]="solvent.solventname">{{solvent.solventname}}</option>
@@ -39,11 +39,11 @@
                 </div>
 
               <div class="form-group">
-                <select class="form-control"  id="subAnalysis" [(ngModel)]="selectedSubAnalysisName" name="subAnalysis"
-                        (change) = "setSelectedSubAnalysis(selectedSubAnalysisName)"
-                        [disabled]="!selectedAnalysisName" required>
+                <select class="form-control"  id="subAnalysis" [(ngModel)]="selectedSubAnalysisModel" name="subAnalysis"
+                        (change) = "setSelectedSubAnalysis(selectedSubAnalysisModel)"
+                        [disabled]="!selectedAnalysisModel.analysisname" required>
                   <option value="" disabled>Select SubAnalysis</option>
-                  <option *ngFor="let subAnalysis of subAnalysisList" [value]="subAnalysis.sub_Analysisname">{{subAnalysis.sub_Analysisname}}</option>
+                  <option *ngFor="let subAnalysis of subAnalysisList" [ngValue]="subAnalysis">{{subAnalysis.sub_Analysisname}}</option>
                 </select>
               </div>
 
@@ -57,7 +57,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6" *ngIf="(selectedAnalysisName == showSolventForAnalysis)">
+                  <div class="col-md-6" *ngIf="(selectedAnalysisModel.analysisname == showSolventForAnalysis)">
                     <label>Solvent Rate : {{solventRate}} </label>
                   </div>
                 </div>
@@ -92,12 +92,12 @@
                        [(ngModel)]="model.special_notes" name="special_notes">
               </div>
 
-              <div class="form-group" *ngIf="(selectedAnalysisName == showInhouseExpert)">
+              <div class="form-group" *ngIf="(selectedAnalysisModel.analysisname == showInhouseExpert)">
                 <input type="checkbox" id="inHouseExpert" [(ngModel)]="model.inHouseExpert" name="inHouseExpert">
                 <label> In House Expert</label>
               </div>
 
-              <div class="form-group" *ngIf="(selectedAnalysisName == showLiquidNitrogen)">
+              <div class="form-group" *ngIf="(selectedAnalysisModel.analysisname == showLiquidNitrogen)">
               <input type="checkbox" id="liquidNitrogen" [(ngModel)]="model.liquidNitrogen" name="liquidNitrogen">
               <label> With Liquid Nitrogen</label>
             </div>

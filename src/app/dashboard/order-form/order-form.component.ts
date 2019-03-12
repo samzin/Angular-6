@@ -5,6 +5,8 @@ import {TaborderModel} from '../../shared/models/taborder.model';
 import {RateModel} from '../../shared/models/rate.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';
+import {AnalysisModel} from '../../shared/models/analysis.model';
+import {SubanalysisModel} from '../../shared/models/subanalysis.model';
 
 @Component({
   selector: 'app-order-form',
@@ -16,7 +18,8 @@ export class OrderFormComponent implements OnInit, OnChanges {
   @Input() formType: String;
   @Input() model?: TaborderModel = new TaborderModel();
 
-  selectedAnalysisName = '';
+  selectedAnalysisModel = new AnalysisModel();
+  selectedSubAnalysisModel = new SubanalysisModel();
   selectedSubAnalysisName = '';
   providername = '';
   selectedSolventName = '';
@@ -28,8 +31,8 @@ export class OrderFormComponent implements OnInit, OnChanges {
   public analysisList = [];
   public solventList = [];
   public solventProviderList = Constants.SOLVENT_PROVIDER_LIST;
-  public userId = parseInt(localStorage.getItem(LocalStorageLabels.USER_ID));
-  public userTypeId = parseInt(localStorage.getItem(LocalStorageLabels.USER_TYPE_ID));
+  public userId = parseInt(localStorage.getItem('user_id'), 0);
+  public userTypeId = parseInt(localStorage.getItem('user_type_id'), 0);
   public subAnalysisList = [];
   public rateObject = new RateModel();
 
@@ -81,7 +84,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   showSolventProvider() {
     if ( (this.userTypeId === 1 || this.userTypeId === 2) &&
-      this.selectedAnalysisName === CIFConstants.ANALYSIS_NAME_FOR_SOLVENT) {
+      this.selectedAnalysisModel.analysisname === CIFConstants.ANALYSIS_NAME_FOR_SOLVENT) {
       return true;
     } else {
       return false;
@@ -102,21 +105,18 @@ export class OrderFormComponent implements OnInit, OnChanges {
       return analysis.aid === selectedAnalysisId;
     });
     if (selectedAnalysisArray.length === 1) {
-      this.selectedAnalysisName = selectedAnalysisArray[0].analysisname;
-      this.selectedAnalysis(this.selectedAnalysisName);
+      this.selectedAnalysisModel = selectedAnalysisArray[0];
+      this.selectedAnalysis(this.selectedAnalysisModel);
     }
   }
 
-  selectedAnalysis(selectedAnalysisName) {
-    console.log('Selected AnalysisName : ' + selectedAnalysisName);
-    const selectedAnalysis = this.analysisList.filter(function (analysis) {
-      return analysis.analysisname === selectedAnalysisName;
-    });
-    if (selectedAnalysis.length === 1) {
+  selectedAnalysis(selectedAnalysis) {
+    console.log('Selected AnalysisName : ' + selectedAnalysis);
+    if (selectedAnalysis) {
       this.clearFieldsExceptAnalysis();
-      this.model.aid = selectedAnalysis[0].aid;
+      this.model.aid = selectedAnalysis;
       this.getAllSubAnalysis();
-      if (selectedAnalysisName === CIFConstants.ANALYSIS_NAME_FOR_SOLVENT) {
+      if (selectedAnalysis.analysisname === CIFConstants.ANALYSIS_NAME_FOR_SOLVENT) {
         this.getAllSolvents();
       }
     }
@@ -125,7 +125,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
   getAllSubAnalysis() {
     this.startLoader();
     const body = {
-      aid : this.model.aid
+      aid : this.model.aid.aid
     };
     this.userService.getAllSubAnalysisList(body).subscribe(res => {
         this.successGetAllSubAnalysis(res);
@@ -147,7 +147,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   getAllSolvents() {
     this.startLoader();
-    const analysisId = this.model.aid;
+    const analysisId = this.model.aid.aid;
     this.userService.getAllSolventByAnalysisId(analysisId).subscribe(res => {
         this.successGetAllSolvents(res);
       }, err => {
@@ -178,12 +178,9 @@ export class OrderFormComponent implements OnInit, OnChanges {
     }
   }
 
-  setSelectedSubAnalysis(subAnalysisName) {
-    const selectedSubAnalysis = this.subAnalysisList.filter(function (subAnalysis) {
-      return subAnalysis.sub_Analysisname === subAnalysisName;
-    });
-    if (selectedSubAnalysis.length === 1) {
-      this.model.subid = selectedSubAnalysis[0].subid;
+  setSelectedSubAnalysis(selectedSubAnalysis) {
+    if (selectedSubAnalysis) {
+      this.model.subid = selectedSubAnalysis;
       this.getRateObject();
     }
   }
@@ -199,8 +196,8 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   getRateObject() {
     const body = {
-      subid: this.model.subid,
-      utid: this.model.uid,
+      subid: this.model.subid.subid,
+      utid: this.userTypeId,
     };
     this.startLoader();
     this.userService.getRateBySubanalysisId(body).subscribe(res => {
@@ -235,9 +232,15 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit(tabOrder: TaborderModel) {
-    const analysisId = 1;
     this.startLoader();
-    this.userService.createUserTabOrder(analysisId, tabOrder)
+    this.model.solvent_provider = this.providername;
+    this.model.uid.uid = parseInt(localStorage.getItem('user_id'), 0);
+    this.model.uid.userType.userTypeId = parseInt(localStorage.getItem('user_type_id'), 0);
+    this.model.billNo = localStorage.getItem('bill_no');
+    this.model.rate = this.rateObject.rate;
+    this.model.hrs_Rate = this.rateObject.hrs_Rate;
+    this.model.solvent_Rate = this.solventRate;
+    this.userService.createUserTabOrder(this.model.aid.aid, this.model)
       .subscribe(
         response => {
           this.onSuccessOrder(response);

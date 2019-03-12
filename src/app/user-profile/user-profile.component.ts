@@ -75,7 +75,7 @@ export class UserProfileComponent implements OnInit {
 
   updateUserProfileDetails(userDetails) {
     this.startLoader();
-    const userId = localStorage.getItem(LocalStorageLabels.USER_ID);
+    const userId = localStorage.getItem('user_id');
     const profileDetails = this.userDetails;
     this.userService.updateUserDetails(userId, profileDetails).subscribe(
       res => {

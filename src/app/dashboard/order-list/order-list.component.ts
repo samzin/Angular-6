@@ -32,8 +32,7 @@ export class OrderListComponent implements OnInit {
 
   getAllOrders() {
     this.startLoader();
-    // const billNo = localStorage.getItem('bill_no');
-    const billNo = 'JNBL5438';
+    const billNo = localStorage.getItem('bill_no');
     if (billNo) {
       this.userService.getAllUserOrders(billNo).subscribe(
         res => {
@@ -98,8 +97,7 @@ export class OrderListComponent implements OnInit {
 
   confirmOrder() {
     this.startLoader();
-    // const billNo = localStorage.getItem('bill_no');
-    const billNo = 'JNBL5438';
+    const billNo = localStorage.getItem('bill_no');
     this.userService.confirmOrder(billNo).subscribe(
       res => {
         this.successConfirmOrder(res);

@@ -1,5 +1,6 @@
 import {AnalysisModel} from './analysis.model';
 import {SubanalysisModel} from './subanalysis.model';
+import {UserModel} from './user.model';
 
 export class TaborderModel {
   billNo: String;
@@ -24,7 +25,7 @@ export class TaborderModel {
   subid: SubanalysisModel;
   taxable_Amount: Number;
   total_Amount: Number;
-  uid: Number;
+  uid: UserModel;
 
   constructor() {
     this.billNo = '';
@@ -49,6 +50,6 @@ export class TaborderModel {
     this.subid = new SubanalysisModel();
     this.taxable_Amount = 0;
     this.total_Amount = 0;
-    this.uid = 1;
+    this.uid = new UserModel();
   }
 }

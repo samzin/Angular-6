@@ -3,5 +3,7 @@ export class AnalysisModel {
   analysisname: string;
 
   constructor() {
+    this.aid = 0;
+    this.analysisname = '';
   }
 }

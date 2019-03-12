@@ -116,7 +116,8 @@ export class LocalStorageLabels {
 }
 
 export class API {
-  public static USER_TAB_ORDER = '/userorder/$bill$/taborder';
+  public static USER_TAB_ORDER = '/userorder/$analysisId$/taborder';
+  public static USER_TAB_ORDER_LIST = '/userorder/$bill$/taborder';
   public static ANALYSIS_LIST = '/userorder/analysis';
   public static SUB_ANALYSIS_LIST = '/userorder/$analysisId$/subanalysis';
   public static SOLVENT_LIST = '/userorder/$analysisId$/solvents';
@@ -125,7 +126,7 @@ export class API {
   public static CONFIRM_ORDER = '/userorder/$bill$/confirm';
   public static PAY_BY_WALLET = '/wallet/$uid$';
   public static USER_PROFILE_DETAILS = '/authentication/$uid$/userprofile';
-  public static UPDATE_USER_PROFILE = '/authentication/userprofile';
+  public static UPDATE_USER_PROFILE = '/authentication/$uid$/userprofile';
 }
 
 export class APIResponse {

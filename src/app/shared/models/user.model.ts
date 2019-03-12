@@ -18,5 +18,6 @@ export class UserModel {
   userType: UserTypeModel;
 
   constructor() {
+    this.userType = new UserTypeModel();
   }
 }
