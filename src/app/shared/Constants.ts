@@ -122,7 +122,7 @@ export class API {
   public static SUB_ANALYSIS_LIST = '/userorder/$analysisId$/subanalysis';
   public static SOLVENT_LIST = '/userorder/$analysisId$/solvents';
   public static RATE = '/userorder/rate';
-  public static DELETE_ORDER = '/userorder/$bill$/$index$';
+  public static DELETE_ORDER = '/userorder/$tabOrderId$/taborder';
   public static CONFIRM_ORDER = '/userorder/$bill$/confirm';
   public static PAY_BY_WALLET = '/wallet/$uid$';
   public static USER_PROFILE_DETAILS = '/authentication/$uid$/userprofile';

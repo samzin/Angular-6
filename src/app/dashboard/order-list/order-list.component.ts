@@ -71,11 +71,9 @@ export class OrderListComponent implements OnInit {
     /*this.index = this.index + 1;*/
   }
 
-  deleteSelectedOrder(order) {
-    /*order.billNo = 'TY21BH';
-    order.index = 1;*/
+  deleteSelectedOrder(ordid) {
     this.startLoader();
-    this.userService.deleteOrderByBillNumber(order.billNo, order.index).subscribe(
+    this.userService.deleteOrderByBillNumber(ordid).subscribe(
       res => {
         this.successDeleteSelectedOrder(res);
       },
@@ -88,6 +86,7 @@ export class OrderListComponent implements OnInit {
   successDeleteSelectedOrder(response) {
     this.stopLoader();
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_DELETING_ORDERS);
+    this.getAllOrders();
   }
 
   errorDeleteSelectedOrder(err) {

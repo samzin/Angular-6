@@ -52,9 +52,9 @@ export class UserService {
     return this.httpService.get(URL);
   }
 
-  deleteOrderByBillNumber(bill, index): Observable<any> {
-    const URL = API.DELETE_ORDER.replace('$bill$', bill).replace('$index$', index);
-    return this.httpService.get(URL);
+  deleteOrderByBillNumber(tabOrderId): Observable<any> {
+    const URL = API.DELETE_ORDER.replace('$tabOrderId$', tabOrderId);
+    return this.httpService.delete(URL);
   }
 
   confirmOrder(bill): Observable<any> {
