@@ -1,6 +1,7 @@
 import {AnalysisModel} from './analysis.model';
 import {SubanalysisModel} from './subanalysis.model';
 import {UserModel} from './user.model';
+import {SolventModel} from './solvent-model';
 
 export class TaborderModel {
   billNo: String;
@@ -19,7 +20,7 @@ export class TaborderModel {
   sgst: Number;
   sgstp: Number;
   solvent_Rate: Number;
-  solvent_id: Number;
+  solvent_id: SolventModel;
   state: Number;
   aid: AnalysisModel;
   subid: SubanalysisModel;
@@ -44,7 +45,7 @@ export class TaborderModel {
     this.sgst = 0;
     this.sgstp = 0;
     this.solvent_Rate = 0;
-    this.solvent_id = 0;
+    this.solvent_id = new SolventModel();
     this.state = 0;
     this.aid = new AnalysisModel();
     this.subid = new SubanalysisModel();

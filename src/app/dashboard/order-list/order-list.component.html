@@ -45,9 +45,9 @@
             <td>{{order.total_Amount ? order.total_Amount : '-'}}</td>
             <td>{{order.order_Date ? order.order_Date : '-'}}</td>
             <td>
-                <span class="order-action" (click)="editSelectedOrder(order)">
+                <!--<span class="order-action" (click)="editSelectedOrder(order)">
                   <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#orderModal"></span>
-                </span>
+                </span>-->
                 <span class="order-action" (click)="deleteSelectedOrder(order.ordid)">
                   <span class="glyphicon glyphicon-trash"></span>
                 </span>
@@ -73,5 +73,5 @@
 
   <app-order-form [formType]="createOrderLabal"></app-order-form>
 
-  <app-order-form [formType]="editOrderLabel" [model]="orderModel"></app-order-form>
+  <!--<app-order-form [formType]="editOrderLabel" [model]="orderModel"></app-order-form>-->
 </div>

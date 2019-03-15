@@ -68,7 +68,6 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   successGetAnalysisName(response) {
-    console.log('Success analysis list.');
     this.stopLoader();
     this.analysisList = response;
     if (this.model.aid) {
@@ -77,7 +76,6 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   errorGetAnalysisName(err) {
-    console.log('Error analysis list.', JSON.stringify(err));
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ANALYSIS_LIST);
   }
@@ -111,7 +109,6 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   selectedAnalysis(selectedAnalysis) {
-    console.log('Selected AnalysisName : ' + selectedAnalysis);
     if (selectedAnalysis) {
       this.clearFieldsExceptAnalysis();
       this.model.aid = selectedAnalysis;

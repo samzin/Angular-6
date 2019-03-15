@@ -59,16 +59,16 @@ export class OrderListComponent implements OnInit {
 
   editSelectedOrder(order) {
     this.orderModel = new TaborderModel();
-    this.orderModel.billNo = order.orderid;
+    this.orderModel = order;
+    /*this.orderModel.billNo = order.orderid;
     this.orderModel.aid.aid = this.index;
-    this.orderModel.solvent_id = this.index;
     this.orderModel.subid.subid = this.index;
     this.orderModel.extra_Hrs = order.extrahrs;
     this.orderModel.hrs_Rate = order.hrs_rate;
     this.orderModel.rate = order.rate;
     this.orderModel.sample_Code = order.samplecode;
     this.orderModel.cgst = order.cgst;
-    this.orderModel.sgstp = order.sgst;
+    this.orderModel.sgstp = order.sgst;*/
     /*this.index = this.index + 1;*/
   }
 
