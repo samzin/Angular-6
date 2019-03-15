@@ -47,8 +47,8 @@ export class UserService {
     return this.httpService.get(URL);
   }
 
-  getUserOrdersHistory(analysisId): Observable<any> {
-    const URL = API.USER_TAB_ORDER.replace('$analysisId$', analysisId);
+  getUserOrdersHistory(user_id): Observable<any> {
+    const URL = API.USER_ORDER_HISTORY.replace('$uid$', user_id);
     return this.httpService.get(URL);
   }
 
@@ -57,9 +57,9 @@ export class UserService {
     return this.httpService.delete(URL);
   }
 
-  confirmOrder(bill): Observable<any> {
-    const URL = API.CONFIRM_ORDER.replace('$bill$', bill);
-    return this.httpService.get(URL);
+  confirmOrder(body): Observable<any> {
+    const URL = API.CONFIRM_ORDER;
+    return this.httpService.put(URL, body);
   }
 
   login(authCredentials) {

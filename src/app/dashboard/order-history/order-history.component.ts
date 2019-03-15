@@ -25,8 +25,8 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   getOrderHistory() {
-    const analysisId = localStorage.getItem('analysis_id');
-    this.userService.getUserOrdersHistory(analysisId)
+    const user_id = localStorage.getItem('user_id');
+    this.userService.getUserOrdersHistory(user_id)
       .subscribe(
         response => {
           this.successGettingOrderHistory(response);
@@ -36,8 +36,8 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   successGettingOrderHistory(response) {
-    // this.orderHistoryList = response;
-    this.orderHistoryList = Constants.ORDERS_HISTORY;
+    this.orderHistoryList = response;
+    // this.orderHistoryList = Constants.ORDERS_HISTORY;
     this.stopLoader();
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_PROFILE_DETAILS);
   }

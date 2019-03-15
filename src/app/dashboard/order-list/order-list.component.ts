@@ -5,6 +5,7 @@ import {TaborderModel} from '../../shared/models/taborder.model';
 import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../common-services/app-loader.service';
 import {Router} from '@angular/router';
+import {ConfirmOrderModel} from '../../shared/models/confirm-order.model';
 
 @Component({
   selector : 'app-order-listing',
@@ -96,8 +97,12 @@ export class OrderListComponent implements OnInit {
 
   confirmOrder() {
     this.startLoader();
-    const billNo = localStorage.getItem('bill_no');
-    this.userService.confirmOrder(billNo).subscribe(
+    const uid = localStorage.getItem('user_id');
+    const confirmOrder = new ConfirmOrderModel();
+    confirmOrder.billNo = localStorage.getItem('bill_no');
+    confirmOrder.uid = parseInt(uid, 0);
+    confirmOrder.state = 0;
+    this.userService.confirmOrder(confirmOrder).subscribe(
       res => {
         this.successConfirmOrder(res);
       },
