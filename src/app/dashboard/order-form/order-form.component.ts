@@ -166,15 +166,11 @@ export class OrderFormComponent implements OnInit, OnChanges {
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_SOLVENTS_LIST);
   }
 
-  setSelectedSolvent(solventName) {
-    console.log('Selected Solvent : ' + solventName);
-    const selectedSolvent = this.solventList.filter(function (solvent) {
-      return solvent.solventname === solventName;
-    });
-    if (selectedSolvent.length === 1) {
-      this.solventRate = selectedSolvent[0].rate;
-      this.model.solvent_Rate = selectedSolvent[0].rate;
-      this.model.solvent_id = selectedSolvent[0].solid;
+  setSelectedSolvent(selectedSolvent) {
+    if (selectedSolvent) {
+      this.solventRate = selectedSolvent.rate;
+      this.model.solvent_Rate = selectedSolvent.rate;
+      this.model.solvent_id = selectedSolvent;
     }
   }
 

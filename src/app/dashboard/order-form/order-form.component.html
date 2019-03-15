@@ -31,10 +31,10 @@
 
               <div class="form-group" *ngIf="(selectedAnalysisModel.analysisname == showSolventForAnalysis)">
                   <select class="form-control"  id="solvent" [(ngModel)]="selectedSolventName"
-                          [disabled]="!selectedAnalysisModel.aid || disableSolvent()"
+                          [disabled]="!selectedAnalysisModel.analysisname || disableSolvent()"
                           (change) = "setSelectedSolvent(selectedSolventName)" name="solvent" required>
                     <option value="" disabled="">Select Solvent</option>
-                    <option *ngFor="let solvent of solventList" [ngValue]="solvent.solventname">{{solvent.solventname}}</option>
+                    <option *ngFor="let solvent of solventList" [ngValue]="solvent">{{solvent.solventname}}</option>
                   </select>
                 </div>
 
