@@ -5,9 +5,9 @@ export class SolventModel {
   solventname: String;
 
   constructor() {
-    this.aid = 0;
+    this.aid = 1;
     this.rate = 0;
-    this.solid = 0;
+    this.solid = 1;
     this.solventname = '';
   }
 }

@@ -246,9 +246,17 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   onSuccessOrder(response) {
     this.stopLoader();
+    this.resetForm();
     this.submitEvent.emit();
     $('#orderModal').modal('hide');
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_CREATING_ORDER);
+  }
+
+  resetForm() {
+    this.model = new TaborderModel();
+    this.selectedAnalysisModel = new AnalysisModel();
+    this.selectedSubAnalysisModel = new SubanalysisModel();
+    this.rateObject = new RateModel();
   }
 
   onErrorOrder(error) {
