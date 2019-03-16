@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <app-order-form [formType]="createOrderLabal"></app-order-form>
+  <app-order-form [formType]="createOrderLabal" (submitEvent)="updateOrderList($event)"></app-order-form>
 
   <!--<app-order-form [formType]="editOrderLabel" [model]="orderModel"></app-order-form>-->
 </div>

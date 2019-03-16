@@ -72,6 +72,10 @@ export class OrderListComponent implements OnInit {
     /*this.index = this.index + 1;*/
   }
 
+  updateOrderList(event) {
+    this.getAllOrders();
+  }
+
   deleteSelectedOrder(ordid) {
     this.startLoader();
     this.userService.deleteOrderByBillNumber(ordid).subscribe(

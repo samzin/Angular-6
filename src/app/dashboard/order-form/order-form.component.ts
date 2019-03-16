@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import {APIResponse, CIFConstants, Constants, LocalStorageLabels, Validation} from '../../shared/Constants';
 import {TaborderModel} from '../../shared/models/taborder.model';
@@ -7,6 +7,7 @@ import {ToasterNotificationService} from '../../common-services/toaster-notifica
 import {AppLoaderService} from '../../common-services/app-loader.service';
 import {AnalysisModel} from '../../shared/models/analysis.model';
 import {SubanalysisModel} from '../../shared/models/subanalysis.model';
+declare let $: any;
 
 @Component({
   selector: 'app-order-form',
@@ -17,6 +18,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   @Input() formType: String;
   @Input() model?: TaborderModel = new TaborderModel();
+  @Output() submitEvent = new EventEmitter<any>();
 
   selectedAnalysisModel = new AnalysisModel();
   selectedSubAnalysisModel = new SubanalysisModel();
@@ -244,6 +246,8 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   onSuccessOrder(response) {
     this.stopLoader();
+    this.submitEvent.emit();
+    $('#orderModal').modal('hide');
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_CREATING_ORDER);
   }
 
