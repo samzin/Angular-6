@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {UserService} from '../../../shared/user.service';
+import {ToasterNotificationService} from '../../../common-services/toaster-notification.service';
+import {AppLoaderService} from '../../../common-services/app-loader.service';
+import {APIResponse} from '../../../shared/Constants';
 declare let $: any;
 
 @Component({
@@ -12,10 +15,11 @@ export class AddAnalysisOrderComponent {
 
   @Input() formType: string;
   @Output() refreshEvent = new EventEmitter<any>();
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private toasterNotification: ToasterNotificationService,
+              private appLoader: AppLoaderService) {}
 
   createOrder(analysisOrder) {
-    console.log('create Order : ' + JSON.stringify(analysisOrder));
+    this.startLoader();
     this.userService.createUserTabOrder(analysisOrder.aid.aid, analysisOrder).subscribe( res => {
         this.createOrderSuccess(res);
       },
@@ -25,12 +29,26 @@ export class AddAnalysisOrderComponent {
   }
 
   createOrderSuccess(response: any) {
-    $('#CreateModal').modal('hide');
-    this.refreshEvent.emit();
-    console.log('Order updated successfully.');
+    if (response) {
+      this.stopLoader();
+      this.toasterNotification.showSuccess(APIResponse.SUCCESS_CREATING_ORDER);
+      $('#CreateModal').modal('hide');
+      this.refreshEvent.emit();
+    } else  {
+      this.createOrderError(response);
+    }
   }
 
   createOrderError(error: any) {
-    console.log('Order failed to update.');
+    this.stopLoader();
+    this.toasterNotification.showError(APIResponse.ERROR_CREATING_ORDER);
+  }
+
+  startLoader() {
+    this.appLoader.start();
+  }
+
+  stopLoader() {
+    this.appLoader.stop();
   }
 }

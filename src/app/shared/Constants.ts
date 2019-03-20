@@ -140,6 +140,8 @@ export class APIResponse {
   public static SUCCESS_CONFIRM_ORDERS = 'Order confirmed. Please Proceed to checkout.';
   public static ERROR_CONFIRM_ORDERS = 'Unable to confirm Order.';
   public static SUCCESS_CREATING_ORDER = 'Successfully created order.';
+  public static SUCCESS_UPDATING_ORDER = 'Successfully updated order.';
+  public static ERROR_UPDATING_ORDER = 'Error while updating order.';
   public static ERROR_CREATING_ORDER = 'Error while created order.';
   public static SUCCESS_PAY_BY_WALLET = 'Paid by wallet successfully.';
   public static ERROR_PAY_BY_WALLET = 'Error while making payment by wallet.';
