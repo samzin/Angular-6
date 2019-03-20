@@ -31,11 +31,9 @@ import { MatListModule } from '@angular/material';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {OrderFormComponent} from './dashboard/order-form/order-form.component';
 import {OrderListComponent} from './dashboard/order-list/order-list.component';
 import {AppHeaderComponent} from './common-components/app-header/app-header.component';
 import {OrderHistoryComponent} from './dashboard/order-history/order-history.component';
-import {NewOrdersComponent} from './dashboard/new-orders/new-orders.component';
 import {WalletComponent} from './dashboard/wallet/wallet.component';
 import {ToasterNotificationService} from './common-services/toaster-notification.service';
 import {CheckOutComponent} from './dashboard/check-out/check-out.component';
@@ -53,11 +51,9 @@ import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analys
     UserorderComponent,
     UserorderformComponent,
     DashboardComponent,
-    OrderFormComponent,
     OrderListComponent,
     AppHeaderComponent,
     OrderHistoryComponent,
-    NewOrdersComponent,
     WalletComponent,
     CheckOutComponent,
     AnalysisOrderFormComponent,

@@ -16,11 +16,8 @@ import {ConfirmOrderModel} from '../../shared/models/confirm-order.model';
 export class OrderListComponent implements OnInit {
 
   orderList = [];
-  editOrderLabel = 'Edit';
-  createOrderLabal = 'Create';
-  orderModel = new TaborderModel();
   selctedOrderModel = new TaborderModel();
-  index = 1;
+  totalOrderAmount = 0;
   disableCheckout = true;
   CIFConstants = CIFConstants;
 
@@ -50,9 +47,15 @@ export class OrderListComponent implements OnInit {
   onSuccessGettingAllOrders(response) {
     this.stopLoader();
     this.orderList = response;
+    this.calculateTotalOrderAmount(this.orderList);
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
   }
 
+  calculateTotalOrderAmount(orderList) {
+    for (const order of orderList) {
+      this.totalOrderAmount = this.totalOrderAmount + order.total_Amount;
+    }
+  }
   onErrorGettingAllOrders(err) {
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ORDERS);
