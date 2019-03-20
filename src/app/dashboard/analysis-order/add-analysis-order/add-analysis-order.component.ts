@@ -34,7 +34,7 @@ export class AddAnalysisOrderComponent {
       this.toasterNotification.showSuccess(APIResponse.SUCCESS_CREATING_ORDER);
       $('#CreateModal').modal('hide');
       this.refreshEvent.emit();
-    } else  {
+    } else {
       this.createOrderError(response);
     }
   }
