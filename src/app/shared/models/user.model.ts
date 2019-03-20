@@ -18,6 +18,7 @@ export class UserModel {
   userType: UserTypeModel;
 
   constructor() {
+    this.uid = parseInt(localStorage.getItem('user_id'), 0);
     this.userType = new UserTypeModel();
   }
 }

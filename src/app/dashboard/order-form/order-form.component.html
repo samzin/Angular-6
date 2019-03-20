@@ -1,4 +1,3 @@
-<div id="orderModal" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
 
@@ -13,16 +12,16 @@
           <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(model)">
 
               <div class="form-group">
-                <select class="form-control" id="analysis" [(ngModel)]="selectedAnalysisModel"
-                        (change) = "selectedAnalysis(selectedAnalysisModel)"
+                <select class="form-control" id="analysis" [(ngModel)]="model.aid.aid"
+                        (change) = "setSelectedAnalysis(selectedAnalysisModel)"
                         name="analysis" required>
                   <option value="" disabled>Select Analysis</option>
-                  <option *ngFor="let analysis of analysisList" [ngValue]="analysis">{{analysis.analysisname}}</option>
+                  <option *ngFor="let analysis of analysisList" [ngValue]="analysis.aid">{{analysis.analysisname}}</option>
                 </select>
               </div>
 
               <div class="form-group" *ngIf="showSolventProvider()">
-                <select class="form-control"  id="solventProvider" [(ngModel)]="providername"
+                <select class="form-control"  id="solventProvider" [(ngModel)]="model.solvent_provider"
                         name="solventProvider" required>
                   <option value="" disabled>Select Solvent Provider</option>
                   <option *ngFor="let solventProvider of solventProviderList" [value]="solventProvider.providername">{{solventProvider.providername}}</option>
@@ -30,35 +29,35 @@
               </div>
 
               <div class="form-group" *ngIf="(selectedAnalysisModel.analysisname == showSolventForAnalysis)">
-                  <select class="form-control"  id="solvent" [(ngModel)]="selectedSolventName"
-                          [disabled]="!selectedAnalysisModel.analysisname || disableSolvent()"
+                  <select class="form-control"  id="solvent" [(ngModel)]="model.solvent_id.solventname"
+                          [disabled]="!model.aid.analysisname || disableSolvent()"
                           (change) = "setSelectedSolvent(selectedSolventName)" name="solvent" required>
                     <option value="" disabled="">Select Solvent</option>
-                    <option *ngFor="let solvent of solventList" [ngValue]="solvent">{{solvent.solventname}}</option>
+                    <option *ngFor="let solvent of solventList" [ngValue]="solvent.solventname">{{solvent.solventname}}</option>
                   </select>
-                </div>
+              </div>
 
               <div class="form-group">
-                <select class="form-control"  id="subAnalysis" [(ngModel)]="selectedSubAnalysisModel" name="subAnalysis"
+                <select class="form-control"  id="subAnalysis" [(ngModel)]="model.subid.sub_Analysisname" name="subAnalysis"
                         (change) = "setSelectedSubAnalysis(selectedSubAnalysisModel)"
-                        [disabled]="!selectedAnalysisModel.analysisname" required>
+                        [disabled]="!model.aid.analysisname" required>
                   <option value="" disabled>Select SubAnalysis</option>
-                  <option *ngFor="let subAnalysis of subAnalysisList" [ngValue]="subAnalysis">{{subAnalysis.sub_Analysisname}}</option>
+                  <option *ngFor="let subAnalysis of subAnalysisList" [ngValue]="subAnalysis.sub_Analysisname">{{subAnalysis.sub_Analysisname}}</option>
                 </select>
               </div>
 
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
-                    <label>Rates : {{rateObject.rate}} </label>
+                    <label>Rates : {{model.rate}} </label>
                   </div>
                   <div class="col-md-6">
-                    <label>Rates/Hr : {{rateObject.hrs_Rate}} </label>
+                    <label>Rates/Hr : {{model.hrs_Rate}} </label>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6" *ngIf="(selectedAnalysisModel.analysisname == showSolventForAnalysis)">
-                    <label>Solvent Rate : {{solventRate}} </label>
+                  <div class="col-md-6" *ngIf="(model.aid.analysisname == showSolventForAnalysis)">
+                    <label>Solvent Rate : {{model.solvent_Rate}} </label>
                   </div>
                 </div>
               </div>
@@ -92,12 +91,12 @@
                        [(ngModel)]="model.special_notes" name="special_notes">
               </div>
 
-              <div class="form-group" *ngIf="(selectedAnalysisModel.analysisname == showInhouseExpert)">
+              <div class="form-group" *ngIf="(model.aid.analysisname == showInhouseExpert)">
                 <input type="checkbox" id="inHouseExpert" [(ngModel)]="model.inHouseExpert" name="inHouseExpert">
                 <label> In House Expert</label>
               </div>
 
-              <div class="form-group" *ngIf="(selectedAnalysisModel.analysisname == showLiquidNitrogen)">
+              <div class="form-group" *ngIf="(model.aid.analysisname == showLiquidNitrogen)">
               <input type="checkbox" id="liquidNitrogen" [(ngModel)]="model.liquidNitrogen" name="liquidNitrogen">
               <label> With Liquid Nitrogen</label>
             </div>
@@ -114,5 +113,3 @@
     </div>
 
   </div>
-
-</div>

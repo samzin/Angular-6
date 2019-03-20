@@ -29,7 +29,7 @@ export class TaborderModel {
   uid: UserModel;
 
   constructor() {
-    this.billNo = '';
+    this.billNo = localStorage.getItem('bill_no');
     this.special_notes = '';
     this.solvent_provider = '';
     this.cgst = 0;

@@ -22,6 +22,10 @@ h2 {
   color: #cccccc;
 }
 
+button {
+  margin: 5px !important;
+}
+
 
 
 /* STRUCTURE */

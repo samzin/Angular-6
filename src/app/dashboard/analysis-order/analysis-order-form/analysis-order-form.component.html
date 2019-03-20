@@ -1,0 +1,92 @@
+<div id="{{formType}}Modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{formType}} Analysis</h4>
+      </div>
+      <div class="modal-body">
+        <form #orderFormNMR="ngForm" (ngSubmit)="orderFormNMR.valid && onSubmit(orderModel)">
+          <div class="form-group">
+            <!--orderFormNMR.valid :: {{orderFormNMR.valid}}-->
+            <select class="form-control" id="analysis" [(ngModel)]="orderModel.aid.aid"
+                    (change)="changeAnalysis(orderModel.aid)" name="analysis" required>
+              <option value="" disabled>Select Analysis</option>
+              <option *ngFor="let analysis of analysisList" [ngValue]="analysis.aid">{{analysis.analysisname}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+
+            <div class="col-md-6">
+              <select class="form-control"  id="solventProvider" [(ngModel)]="orderModel.solvent_provider"
+                      name="solventProvider">
+                <option value="" disabled>Select Solvent Provider</option>
+                <option *ngFor="let solventProvider of solventProviderList" [value]="solventProvider.providername">{{solventProvider.providername}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <select class="form-control"  id="solvent" [(ngModel)]="orderModel.solvent_id.solventname"
+                      (change) = "changeSolvent(orderModel.solvent_id)" name="solvent">
+                <option value="" disabled="">Select Solvent</option>
+                <option *ngFor="let solvent of solventList" [ngValue]="solvent.solventname">{{solvent.solventname}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" id="subanlysis" [(ngModel)]="orderModel.subid.subid"
+                    (change)="changeSubanalysis(orderModel.subid)" name="subanlysis" required>
+              <option value="" disabled>Select Subanalysis</option>
+              <option *ngFor="let subanlysis of subAnalysisList" [ngValue]="subanlysis.subid">{{subanlysis.sub_Analysisname}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label>Rates : {{orderModel.rate}} </label>
+            </div>
+            <div class="col-md-6">
+              <label>Rates/Hr : {{orderModel.hrs_Rate}} </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Solvent Rate : {{orderModel.solvent_Rate}} </label>
+          </div>
+
+          <div class="form-group">
+            <label for="extra_Hrs">Extra Hrs</label>
+            <input type="text" class="form-control" id="extra_Hrs" required
+                   [(ngModel)]="orderModel.extra_Hrs" name="extra_Hrs">
+          </div>
+
+          <div class="form-group">
+            <label for="sample_codes">Enter Sample Codes</label>
+            <input type="text" class="form-control" id="sample_codes" required
+                   [(ngModel)]="orderModel.sample_Code" name="extra_Hrs">
+          </div>
+
+          <div class="form-group">
+            <label for="special_notes">Special Notes</label>
+            <input type="text" class="form-control" id="special_notes" required
+                   [(ngModel)]="orderModel.special_notes" name="special_notes">
+          </div>
+
+          <div class="form-group">
+            <input type="checkbox" id="inHouseExpert" [(ngModel)]="orderModel.inHouseExpert" name="inHouseExpert">
+            <label> In House Expert</label>
+          </div>
+
+          <div class="form-group">
+            <input type="checkbox" id="liquidNitrogen" [(ngModel)]="orderModel.liquidNitrogen" name="liquidNitrogen">
+            <label> With Liquid Nitrogen</label>
+          </div>
+
+          <button type="submit" value="Confirm" class="btn btn-primary">Confirm</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

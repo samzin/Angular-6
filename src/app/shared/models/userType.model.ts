@@ -3,5 +3,6 @@ export class UserTypeModel {
   userTypeName: String;
 
   constructor() {
+    this.userTypeId = parseInt(localStorage.getItem('user_type_id'), 0);
   }
 }

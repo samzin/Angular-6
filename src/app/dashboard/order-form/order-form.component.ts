@@ -20,6 +20,7 @@ export class OrderFormComponent implements OnInit, OnChanges {
   @Input() model?: TaborderModel = new TaborderModel();
   @Output() submitEvent = new EventEmitter<any>();
 
+  newTabOrderModel = new TaborderModel();
   selectedAnalysisModel = new AnalysisModel();
   selectedSubAnalysisModel = new SubanalysisModel();
   selectedSubAnalysisName = '';
@@ -51,8 +52,13 @@ export class OrderFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.model) {
+      this.setDataForEditForm(changes.model.currentValue);
       this.getAllAnalysis();
     }
+  }
+
+  setDataForEditForm(newModel) {
+    this.newTabOrderModel = newModel;
   }
 
   ngOnInit() {
@@ -72,8 +78,9 @@ export class OrderFormComponent implements OnInit, OnChanges {
   successGetAnalysisName(response) {
     this.stopLoader();
     this.analysisList = response;
-    if (this.model.aid) {
-      this.getAnalysisName();
+    if (this.formType === 'Edit') {
+      console.log('Edit');
+      this.setSelectedAnalysis(this.newTabOrderModel.aid);
     }
   }
 
@@ -99,21 +106,11 @@ export class OrderFormComponent implements OnInit, OnChanges {
     }
   }
 
-  getAnalysisName() {
-    const selectedAnalysisId = this.model.aid;
-    const selectedAnalysisArray = this.analysisList.filter(function (analysis) {
-      return analysis.aid === selectedAnalysisId;
-    });
-    if (selectedAnalysisArray.length === 1) {
-      this.selectedAnalysisModel = selectedAnalysisArray[0];
-      this.selectedAnalysis(this.selectedAnalysisModel);
-    }
-  }
-
-  selectedAnalysis(selectedAnalysis) {
+  setSelectedAnalysis(selectedAnalysis) {
     if (selectedAnalysis) {
       this.clearFieldsExceptAnalysis();
       this.model.aid = selectedAnalysis;
+      console.log('this.model.aid : ' + this.model.aid);
       this.getAllSubAnalysis();
       if (selectedAnalysis.analysisname === CIFConstants.ANALYSIS_NAME_FOR_SOLVENT) {
         this.getAllSolvents();
@@ -181,26 +178,30 @@ export class OrderFormComponent implements OnInit, OnChanges {
   }
 
   clearFieldsExceptAnalysis() {
-    this.model = new TaborderModel();
-    this.rateObject = new RateModel();
-    this.selectedSubAnalysisName = '';
-    this.selectedSolventName = '';
-    this.selctedNumberOfSamples = 1;
-    this.solventRate = 0;
+    if (this.formType === 'Create') {
+      this.model = new TaborderModel();
+      this.rateObject = new RateModel();
+      this.selectedSubAnalysisName = '';
+      this.selectedSolventName = '';
+      this.selctedNumberOfSamples = 1;
+      this.solventRate = 0;
+    }
   }
 
   getRateObject() {
-    const body = {
-      subid: this.model.subid.subid,
-      utid: this.userTypeId,
-    };
-    this.startLoader();
-    this.userService.getRateBySubanalysisId(body).subscribe(res => {
-        this.successGetRateObject(res);
-      }, err => {
-        this.errorGetRateObject(err);
-      }
-    );
+    if (this.model.subid.subid && this.userTypeId) {
+      const body = {
+        subid: this.model.subid.subid,
+        utid: this.userTypeId,
+      };
+      this.startLoader();
+      this.userService.getRateBySubanalysisId(body).subscribe(res => {
+          this.successGetRateObject(res);
+        }, err => {
+          this.errorGetRateObject(err);
+        }
+      );
+    }
   }
 
   successGetRateObject(response) {

@@ -39,6 +39,9 @@ import {NewOrdersComponent} from './dashboard/new-orders/new-orders.component';
 import {WalletComponent} from './dashboard/wallet/wallet.component';
 import {ToasterNotificationService} from './common-services/toaster-notification.service';
 import {CheckOutComponent} from './dashboard/check-out/check-out.component';
+import {AnalysisOrderFormComponent} from './dashboard/analysis-order/analysis-order-form/analysis-order-form.component';
+import {AddAnalysisOrderComponent} from './dashboard/analysis-order/add-analysis-order/add-analysis-order.component';
+import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analysis-order/edit-analysis-order.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import {CheckOutComponent} from './dashboard/check-out/check-out.component';
     OrderHistoryComponent,
     NewOrdersComponent,
     WalletComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    AnalysisOrderFormComponent,
+    AddAnalysisOrderComponent,
+    EditAnalysisOrderComponent
   ],
   imports: [
     BrowserModule,

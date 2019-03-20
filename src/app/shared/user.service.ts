@@ -42,6 +42,11 @@ export class UserService {
     return this.httpService.post(URL, body);
   }
 
+  updateTabOrder(body): Observable<any> {
+    const URL = API.UPDATE_USER_TAB_ORDER;
+    return this.httpService.put(URL, body);
+  }
+
   getAllUserOrders(billNo): Observable<any> {
     const URL = API.USER_TAB_ORDER_LIST.replace('$bill$', billNo);
     return this.httpService.get(URL);
