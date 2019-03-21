@@ -87,6 +87,9 @@ export class Validation {
 export class CIFConstants {
   public static APP_NAME = 'Central Instrumentation Facility';
   public static ANALYSIS_NAME_FOR_SOLVENT = 'NMR 500 MHz';
+  public static SHOW_SOLVENT_FOR_ANALYSIS_ID = 1;
+  public static SHOW_INHOUSE_EXPERT_FOR_ANALYSIS_ID = 4;
+  public static SHOW_LIQUID_NITROGEN_FOR_ANALYSIS_ID = 6;
   public static ANALYSIS_NAME_FOR_INHOUSE_EXPERT = 'Confocal Microscope';
   public static ANALYSIS_NAME_WITH_SINGLE_CRYSTAL = 'Single Crystal XRD';
   public static USER_TYPE_ID = 1;

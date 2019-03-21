@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {TaborderModel} from '../../../shared/models/taborder.model';
-import {APIResponse, CIFConstants, Constants} from '../../../shared/Constants';
+import {APIResponse, CIFConstants, Constants, Validation} from '../../../shared/Constants';
 import {UserService} from '../../../shared/user.service';
 import {AppLoaderService} from '../../../common-services/app-loader.service';
 import {ToasterNotificationService} from '../../../common-services/toaster-notification.service';
@@ -19,10 +19,16 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
   @Input() formType: string;
   @Input() orderModel?: TaborderModel = new TaborderModel();
   @Output() submitEvent = new EventEmitter<any>();
+
   analysisList = [];
   subAnalysisList = [];
   solventList = [];
+  selctedNumberOfSamples = 0;
+  showSampleLimitErrorMessage = false;
+  numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
   solventProviderList = Constants.SOLVENT_PROVIDER_LIST;
+  sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
+
   userId = parseInt(localStorage.getItem('user_id'), 0);
   userTypeId = parseInt(localStorage.getItem('user_type_id'), 0);
 
@@ -175,6 +181,56 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
   onSubmit(tabOrder) {
     console.log('tabOrder : ' + JSON.stringify(tabOrder));
     this.submitEvent.emit(tabOrder);
+  }
+
+  disableSolventProvider() {
+    if (this.userTypeId === CIFConstants.USER_TYPE_ID) {
+      if (this.orderModel.aid.aid === CIFConstants.SHOW_SOLVENT_FOR_ANALYSIS_ID) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  disableSolvent() {
+    if (this.orderModel.aid.aid === CIFConstants.SHOW_SOLVENT_FOR_ANALYSIS_ID) {
+      if (this.orderModel.solvent_provider === 'Provided by User') {
+        // clear solvent name, solvent rate, subanalysis
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  showInHouseExpert() {
+    if (this.orderModel.aid.aid === CIFConstants.SHOW_INHOUSE_EXPERT_FOR_ANALYSIS_ID) {
+        return true;
+    } else {
+      return false;
+    }
+  }
+
+  showLiquidNitrogen() {
+    if (this.orderModel.aid.aid === CIFConstants.SHOW_LIQUID_NITROGEN_FOR_ANALYSIS_ID) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkSampleCodeLength() {
+    const sampleCodesArray = this.orderModel.sample_Code.split(',');
+    if (sampleCodesArray.length !== this.selctedNumberOfSamples) {
+      this.showSampleLimitErrorMessage = true;
+    } else {
+      this.showSampleLimitErrorMessage = false;
+    }
   }
 
   startLoader() {

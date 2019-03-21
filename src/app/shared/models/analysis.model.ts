@@ -1,5 +1,5 @@
 export class AnalysisModel {
-  aid: Number;
+  aid: number;
   analysisname: string;
 
   constructor() {
