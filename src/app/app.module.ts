@@ -1,9 +1,9 @@
 // built-in
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // components
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -29,7 +29,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material';
 import { ToastrModule } from 'ng6-toastr-notifications';
-import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { TagInputModule } from 'ngx-chips';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {OrderListComponent} from './dashboard/order-list/order-list.component';
 import {AppHeaderComponent} from './common-components/app-header/app-header.component';
@@ -64,6 +65,8 @@ import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analys
     BrowserModule,
     BrowserAnimationsModule,
     NgxUiLoaderModule,
+    TagInputModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,

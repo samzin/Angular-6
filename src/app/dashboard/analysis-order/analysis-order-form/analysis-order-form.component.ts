@@ -23,9 +23,11 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
   analysisList = [];
   subAnalysisList = [];
   solventList = [];
+  sampleCodesList = [];
   selctedNumberOfSamples = 0;
   showSampleLimitErrorMessage = false;
   numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
+  addSampleCodePlaceholder = 'Add Sample Codes';
   solventProviderList = Constants.SOLVENT_PROVIDER_LIST;
   sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
 
@@ -40,7 +42,13 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
     if (changes.orderModel) {
       /*this.orderModel = changes.orderModel.currentValue;*/
       this.getAllAnalysis();
+      this.setSampleCodes();
     }
+  }
+
+  setSampleCodes() {
+    this.sampleCodesList = this.orderModel.sample_Code.split(',');
+    this.selctedNumberOfSamples = this.sampleCodesList.length;
   }
 
   ngOnInit() {
@@ -179,7 +187,12 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit(tabOrder) {
-    console.log('tabOrder : ' + JSON.stringify(tabOrder));
+    const sample_code_string = tabOrder.sample_Code;
+    let new_sample_code = '';
+    if (sample_code_string.endsWith(',')) {
+      new_sample_code = sample_code_string.slice(0, sample_code_string.length - 1);
+    }
+    tabOrder.sample_Code = new_sample_code;
     this.submitEvent.emit(tabOrder);
   }
 
@@ -224,12 +237,9 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
     }
   }
 
-  checkSampleCodeLength() {
-    const sampleCodesArray = this.orderModel.sample_Code.split(',');
-    if (sampleCodesArray.length !== this.selctedNumberOfSamples) {
-      this.showSampleLimitErrorMessage = true;
-    } else {
-      this.showSampleLimitErrorMessage = false;
+  onItemAdded(tag) {
+    if (tag.value) {
+      this.orderModel.sample_Code = this.orderModel.sample_Code + tag.value + ',';
     }
   }
 

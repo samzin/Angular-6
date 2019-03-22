@@ -12,7 +12,7 @@ export class TaborderModel {
   order_Date: Date;
   ordid: Number;
   rate: Number;
-  sample_Code: String;
+  sample_Code: string;
   special_notes: String;
   solvent_provider: String;
   inHouseExpert: boolean;
