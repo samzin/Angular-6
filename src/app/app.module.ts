@@ -41,6 +41,7 @@ import {CheckOutComponent} from './dashboard/check-out/check-out.component';
 import {AnalysisOrderFormComponent} from './dashboard/analysis-order/analysis-order-form/analysis-order-form.component';
 import {AddAnalysisOrderComponent} from './dashboard/analysis-order/add-analysis-order/add-analysis-order.component';
 import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analysis-order/edit-analysis-order.component';
+import {WebSocketService} from './common-services/WebSocket.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analys
   },
     AuthGuard,
     UserService,
-    ToasterNotificationService
+    ToasterNotificationService,
+    WebSocketService
   ],
   bootstrap: [AppComponent]
 })

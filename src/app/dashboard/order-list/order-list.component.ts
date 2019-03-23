@@ -6,6 +6,7 @@ import {ToasterNotificationService} from '../../common-services/toaster-notifica
 import {AppLoaderService} from '../../common-services/app-loader.service';
 import {Router} from '@angular/router';
 import {ConfirmOrderModel} from '../../shared/models/confirm-order.model';
+import {WebSocketService} from '../../common-services/WebSocket.service';
 
 @Component({
   selector : 'app-order-listing',
@@ -22,7 +23,7 @@ export class OrderListComponent implements OnInit {
   CIFConstants = CIFConstants;
 
   constructor(private userService: UserService, private toasterNotification: ToasterNotificationService,
-              private appLoader: AppLoaderService, private router: Router) {
+              private appLoader: AppLoaderService, private router: Router, private websocketService: WebSocketService) {
   }
 
   ngOnInit(): void {
@@ -114,6 +115,7 @@ export class OrderListComponent implements OnInit {
     if (response) {
       this.disableCheckout = false;
     }
+    this.websocketService.sendNotificationToServer(APIResponse.SUCCESS_CONFIRM_ORDERS);
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_CONFIRM_ORDERS);
   }
 
