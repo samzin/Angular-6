@@ -115,7 +115,6 @@ export class OrderListComponent implements OnInit {
     if (response) {
       this.disableCheckout = false;
     }
-    this.websocketService.sendNotificationToServer(APIResponse.SUCCESS_CONFIRM_ORDERS);
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_CONFIRM_ORDERS);
   }
 

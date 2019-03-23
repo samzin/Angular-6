@@ -18,7 +18,6 @@ export class AppHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.webSocketService.listenFromServer();
   }
 
   logOut() {
