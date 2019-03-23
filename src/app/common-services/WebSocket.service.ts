@@ -1,28 +1,31 @@
 import {Injectable, OnInit} from '@angular/core';
-import { webSocket } from 'rxjs/webSocket';
-
-const subject = webSocket('wss://localhost:8080/notification-out');
+import * as Stomp from 'stompjs';
+import * as SockJS from 'sockjs-client';
 
 @Injectable()
 export class WebSocketService implements OnInit {
 
+  private serverUrl = 'http://localhost:8080/notificationConnect';
+  private stompClient;
+
   constructor() {}
 
   ngOnInit() {
-    // this.listenFromServer();
   }
 
   listenFromServer() {
-    subject.subscribe(
-      msg => console.log('message received: ' + msg), // Called whenever there is a message from the server.
-      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-      () => console.log('complete') // Called when connection is closed (for whatever reason).
-    );
+    const ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    this.stompClient.connect({}, function(frame) {
+      this.stompClient.subscribe('/notifystatus', (message) => {
+        if (message.body) {
+          console.log(message.body);
+        }
+      });
+    });
   }
 
-
   sendNotificationToServer(msg: string) {
-    subject.subscribe();
-    subject.next(JSON.stringify({message: msg}));
+    this.stompClient.send('/app/send/message' , {}, msg);
   }
 }
