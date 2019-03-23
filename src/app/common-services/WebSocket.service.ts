@@ -17,7 +17,7 @@ export class WebSocketService implements OnInit {
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, function(frame) {
-      this.stompClient.subscribe('/notifystatus', (message) => {
+      this.stompClient.subscribe('/user/queue/specific-user', (message) => {
         if (message.body) {
           console.log(message.body);
         }
@@ -26,6 +26,6 @@ export class WebSocketService implements OnInit {
   }
 
   sendNotificationToServer(msg: string) {
-    this.stompClient.send('/app/send/message' , {}, msg);
+    this.stompClient.send('/cifweb/notifystatus' , {}, msg);
   }
 }
