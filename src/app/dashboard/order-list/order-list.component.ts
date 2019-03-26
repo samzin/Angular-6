@@ -7,6 +7,7 @@ import {AppLoaderService} from '../../common-services/app-loader.service';
 import {Router} from '@angular/router';
 import {ConfirmOrderModel} from '../../shared/models/confirm-order.model';
 import {WebSocketService} from '../../common-services/WebSocket.service';
+import {UserModel} from '../../shared/models/user.model';
 
 @Component({
   selector : 'app-order-listing',
@@ -57,6 +58,7 @@ export class OrderListComponent implements OnInit {
       this.totalOrderAmount = this.totalOrderAmount + order.total_Amount;
     }
   }
+
   onErrorGettingAllOrders(err) {
     this.stopLoader();
     this.toasterNotification.showError(APIResponse.ERROR_GETTING_ORDERS);
@@ -110,6 +112,18 @@ export class OrderListComponent implements OnInit {
     );
   }
 
+  approveOrder() {
+    const userM = new UserModel();
+    userM.uid = parseInt(localStorage.getItem('user_id'), 0);
+    const statusUpdateObject = {
+      uid : userM,
+      billNo : localStorage.getItem('bill_no'),
+      statusId : 1
+    };
+    console.log('statusUpdateObject : ' + JSON.stringify(statusUpdateObject));
+    this.websocketService.sendNotification(statusUpdateObject);
+  }
+
   successConfirmOrder(response) {
     this.stopLoader();
     if (response) {
@@ -122,6 +136,10 @@ export class OrderListComponent implements OnInit {
     this.stopLoader();
     this.disableCheckout = false;
     this.toasterNotification.showError(APIResponse.ERROR_CONFIRM_ORDERS);
+  }
+
+  stopWebSocketService() {
+    this.websocketService.disconnect();
   }
 
   redirectToCheckOut() {

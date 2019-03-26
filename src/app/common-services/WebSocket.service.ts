@@ -13,15 +13,15 @@ export class WebSocketService implements OnInit {
   ngOnInit() {
   }
 
-  connect() {
+  connect(orderId) {
     const socket = new SockJS(this.serverUrl);
     this.stompClient = Stomp.Stomp.over(socket);
 
     const _this = this;
     this.stompClient.connect({}, function (frame) {
        console.log('Connected: ' + frame);
-      _this.stompClient.subscribe('/status-notification/notify', function (hello) {
-        console.log(JSON.parse(hello.body));
+      _this.stompClient.subscribe('/status-notification/' + orderId, function (hello) {
+         console.log(JSON.parse(hello.body));
         _this.showGreeting(JSON.parse(hello.body));
       });
     });

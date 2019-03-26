@@ -3,6 +3,7 @@ import {UserService} from '../../../shared/user.service';
 import {ToasterNotificationService} from '../../../common-services/toaster-notification.service';
 import {AppLoaderService} from '../../../common-services/app-loader.service';
 import {APIResponse} from '../../../shared/Constants';
+import {WebSocketService} from '../../../common-services/WebSocket.service';
 declare let $: any;
 
 @Component({
@@ -16,7 +17,7 @@ export class AddAnalysisOrderComponent {
   @Input() formType: string;
   @Output() refreshEvent = new EventEmitter<any>();
   constructor(private userService: UserService, private toasterNotification: ToasterNotificationService,
-              private appLoader: AppLoaderService) {}
+              private appLoader: AppLoaderService, private websocketService: WebSocketService) {}
 
   createOrder(analysisOrder) {
     this.startLoader();
@@ -30,6 +31,7 @@ export class AddAnalysisOrderComponent {
 
   createOrderSuccess(response: any) {
     if (response) {
+      this.startWebSocketService(response);
       this.stopLoader();
       this.toasterNotification.showSuccess(APIResponse.SUCCESS_CREATING_ORDER);
       $('#CreateModal').modal('hide');
@@ -37,6 +39,10 @@ export class AddAnalysisOrderComponent {
     } else {
       this.createOrderError(response);
     }
+  }
+
+  startWebSocketService(response) {
+    this.websocketService.connect(response.ordid);
   }
 
   createOrderError(error: any) {

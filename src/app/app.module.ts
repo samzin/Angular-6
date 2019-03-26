@@ -42,6 +42,7 @@ import {AnalysisOrderFormComponent} from './dashboard/analysis-order/analysis-or
 import {AddAnalysisOrderComponent} from './dashboard/analysis-order/add-analysis-order/add-analysis-order.component';
 import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analysis-order/edit-analysis-order.component';
 import {WebSocketService} from './common-services/WebSocket.service';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import {WebSocketService} from './common-services/WebSocket.service';
     MatListModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot(),
+    AdminModule,
     HttpClientModule
   ],
   providers: [{
