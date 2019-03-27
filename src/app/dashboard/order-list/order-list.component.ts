@@ -86,6 +86,7 @@ export class OrderListComponent implements OnInit {
 
   successDeleteSelectedOrder(response) {
     this.stopLoader();
+    this.totalOrderAmount = 0;
     this.toasterNotification.showSuccess(APIResponse.SUCCESS_DELETING_ORDERS);
     this.getAllOrders();
   }
