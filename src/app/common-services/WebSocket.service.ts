@@ -7,6 +7,7 @@ export class WebSocketService implements OnInit {
 
   private serverUrl = 'http://localhost:8080/cif-notify-connection';
   private stompClient;
+  private orderStatusNotification: any;
 
   constructor() {}
 
@@ -20,9 +21,9 @@ export class WebSocketService implements OnInit {
     const _this = this;
     this.stompClient.connect({}, function (frame) {
        console.log('Connected: ' + frame);
-      _this.stompClient.subscribe('/status-notification/' + orderId, function (hello) {
-         console.log(JSON.parse(hello.body));
-        _this.showGreeting(JSON.parse(hello.body));
+      _this.stompClient.subscribe('/status-notification/' + orderId, function (message) {
+         console.log('status-notification subscribed : ' + JSON.parse(message.body));
+        _this.showGreeting(JSON.parse(message.body));
       });
     });
   }
@@ -35,7 +36,18 @@ export class WebSocketService implements OnInit {
   }
 
   sendNotification(orderConfirm: any) {
-    this.stompClient.send('/update-order-status/updateStatus', {}, JSON.stringify(orderConfirm));
+    const orderSTtausObject = this.getNotification();
+    orderSTtausObject.state = 1;
+    console.log('update-order-status : ' + JSON.stringify(orderSTtausObject));
+    this.stompClient.send('/update-order-status/updateStatus', {}, JSON.stringify(orderSTtausObject));
+  }
+
+  setNotification(order) {
+    this.orderStatusNotification = order;
+  }
+
+  getNotification() {
+    return this.orderStatusNotification;
   }
 
   showGreeting(message) {

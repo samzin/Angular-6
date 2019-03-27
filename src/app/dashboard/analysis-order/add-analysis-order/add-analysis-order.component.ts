@@ -43,6 +43,7 @@ export class AddAnalysisOrderComponent {
 
   startWebSocketService(response) {
     this.websocketService.connect(response.ordid);
+    this.websocketService.setNotification(response);
   }
 
   createOrderError(error: any) {

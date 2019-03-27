@@ -120,7 +120,6 @@ export class OrderListComponent implements OnInit {
       billNo : localStorage.getItem('bill_no'),
       statusId : 1
     };
-    console.log('statusUpdateObject : ' + JSON.stringify(statusUpdateObject));
     this.websocketService.sendNotification(statusUpdateObject);
   }
 
