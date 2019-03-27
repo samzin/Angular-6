@@ -39,7 +39,7 @@ export class WebSocketService implements OnInit {
     const orderSTtausObject = this.getNotification();
     orderSTtausObject.state = 1;
     console.log('update-order-status : ' + JSON.stringify(orderSTtausObject));
-    this.stompClient.send('/update-order-status/updateStatus', {}, JSON.stringify(orderSTtausObject));
+    this.stompClient.send('/update-order-status/updateStatus/'+this.orderStatusNotification.ordid, {}, JSON.stringify(orderSTtausObject));
   }
 
   setNotification(order) {
