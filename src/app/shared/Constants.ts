@@ -121,7 +121,7 @@ export class LocalStorageLabels {
 export class API {
   public static USER_TAB_ORDER = '/userorder/$analysisId$/taborder';
   public static UPDATE_USER_TAB_ORDER = '/userorder/taborder';
-  public static USER_ORDER_HISTORY = '/userorder/$uid$/taborder';
+  public static USER_ORDER_HISTORY = '/userorder/$uid$/orderhistory';
   public static USER_TAB_ORDER_LIST = '/userorder/$bill$/taborder';
   public static ANALYSIS_LIST = '/userorder/analysis';
   public static SUB_ANALYSIS_LIST = '/userorder/$analysisId$/subanalysis';

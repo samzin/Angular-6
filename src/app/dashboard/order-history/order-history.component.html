@@ -8,19 +8,23 @@
           <th>Order Date</th>
           <th>Bill No.</th>
           <th>Total Amount</th>
+          <th>Wallet Used</th>
           <th>Amount Paid</th>
+          <th>Order State</th>
         </tr>
         </thead>
         <tbody *ngIf="orderHistoryList.length > 0">
           <tr *ngFor="let order of orderHistoryList">
-            <td>{{order.order_date}}</td>
-            <td>{{order.bill_no}}</td>
-            <td>{{order.total_amount}}</td>
-            <td>{{order.wallet_used}}</td>
+            <td>{{order.order_Date}}</td>
+            <td>{{order.billNo}}</td>
+            <td>{{order.total_Amount}}</td>
+            <td>{{order.wallet_Used}}</td>
+            <td>{{order.paid}}</td>
+            <td>{{order.state}}</td>
           </tr>
         </tbody>
         <tbody *ngIf="orderHistoryList.length === 0">
-          <tr><td colspan="4" class="text-center">No Orders.</td></tr>
+          <tr><td colspan="6" class="text-center">No Orders.</td></tr>
         </tbody>
       </table>
     </div>
