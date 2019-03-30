@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {WebSocketService} from '../common-services/WebSocket.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,10 +7,10 @@ import {WebSocketService} from '../common-services/WebSocket.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private websocketService: WebSocketService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.websocketService.connect(63);
+
   }
 
 }

@@ -1,0 +1,20 @@
+<div class="container">
+
+  <div class="col-md-offset-4 col-md-4">
+    <h5>Admin Login</h5>
+
+    <form #adminLoginForm="ngForm" (ngSubmit)="onSubmit()" >
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" [(ngModel)]="adminLogin.email" name="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" [(ngModel)]="adminLogin.password" name="password" class="form-control" id="password">
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="adminLoginForm.invalid">Login</button>
+    </form>
+  </div>
+
+</div>

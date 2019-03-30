@@ -11,7 +11,6 @@ import {OrderHistoryComponent} from './dashboard/order-history/order-history.com
 import {WalletComponent} from './dashboard/wallet/wallet.component';
 import {OrderListComponent} from './dashboard/order-list/order-list.component';
 import {CheckOutComponent} from './dashboard/check-out/check-out.component';
-import {AdminComponent} from './admin/admin.component';
 
 export const appRoutes: Routes = [
     {
@@ -44,8 +43,5 @@ export const appRoutes: Routes = [
         {path: 'checkout', component: CheckOutComponent},
         {path: 'profile', component: UserProfileComponent}
       ]
-    },
-    {
-      path: 'admin', component: AdminComponent
     }
 ];
