@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../admin.service';
+import {WebSocketService} from '../../common-services/WebSocket.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,7 +12,8 @@ export class AdminDashboardComponent implements OnInit {
 
   userList = [];
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private websocketService: WebSocketService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getUserOrdersForOperator();
@@ -34,9 +37,24 @@ export class AdminDashboardComponent implements OnInit {
   onGetUsersListSuccess(response) {
     console.log('Success List ' + JSON.stringify(response));
     this.userList = response;
+    this.createWebSocketService(response);
+  }
+
+  createWebSocketService(userList) {
+    for (const user of userList) {
+      this.websocketService.connect(user.ordid);
+    }
   }
 
   onGetUsersListError(err) {
     console.error('err getting list ' + JSON.stringify(err));
+  }
+
+  approveOrder(userOrder: any) {
+    this.websocketService.sendNotification(userOrder);
+  }
+
+  navigateToOrderDetails(billNo: string) {
+    this.router.navigateByUrl('/admin/user-order-details/' + billNo);
   }
 }

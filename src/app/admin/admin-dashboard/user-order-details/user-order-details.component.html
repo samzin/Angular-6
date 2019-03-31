@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="header-profile-details">
+    Tab Order Details
+    <div style="float: right">
+      <button class="btn btn-default" (click)="goToDashboard()">Back</button>
+    </div>
+  </div>
+  <div class="col-md-12">
+
+    <div class="col-md-12 table-responsive table-height">
+      <table class="table table-bordered table-striped tableBodyScroll">
+        <thead>
+        <tr>
+          <!--<th>{{CIFConstants.ORDER_ID}}</th>-->
+          <th>{{CIFConstants.ANALYSIS_NAME}}</th>
+          <th>{{CIFConstants.SUB_ANALYSIS_NAME}}</th>
+          <th>{{CIFConstants.SOLVENT_NAME}}</th>
+          <th>{{CIFConstants.SAMPLE_CODE}}</th>
+          <th>{{CIFConstants.RATE}}</th>
+          <th>{{CIFConstants.RATE_PER_HOUR}}</th>
+          <th>{{CIFConstants.EXTRA_HRS}}</th>
+          <th>{{CIFConstants.TAXABLE_AMOUNT}}</th>
+          <th>{{CIFConstants.CGST}}</th>
+          <!--<th>{{CIFConstants.CGSTP}}</th>-->
+          <th>{{CIFConstants.SGST}}</th>
+          <!--<th>{{CIFConstants.SGSTP}}</th>-->
+          <th>{{CIFConstants.AMOUNT}}</th>
+          <th>{{CIFConstants.DATE}}</th>
+          <th>{{CIFConstants.STATUS}}</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="tabOrderList.length > 0">
+        <tr *ngFor="let order of tabOrderList">
+          <!--<td>{{order.billNo}}</td>-->
+          <td>{{order.aid?.analysisname ? order.aid.analysisname : '-'}}</td>
+          <td>{{order.subid?.sub_Analysisname ? order.subid.sub_Analysisname : '-'}}</td>
+          <td >{{order.solvent_id?.solventname ? order.solvent_id?.solventname : '-'}}</td>
+          <td>{{order.sample_Code ? order.sample_Code : '-'}}</td>
+          <td>{{order.rate >= 0 ? order.rate : '-'}}</td>
+          <td>{{order.hrs_Rate >= 0 ? order.hrs_Rate : '-'}}</td>
+          <td>{{order.extra_Hrs >= 0 ? order.extra_Hrs : '-'}}</td>
+          <td>{{order.taxable_Amount >= 0 ? order.taxable_Amount : '-'}}</td>
+          <td>{{order.cgst >= 0 ? order.cgst : '-'}}</td>
+          <!--<td>{{order.cgstp >= 0 ? order.cgstp : '-'}}</td>-->
+          <td>{{order.sgst >= 0 ? order.sgst : '-'}}</td>
+          <!--<td>{{order.sgstp >= 0 ? order.sgstp : '-'}}</td>-->
+          <td>{{order.total_Amount >= 0 ? order.total_Amount : '-'}}</td>
+          <td>{{order.order_Date ? (order.order_Date | date) : '-'}}</td>
+          <td>{{order.state}}</td>
+<!--
+          <td>
+                <span class="order-action" (click)="editSelectedOrder(order)">
+                  <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#EditModal"></span>
+                </span>
+            <span class="order-action" (click)="deleteSelectedOrder(order.ordid)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </span>
+          </td>
+-->
+        </tr>
+        </tbody>
+        <tbody *ngIf="tabOrderList.length <= 0">
+        <tr>
+          <td colspan="16" class="text-center">No analysis added till now.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

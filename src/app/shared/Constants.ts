@@ -110,6 +110,7 @@ export class CIFConstants {
   public static AMOUNT = 'Amt.';
   public static DATE = 'Date';
   public static ACTION = 'Action';
+  public static STATUS = 'Status';
 }
 
 export class LocalStorageLabels {

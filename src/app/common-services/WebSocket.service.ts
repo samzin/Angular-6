@@ -36,9 +36,9 @@ export class WebSocketService implements OnInit {
   }
 
   sendNotification(orderConfirm: any) {
-    const orderSTtausObject = this.getNotification();
-    orderSTtausObject.state = 1;
-    this.stompClient.send('/update-order-status/updateStatus/' + this.orderStatusNotification.ordid, {}, JSON.stringify(orderSTtausObject));
+    console.log('userOrder : ' + JSON.stringify(orderConfirm));
+    orderConfirm.state = 1;
+    this.stompClient.send('/update-order-status/updateStatus/' + orderConfirm.ordid, {}, JSON.stringify(orderConfirm));
   }
 
   setNotification(order) {
