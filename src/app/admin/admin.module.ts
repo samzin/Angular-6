@@ -19,7 +19,7 @@ const adminRoutes: Routes = [
       { path: 'login', component: AdminLoginComponent },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'operators', component: OperatorListComponent },
-      { path: 'user-order-details/:billNo', component: UserOrderDetailsComponent }
+      { path: 'user-order-details/:billNo/:uid', component: UserOrderDetailsComponent }
     ]
   }
 ];

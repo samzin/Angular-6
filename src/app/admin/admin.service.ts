@@ -31,6 +31,11 @@ export class AdminService {
     return this.httpService.get(URL);
   }
 
+  getOrderStatusList(): Observable<any> {
+    const URL = API.STATUS_LIST;
+    return this.httpService.get(URL);
+  }
+
   createOperator(operator: OperatorAdminModel): Observable<any> {
     const URL = API.CREATE_OPERATOR;
     return this.httpService.post(URL, operator);

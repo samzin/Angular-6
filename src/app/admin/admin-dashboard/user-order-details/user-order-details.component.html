@@ -46,7 +46,15 @@
           <!--<td>{{order.sgstp >= 0 ? order.sgstp : '-'}}</td>-->
           <td>{{order.total_Amount >= 0 ? order.total_Amount : '-'}}</td>
           <td>{{order.order_Date ? (order.order_Date | date) : '-'}}</td>
-          <td>{{order.state}}</td>
+          <td>
+            <div class="form-group">
+              <select class="form-control" id="role" [(ngModel)]="order.state" name="role"
+                      (change)="updateOrderStatus(order)" required>
+                <option value="" disabled>Change Order Status</option>
+                <option *ngFor="let orderStatus of orderStatusList" [ngValue]="orderStatus.statusId">{{orderStatus.statusLable}}</option>
+              </select>
+            </div>
+          </td>
 <!--
           <td>
                 <span class="order-action" (click)="editSelectedOrder(order)">

@@ -1,6 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import * as Stomp from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
+import {ToasterNotificationService} from './toaster-notification.service';
 
 @Injectable()
 export class WebSocketService implements OnInit {
@@ -9,19 +10,19 @@ export class WebSocketService implements OnInit {
   private stompClient;
   private orderStatusNotification: any;
 
-  constructor() {}
+  constructor(private toasterNotification: ToasterNotificationService) {}
 
   ngOnInit() {
   }
 
-  connect(orderId) {
+  connect(userId) {
     const socket = new SockJS(this.serverUrl);
     this.stompClient = Stomp.Stomp.over(socket);
 
     const _this = this;
     this.stompClient.connect({}, function (frame) {
        console.log('Connected: ' + frame);
-      _this.stompClient.subscribe('/status-notification/' + orderId, function (message) {
+      _this.stompClient.subscribe('/status-notification/' + userId, function (message) {
          console.log('status-notification subscribed : ' + JSON.parse(message.body));
         _this.showGreeting(JSON.parse(message.body));
       });
@@ -32,13 +33,10 @@ export class WebSocketService implements OnInit {
     if (this.stompClient != null) {
       this.stompClient.disconnect();
     }
-    console.log('Disconnected!');
   }
 
   sendNotification(orderConfirm: any) {
-    console.log('userOrder : ' + JSON.stringify(orderConfirm));
-    orderConfirm.state = 1;
-    this.stompClient.send('/update-order-status/updateStatus/' + orderConfirm.ordid, {}, JSON.stringify(orderConfirm));
+    this.stompClient.send('/update-order-status/updateStatus/' + orderConfirm.uid.uid, {}, JSON.stringify(orderConfirm));
   }
 
   setNotification(order) {
@@ -49,8 +47,9 @@ export class WebSocketService implements OnInit {
     return this.orderStatusNotification;
   }
 
-  showGreeting(message) {
-    console.log('message : ' + JSON.stringify(message));
+  showGreeting(order) {
+    const shoowSuccessMessage = 'Order status updated for ' + order.orderId.aid.analysisname + '. Please refresh page.';
+    this.toasterNotification.showSuccess(shoowSuccessMessage);
   }
 
 }

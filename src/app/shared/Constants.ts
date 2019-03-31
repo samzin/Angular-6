@@ -115,6 +115,7 @@ export class API {
   public static UPDATE_USER_PROFILE = '/authentication/$uid$/userprofile';
   public static OPERATORS_LIST = '/admin/auth/allStaff';
   public static CREATE_OPERATOR = '/admin/auth/register';
+  public static STATUS_LIST = '/admin/orderManagement/statusList';
 }
 
 export class APIResponse {

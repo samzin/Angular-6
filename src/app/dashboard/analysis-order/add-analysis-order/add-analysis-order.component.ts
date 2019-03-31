@@ -42,8 +42,8 @@ export class AddAnalysisOrderComponent {
   }
 
   startWebSocketService(response) {
-    this.websocketService.connect(response.ordid);
-    this.websocketService.setNotification(response);
+    console.log(' Starting websocket Serive : ' + JSON.stringify(response));
+    this.websocketService.connect(response.uid.uid);
   }
 
   createOrderError(error: any) {

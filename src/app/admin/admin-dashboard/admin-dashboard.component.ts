@@ -37,7 +37,7 @@ export class AdminDashboardComponent implements OnInit {
   onGetUsersListSuccess(response) {
     console.log('Success List ' + JSON.stringify(response));
     this.userList = response;
-    this.createWebSocketService(response);
+    // this.createWebSocketService(response);
   }
 
   createWebSocketService(userList) {
@@ -54,7 +54,7 @@ export class AdminDashboardComponent implements OnInit {
     this.websocketService.sendNotification(userOrder);
   }
 
-  navigateToOrderDetails(billNo: string) {
-    this.router.navigateByUrl('/admin/user-order-details/' + billNo);
+  navigateToOrderDetails(billNo: string, uid: number) {
+    this.router.navigateByUrl('/admin/user-order-details/' + billNo + '/' + uid);
   }
 }
