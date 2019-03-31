@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {LoginModel} from '../../shared/models/login.model';
 import {AdminService} from '../admin.service';
 import {Router} from '@angular/router';
+import {AppLoaderService} from '../../common-services/app-loader.service';
+import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -13,25 +15,27 @@ export class AdminLoginComponent implements OnInit {
   adminLogin = new LoginModel();
   submitted = false;
 
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(private adminService: AdminService, private router: Router, private appLoader: AppLoaderService,
+              private toasterNotification: ToasterNotificationService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
+    this.startLoader();
     this.submitted = true;
     this.adminService.adminLogin(this.adminLogin).subscribe(
       res => {
         this.successAdminLogin(res);
       }, error => {
-        this.errorAdminLogin(error);
+        this.errorAdminLogin(error.error);
       }
     );
   }
 
   successAdminLogin(response) {
-    console.log('Admin login success : ' + JSON.stringify(response));
     if (response) {
+      this.stopLoader();
       localStorage.setItem('operator_aid', response.aid.aid);
       localStorage.setItem('adminOperatorId', response.adminOertatorId);
       this.router.navigateByUrl('/admin/dashboard');
@@ -39,10 +43,16 @@ export class AdminLoginComponent implements OnInit {
   }
 
   errorAdminLogin(error) {
-    console.error('Admin login error : ' + JSON.stringify(error));
-    localStorage.setItem('operator_aid', '1');
-    localStorage.setItem('adminOperatorId', '1');
-    this.router.navigateByUrl('/admin/dashboard');
+    this.stopLoader();
+    this.toasterNotification.showError(error.message);
+  }
+
+  startLoader() {
+    this.appLoader.start();
+  }
+
+  stopLoader() {
+    this.appLoader.stop();
   }
 
 }

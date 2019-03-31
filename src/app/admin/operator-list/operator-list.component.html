@@ -1,0 +1,34 @@
+<div class="container">
+
+  <h3>CIF Staff Details</h3>
+
+  <div class="col-md-12">
+    <table class="table table-bordered table-hover table-responsive">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>Role</th>
+          <th>Analysis Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let operator of operatorsList">
+          <td>{{operator.fullName}}</td>
+          <td>{{operator.email}}</td>
+          <td>{{operator.contactNumber}}</td>
+          <td>{{operator.role ? 'Admin' : 'Operator'}}</td>
+          <td>{{operator.aid.analysisname}}</td>
+          <td>
+            <button class="btn btn-danger" disabled>Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="btn btn-primary" data-toggle="modal" data-target="#createOperator">Add Operator</button>
+  <app-create-operator (refreshList)="refreshOperatorsList($event)"></app-create-operator>
+</div>
