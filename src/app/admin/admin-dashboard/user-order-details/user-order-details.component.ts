@@ -4,6 +4,7 @@ import {AdminService} from '../../admin.service';
 import {TaborderModel} from '../../../shared/models/taborder.model';
 import {CIFConstants} from '../../../shared/Constants';
 import {WebSocketService} from '../../../common-services/WebSocket.service';
+import {CommonService} from '../../../common-services/common.service';
 
 @Component({
   selector: 'app-user-order-details',
@@ -16,10 +17,11 @@ export class UserOrderDetailsComponent implements OnInit {
   uid: number;
   tabOrderList: Array<TaborderModel> = new Array<TaborderModel>();
   orderStatusList = [];
+  subscription: any;
   CIFConstants = CIFConstants;
 
   constructor(private route: ActivatedRoute, private router: Router, private adminService: AdminService,
-              private websocketService: WebSocketService) { }
+              private websocketService: WebSocketService, private commonService: CommonService) { }
 
   ngOnInit() {
     this.getOrderStatusList();
@@ -60,7 +62,6 @@ export class UserOrderDetailsComponent implements OnInit {
   }
 
   updateOrderStatus(order) {
-    console.log('Updated Order : ' + JSON.stringify(order));
     this.websocketService.sendNotification(order);
   }
 

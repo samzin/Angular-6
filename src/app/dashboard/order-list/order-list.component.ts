@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {ConfirmOrderModel} from '../../shared/models/confirm-order.model';
 import {WebSocketService} from '../../common-services/WebSocket.service';
 import {UserModel} from '../../shared/models/user.model';
+import {CommonService} from '../../common-services/common.service';
 
 @Component({
   selector : 'app-order-listing',
@@ -21,14 +22,27 @@ export class OrderListComponent implements OnInit {
   selctedOrderModel = new TaborderModel();
   totalOrderAmount = 0;
   disableCheckout = true;
+  subscription : any;
   CIFConstants = CIFConstants;
 
   constructor(private userService: UserService, private toasterNotification: ToasterNotificationService,
-              private appLoader: AppLoaderService, private router: Router, private websocketService: WebSocketService) {
+              private appLoader: AppLoaderService, private router: Router, private websocketService: WebSocketService,
+              private commonService: CommonService) {
   }
 
   ngOnInit(): void {
-    this.getAllOrders();
+    // this.getAllOrders();
+    this.subscribeOrderStatusUpdate();
+  }
+
+  subscribeOrderStatusUpdate() {
+    this.subscription = this.commonService.updateOrderStatusInfo$
+      .subscribe(item => {
+          if (item !== undefined || item !== null) {
+            this.getAllOrders();
+          }
+        }
+      );
   }
 
   getAllOrders() {

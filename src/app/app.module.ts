@@ -43,6 +43,7 @@ import {AddAnalysisOrderComponent} from './dashboard/analysis-order/add-analysis
 import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analysis-order/edit-analysis-order.component';
 import {WebSocketService} from './common-services/WebSocket.service';
 import {AdminModule} from './admin/admin.module';
+import {CommonService} from './common-services/common.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import {AdminModule} from './admin/admin.module';
     AuthGuard,
     UserService,
     ToasterNotificationService,
-    WebSocketService
+    WebSocketService,
+    CommonService
   ],
   bootstrap: [AppComponent]
 })

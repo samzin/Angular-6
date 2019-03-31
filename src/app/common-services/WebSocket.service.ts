@@ -2,15 +2,15 @@ import {Injectable, OnInit} from '@angular/core';
 import * as Stomp from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import {ToasterNotificationService} from './toaster-notification.service';
+import {CommonService} from './common.service';
 
 @Injectable()
 export class WebSocketService implements OnInit {
 
   private serverUrl = 'http://localhost:8080/cif-notify-connection';
   private stompClient;
-  private orderStatusNotification: any;
 
-  constructor(private toasterNotification: ToasterNotificationService) {}
+  constructor(private toasterNotification: ToasterNotificationService, private commonService: CommonService) {}
 
   ngOnInit() {
   }
@@ -36,20 +36,14 @@ export class WebSocketService implements OnInit {
   }
 
   sendNotification(orderConfirm: any) {
-    this.stompClient.send('/update-order-status/updateStatus/' + orderConfirm.uid.uid, {}, JSON.stringify(orderConfirm));
-  }
-
-  setNotification(order) {
-    this.orderStatusNotification = order;
-  }
-
-  getNotification() {
-    return this.orderStatusNotification;
+    const updateOrderStatusAPI = '/update-order-status/updateStatus/' + orderConfirm.uid.uid;
+    this.stompClient.send(updateOrderStatusAPI, {}, JSON.stringify(orderConfirm));
   }
 
   showGreeting(order) {
-    const shoowSuccessMessage = 'Order status updated for ' + order.orderId.aid.analysisname + '. Please refresh page.';
-    this.toasterNotification.showSuccess(shoowSuccessMessage);
+    const showSuccessMessage = 'Order status updated for ' + order.orderId.aid.analysisname + '. Please refresh page.';
+    this.toasterNotification.showSuccess(showSuccessMessage);
+    this.commonService.updateOrderStatusInfo(order);
   }
 
 }
