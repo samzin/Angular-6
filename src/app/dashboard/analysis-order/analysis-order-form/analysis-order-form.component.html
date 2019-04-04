@@ -73,9 +73,10 @@
           </div>
 
           <div class="form-group">
-            <label>Enter Sample Codes</label>
+            <label>Enter Sample Codes <small>( Enter comma separated Sample names )</small></label>
             <tag-input
               [(ngModel)]='sampleCodesList'
+              [separatorKeyCodes]="[188]"
               [maxItems]='selctedNumberOfSamples'
               name="sample_codes"
               (onAdd)="onItemAdded($event)"
@@ -96,6 +97,10 @@
           <div class="form-group" *ngIf="showLiquidNitrogen()">
             <input type="checkbox" id="liquidNitrogen" [(ngModel)]="orderModel.liquidNitrogen" name="liquidNitrogen">
             <label> With Liquid Nitrogen</label>
+          </div>
+
+          <div *ngIf="orderFormNMR.invalid">
+            Form is invalid
           </div>
 
           <button type="submit" value="Confirm" [disabled]="orderFormNMR.invalid" class="btn btn-primary">Confirm</button>
