@@ -44,6 +44,7 @@ import {EditAnalysisOrderComponent} from './dashboard/analysis-order/edit-analys
 import {WebSocketService} from './common-services/WebSocket.service';
 import {AdminModule} from './admin/admin.module';
 import {CommonService} from './common-services/common.service';
+import { AppFooterComponent } from './common-components/app-footer/app-footer.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {CommonService} from './common-services/common.service';
     CheckOutComponent,
     AnalysisOrderFormComponent,
     AddAnalysisOrderComponent,
-    EditAnalysisOrderComponent
+    EditAnalysisOrderComponent,
+    AppFooterComponent
   ],
   imports: [
     BrowserModule,

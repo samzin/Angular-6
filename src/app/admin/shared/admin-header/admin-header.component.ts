@@ -19,8 +19,8 @@ export class AdminHeaderComponent {
   }
 
   hideMenu() {
-    if ($('#demo').hasClass('in')) {
-      $('#demo').removeClass('in');
+    if ($('#admin-header').hasClass('in')) {
+      $('#admin-header').removeClass('in');
     }
   }
 }
