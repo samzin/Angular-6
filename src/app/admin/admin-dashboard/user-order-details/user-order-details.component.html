@@ -1,8 +1,10 @@
 <div class="container-fluid">
   <div class="header-profile-details">
-    Tab Order Details
+    <h4 class="text-center">
+      Tab Order Details
+    </h4>
     <div style="float: right">
-      <button class="btn btn-default" (click)="goToDashboard()">Back</button>
+      <button class="btn btn-info" (click)="goToDashboard()">Back</button>
     </div>
   </div>
   <div class="col-md-12">
@@ -12,6 +14,7 @@
         <thead>
         <tr>
           <!--<th>{{CIFConstants.ORDER_ID}}</th>-->
+          <th>Sr. No.</th>
           <th>{{CIFConstants.ANALYSIS_NAME}}</th>
           <th>{{CIFConstants.SUB_ANALYSIS_NAME}}</th>
           <th>{{CIFConstants.SOLVENT_NAME}}</th>
@@ -30,8 +33,8 @@
         </tr>
         </thead>
         <tbody *ngIf="tabOrderList.length > 0">
-        <tr *ngFor="let order of tabOrderList">
-          <!--<td>{{order.billNo}}</td>-->
+        <tr *ngFor="let order of tabOrderList; let orderIndex = index">
+          <td>{{orderIndex + 1}}</td>
           <td>{{order.aid?.analysisname ? order.aid.analysisname : '-'}}</td>
           <td>{{order.subid?.sub_Analysisname ? order.subid.sub_Analysisname : '-'}}</td>
           <td >{{order.solvent_id?.solventname ? order.solvent_id?.solventname : '-'}}</td>

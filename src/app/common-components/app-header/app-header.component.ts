@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CIFConstants} from '../../shared/Constants';
 import {Router} from '@angular/router';
-import {WebSocketService} from '../../common-services/WebSocket.service';
 declare let $: any;
 
 @Component({
@@ -14,7 +13,7 @@ export class AppHeaderComponent implements OnInit {
 
   appName = CIFConstants.APP_NAME;
 
-  constructor(private router: Router, private webSocketService: WebSocketService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {

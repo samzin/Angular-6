@@ -1,11 +1,13 @@
-<div class="container">
-  <div>
-    Admin Dashboard
+<div class="container-fluid">
+  <div class="bg-header-row text-center">
+    <h4>Welcome Admin</h4>
   </div>
-  <div class="col-md-12">
-    <table class="table table-hover table-striped">
+  <hr>
+  <div class="container">
+    <table class="table table-hover table-striped table-bordered">
       <thead>
         <tr>
+          <th>Sr. No.</th>
           <th>Date</th>
           <th>Name</th>
           <th>Bill No.</th>
@@ -15,7 +17,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of userList">
+        <tr *ngFor="let user of userList; let userIndex = index">
+          <td>{{userIndex + 1}}</td>
           <td>{{user.order_Date}}</td>
           <td>{{user.uid.firstName + " " + user.uid.lastName}}</td>
           <td>{{user.billNo}}</td>

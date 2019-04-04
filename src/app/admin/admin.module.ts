@@ -9,14 +9,18 @@ import { CreateOperatorComponent } from './create-operator/create-operator.compo
 import {RouterModule, Routes} from '@angular/router';
 import { UserOrderDetailsComponent } from './admin-dashboard/user-order-details/user-order-details.component';
 import { OperatorListComponent } from './operator-list/operator-list.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
 const adminRoutes: Routes = [
   {
-    path: 'admin',
-    redirectTo: 'admin/login'
+    path: 'admlogin',
+    redirectTo: '/admlogin'
+  },
+  {
+    path : 'admlogin',
+    component : AdminLoginComponent
   },
   { path: 'admin', component: AdminComponent,
     children : [
-      { path: 'login', component: AdminLoginComponent },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'operators', component: OperatorListComponent },
       { path: 'user-order-details/:billNo/:uid', component: UserOrderDetailsComponent }
@@ -37,7 +41,8 @@ const adminRoutes: Routes = [
     AdminLoginComponent,
     CreateOperatorComponent,
     UserOrderDetailsComponent,
-    OperatorListComponent
+    OperatorListComponent,
+    AdminHeaderComponent
   ]
 })
 export class AdminModule { }
