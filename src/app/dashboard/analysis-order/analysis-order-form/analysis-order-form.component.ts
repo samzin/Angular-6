@@ -69,7 +69,6 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
     this.stopLoader();
     this.analysisList = response;
     if (this.formType === 'Edit') {
-      console.log('Getting subanalysis for ' + this.orderModel.aid.analysisname);
       this.changeAnalysis(this.orderModel.aid);
     }
   }
@@ -80,6 +79,7 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
   }
 
   changeAnalysis(analysisId: AnalysisModel) {
+    this.resetSolventAndSolventProvider();
     const selectedAnalysis = this.analysisList.filter(function (analysis) {
       return analysis.aid === analysisId.aid;
     });
@@ -89,6 +89,14 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
       if (this.orderModel.aid.analysisname === CIFConstants.ANALYSIS_NAME_FOR_SOLVENT) {
         this.getAllSolvents();
       }
+    }
+  }
+
+  resetSolventAndSolventProvider() {
+    if (!this.disableSolventProvider()) {
+      this.orderModel.solvent_provider = '';
+      this.orderModel.solvent_id = new SolventModel();
+      this.orderModel.solvent_Rate = 0;
     }
   }
 
@@ -194,6 +202,13 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
     }
     tabOrder.sample_Code = new_sample_code;
     this.submitEvent.emit(tabOrder);
+    this.resetForm();
+  }
+
+  resetForm() {
+      this.orderModel = new TaborderModel();
+      this.sampleCodesList = [];
+      this.selctedNumberOfSamples = 0;
   }
 
   disableSolventProvider() {
