@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {LoginModel} from '../../shared/models/login.model';
 import {AdminService} from '../admin.service';
 import {Router} from '@angular/router';
@@ -10,7 +10,8 @@ import {ToasterNotificationService} from '../../common-services/toaster-notifica
   templateUrl: './admin-login.component.html',
   styleUrls: ['./admin-login.component.css']
 })
-export class AdminLoginComponent implements OnInit {
+
+export class AdminLoginComponent {
 
   adminLogin = new LoginModel();
   submitted = false;
@@ -19,9 +20,6 @@ export class AdminLoginComponent implements OnInit {
   constructor(private adminService: AdminService, private router: Router,
               private appLoader: AppLoaderService,
               private toasterNotification: ToasterNotificationService) { }
-
-  ngOnInit() {
-  }
 
   onSubmit() {
     this.startLoader();
