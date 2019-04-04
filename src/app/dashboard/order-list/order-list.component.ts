@@ -64,7 +64,7 @@ export class OrderListComponent implements OnInit {
     this.stopLoader();
     this.orderList = response;
     this.calculateTotalOrderAmount(this.orderList);
-    this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
+    // this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
   }
 
   calculateTotalOrderAmount(orderList) {

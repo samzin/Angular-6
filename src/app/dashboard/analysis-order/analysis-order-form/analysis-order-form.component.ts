@@ -25,11 +25,11 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
   solventList = [];
   sampleCodesList = [];
   selctedNumberOfSamples = 0;
-  showSampleLimitErrorMessage = false;
+  errorMessage: string;
+  showErrorMessage = false;
   numberOfSamples = Array(100).fill(null).map( (x, i) => i = i + 1 );
   addSampleCodePlaceholder = 'Add Sample Codes';
   solventProviderList = Constants.SOLVENT_PROVIDER_LIST;
-  sampleLimitErrorMessage = Validation.ERROR_SAMPLE_CODE_VALIDATION;
 
   userId = parseInt(localStorage.getItem('user_id'), 0);
   userTypeId = parseInt(localStorage.getItem('user_type_id'), 0);
@@ -255,6 +255,13 @@ export class AnalysisOrderFormComponent implements OnInit, OnChanges {
   onItemAdded(tag) {
     if (tag.value) {
       this.orderModel.sample_Code = this.orderModel.sample_Code + tag.value + ',';
+      if (this.selctedNumberOfSamples > this.sampleCodesList.length) {
+        this.showErrorMessage = true;
+        this.errorMessage = 'Please enter ' + this.selctedNumberOfSamples + ' sample codes';
+      } else {
+        this.showErrorMessage = false;
+        this.errorMessage = '';
+      }
     }
   }
 

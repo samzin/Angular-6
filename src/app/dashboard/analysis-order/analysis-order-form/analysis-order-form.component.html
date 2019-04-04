@@ -10,7 +10,7 @@
           <div class="form-group">
             <select class="form-control" id="analysis" [(ngModel)]="orderModel.aid.aid"
                     (change)="changeAnalysis(orderModel.aid)" name="analysis" required>
-              <option value="" disabled>Select Analysis</option>
+              <option value="0" disabled>Select Analysis</option>
               <option *ngFor="let analysis of analysisList" [ngValue]="analysis.aid">{{analysis.analysisname}}</option>
             </select>
           </div>
@@ -39,7 +39,7 @@
             <select class="form-control" id="subanlysis" [(ngModel)]="orderModel.subid.subid"
                     [disabled]="(orderModel.aid.aid <= 0)"
                     (change)="changeSubanalysis(orderModel.subid)" name="subanlysis" required>
-              <option value="" disabled>Select Subanalysis</option>
+              <option value="0" disabled>Select Subanalysis</option>
               <option *ngFor="let subanlysis of subAnalysisList" [ngValue]="subanlysis.subid">{{subanlysis.sub_Analysisname}}</option>
             </select>
           </div>
@@ -67,7 +67,7 @@
             <label for="numberOfSamples">No. of Samples</label>
             <select class="form-control"  id="numberOfSamples" required
                     [(ngModel)]="selctedNumberOfSamples" name="numberOfSamples">
-              <option value="" disabled>Select No. of Samples</option>
+              <option value="0" disabled>Select No. of Samples</option>
               <option *ngFor="let x of numberOfSamples" [ngValue]="x">{{x}}</option>
             </select>
           </div>
@@ -99,11 +99,13 @@
             <label> With Liquid Nitrogen</label>
           </div>
 
-          <div *ngIf="orderFormNMR.invalid">
-            Form is invalid
+          <div *ngIf="(orderFormNMR.invalid || showErrorMessage)" class="text-danger">
+            {{errorMessage}}
           </div>
 
-          <button type="submit" value="Confirm" [disabled]="orderFormNMR.invalid" class="btn btn-primary">Confirm</button>
+          <button type="submit" value="Confirm" [disabled]="orderFormNMR.invalid" class="btn btn-primary">
+            {{this.formType === 'Edit' ? 'Update' : 'Add'}}
+          </button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </form>
       </div>
