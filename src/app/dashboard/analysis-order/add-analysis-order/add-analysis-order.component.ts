@@ -42,7 +42,7 @@ export class AddAnalysisOrderComponent {
   }
 
   startWebSocketService(response) {
-    console.log(' Starting websocket Serive : ' + JSON.stringify(response));
+    console.log(' Starting websocket Service : ' + JSON.stringify(response));
     this.websocketService.connect(response.uid.uid);
   }
 

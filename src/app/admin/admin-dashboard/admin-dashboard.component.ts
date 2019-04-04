@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../admin.service';
 import {WebSocketService} from '../../common-services/WebSocket.service';
 import {Router} from '@angular/router';
+import {ToasterNotificationService} from '../../common-services/toaster-notification.service';
+import {AppLoaderService} from '../../common-services/app-loader.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,13 +15,15 @@ export class AdminDashboardComponent implements OnInit {
   userList = [];
 
   constructor(private adminService: AdminService, private websocketService: WebSocketService,
-              private router: Router) { }
+              private router: Router, private toasterNotification: ToasterNotificationService,
+              private appLoader: AppLoaderService) { }
 
   ngOnInit() {
     this.getUserOrdersForOperator();
   }
 
   getUserOrdersForOperator() {
+    this.startLoader();
     const operator_aid = parseInt(localStorage.getItem('operator_aid'), 0);
     const aid = {
       aid : operator_aid
@@ -35,26 +39,24 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   onGetUsersListSuccess(response) {
-    console.log('Success List ' + JSON.stringify(response));
+    this.stopLoader();
     this.userList = response;
-    // this.createWebSocketService(response);
-  }
-
-  createWebSocketService(userList) {
-    for (const user of userList) {
-      this.websocketService.connect(user.ordid);
-    }
   }
 
   onGetUsersListError(err) {
-    console.error('err getting list ' + JSON.stringify(err));
-  }
-
-  approveOrder(userOrder: any) {
-    this.websocketService.sendNotification(userOrder);
+    this.stopLoader();
+    this.toasterNotification.showError(err);
   }
 
   navigateToOrderDetails(billNo: string, uid: number) {
     this.router.navigateByUrl('/admin/user-order-details/' + billNo + '/' + uid);
+  }
+
+  startLoader() {
+    this.appLoader.start();
+  }
+
+  stopLoader() {
+    this.appLoader.stop();
   }
 }

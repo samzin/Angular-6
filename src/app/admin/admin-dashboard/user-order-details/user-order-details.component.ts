@@ -5,6 +5,8 @@ import {TaborderModel} from '../../../shared/models/taborder.model';
 import {CIFConstants} from '../../../shared/Constants';
 import {WebSocketService} from '../../../common-services/WebSocket.service';
 import {CommonService} from '../../../common-services/common.service';
+import {ToasterNotificationService} from '../../../common-services/toaster-notification.service';
+import {AppLoaderService} from '../../../common-services/app-loader.service';
 
 @Component({
   selector: 'app-user-order-details',
@@ -21,7 +23,8 @@ export class UserOrderDetailsComponent implements OnInit {
   CIFConstants = CIFConstants;
 
   constructor(private route: ActivatedRoute, private router: Router, private adminService: AdminService,
-              private websocketService: WebSocketService, private commonService: CommonService) { }
+              private websocketService: WebSocketService, private commonService: CommonService,
+              private appLoader: AppLoaderService, private toasterNotificationService: ToasterNotificationService) { }
 
   ngOnInit() {
     this.getOrderStatusList();
@@ -36,23 +39,29 @@ export class UserOrderDetailsComponent implements OnInit {
   }
 
   getOrderStatusList() {
+    this.startLoader();
     this.adminService.getOrderStatusList().subscribe(
       response => {
+        this.stopLoader();
         this.orderStatusList = response;
       },
       error => {
-        console.error('error : ' + JSON.stringify(error));
+        this.stopLoader();
+        this.toasterNotificationService.showError(error);
       }
     );
   }
 
   getTabOrdersByBillNo(billNo) {
+    this.startLoader();
     this.adminService.getTabOrdersByBillNo(billNo).subscribe(
       response => {
+        this.stopLoader();
         this.tabOrderList = response;
       },
       error => {
-        console.error('error : ' + JSON.stringify(error));
+        this.stopLoader();
+        this.toasterNotificationService.showError(error);
       }
     );
   }
@@ -65,4 +74,11 @@ export class UserOrderDetailsComponent implements OnInit {
     this.websocketService.sendNotification(order);
   }
 
+  startLoader() {
+    this.appLoader.start();
+  }
+
+  stopLoader() {
+    this.appLoader.stop();
+  }
 }
