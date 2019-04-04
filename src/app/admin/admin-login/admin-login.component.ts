@@ -14,8 +14,10 @@ export class AdminLoginComponent implements OnInit {
 
   adminLogin = new LoginModel();
   submitted = false;
+  serverErrorMessages: string;
 
-  constructor(private adminService: AdminService, private router: Router, private appLoader: AppLoaderService,
+  constructor(private adminService: AdminService, private router: Router,
+              private appLoader: AppLoaderService,
               private toasterNotification: ToasterNotificationService) { }
 
   ngOnInit() {
@@ -34,7 +36,9 @@ export class AdminLoginComponent implements OnInit {
   }
 
   successAdminLogin(response) {
-    if (response) {
+    if (response.message) {
+      this.toasterNotification.showError(response.message);
+    } else {
       this.stopLoader();
       localStorage.setItem('operator_aid', response.aid.aid);
       localStorage.setItem('adminOperatorId', response.adminOertatorId);
@@ -44,7 +48,7 @@ export class AdminLoginComponent implements OnInit {
 
   errorAdminLogin(error) {
     this.stopLoader();
-    this.toasterNotification.showError(error.message);
+    this.serverErrorMessages = error.message;
   }
 
   startLoader() {

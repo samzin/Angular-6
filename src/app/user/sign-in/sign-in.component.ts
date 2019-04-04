@@ -58,7 +58,6 @@ export class SignInComponent implements OnInit {
   onLoginError(err) {
     this.stopLoader();
     console.log('Error while login :', JSON.stringify(err));
-    this.toasterNotification.showError(APIResponse.ERROR_LOGIN);
     this.serverErrorMessages = err.error.message;
   }
 
