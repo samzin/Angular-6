@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://13.127.203.63:8080/cif'
+  apiBaseUrl: 'http://localhost:8080/cif',
+  websocketUrl: 'http://localhost:8080/'
 };
 
 /*

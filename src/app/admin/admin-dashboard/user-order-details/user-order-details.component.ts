@@ -16,7 +16,7 @@ import {AppLoaderService} from '../../../common-services/app-loader.service';
 export class UserOrderDetailsComponent implements OnInit {
 
   billNo: string;
-  uid: number;
+  aid: number;
   tabOrderList: Array<TaborderModel> = new Array<TaborderModel>();
   orderStatusList = [];
   subscription: any;
@@ -30,10 +30,10 @@ export class UserOrderDetailsComponent implements OnInit {
     this.getOrderStatusList();
     this.route.params.subscribe(params => {
       this.billNo = params['billNo'];
-      this.uid = params['billNo'];
+      this.aid = params['aid'];
       if (this.billNo) {
         this.getTabOrdersByBillNo(this.billNo);
-        this.websocketService.connect(this.uid);
+        this.websocketService.connectToOperator(this.aid);
       }
     });
   }
@@ -71,7 +71,7 @@ export class UserOrderDetailsComponent implements OnInit {
   }
 
   updateOrderStatus(order) {
-    this.websocketService.sendNotification(order);
+    this.websocketService.sendNotificationToUser(order);
   }
 
   startLoader() {

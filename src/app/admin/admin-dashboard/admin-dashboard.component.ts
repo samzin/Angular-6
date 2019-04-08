@@ -48,8 +48,8 @@ export class AdminDashboardComponent implements OnInit {
     this.toasterNotification.showError(err);
   }
 
-  navigateToOrderDetails(billNo: string, uid: number) {
-    this.router.navigateByUrl('/admin/user-order-details/' + billNo + '/' + uid);
+  navigateToOrderDetails(billNo: string, aid: number) {
+    this.router.navigateByUrl('/admin/user-order-details/' + billNo + '/' + aid);
   }
 
   startLoader() {

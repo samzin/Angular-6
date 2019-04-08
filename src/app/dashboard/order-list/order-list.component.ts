@@ -128,14 +128,14 @@ export class OrderListComponent implements OnInit {
   }
 
   approveOrder() {
-    const userM = new UserModel();
+    /*const userM = new UserModel();
     userM.uid = parseInt(localStorage.getItem('user_id'), 0);
     const statusUpdateObject = {
       uid : userM,
       billNo : localStorage.getItem('bill_no'),
       statusId : 1
     };
-    this.websocketService.sendNotification(statusUpdateObject);
+    // this.websocketService.sendNotification(statusUpdateObject);*/
   }
 
   successConfirmOrder(response) {
