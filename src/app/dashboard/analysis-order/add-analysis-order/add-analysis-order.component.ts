@@ -43,7 +43,6 @@ export class AddAnalysisOrderComponent {
 
   startWebSocketService(response) {
     console.log('Starting websocket Service : ' + JSON.stringify(response));
-    this.websocketService.connectToUser(response.uid.uid);
     this.websocketService.sendNotificationToOperator(response);
   }
 

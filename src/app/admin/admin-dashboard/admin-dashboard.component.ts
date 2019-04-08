@@ -20,6 +20,8 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getUserOrdersForOperator();
+    const operatorAid = parseInt(localStorage.getItem('operator_aid'), 0);
+    this.websocketService.connectToOperator(operatorAid);
   }
 
   getUserOrdersForOperator() {

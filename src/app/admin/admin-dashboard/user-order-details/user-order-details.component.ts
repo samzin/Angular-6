@@ -33,7 +33,6 @@ export class UserOrderDetailsComponent implements OnInit {
       this.aid = params['aid'];
       if (this.billNo) {
         this.getTabOrdersByBillNo(this.billNo);
-        this.websocketService.connectToOperator(this.aid);
       }
     });
   }

@@ -31,7 +31,8 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getAllOrders();
+    const uid = parseInt(localStorage.getItem('user_id'), 0);
+    this.websocketService.connectToUser(uid);
     this.subscribeOrderStatusUpdate();
   }
 
