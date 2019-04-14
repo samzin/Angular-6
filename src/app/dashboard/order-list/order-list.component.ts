@@ -31,8 +31,7 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const uid = parseInt(localStorage.getItem('user_id'), 0);
-    this.websocketService.connectToUser(uid);
+    this.websocketService.connectToUser();
     this.subscribeOrderStatusUpdate();
   }
 
@@ -65,6 +64,8 @@ export class OrderListComponent implements OnInit {
     this.stopLoader();
     this.orderList = response;
     this.calculateTotalOrderAmount(this.orderList);
+    const uid = parseInt(localStorage.getItem('user_id'), 0);
+    this.websocketService.subscribeToUser(uid);
     // this.toasterNotification.showSuccess(APIResponse.SUCCESS_GETTING_ORDERS);
   }
 

@@ -11,37 +11,35 @@ export class WebSocketService implements OnInit {
   private serverUrl = environment.websocketUrl + 'cif-notify-connection';
   private stompClient;
 
-  constructor(private toasterNotification: ToasterNotificationService, private commonService: CommonService) {}
+  constructor(private toasterNotification: ToasterNotificationService, private commonService: CommonService) {
+    const socket = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.Stomp.over(socket);
+  }
 
   ngOnInit() {
   }
 
-  connectToUser(userId) {
-    const socket = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.Stomp.over(socket);
-
-    const _this = this;
+  connectToUser() {
     this.stompClient.connect({}, function (frame) {
        console.log('connect To User: ' + frame);
-      _this.stompClient.subscribe('/user-notification/' + userId, function (message) {
-         console.log('user-notification subscribed : ' + JSON.parse(message.body));
-        _this.showGreeting(JSON.parse(message.body));
-      });
     });
+  }
+
+  subscribeToUser(userId) {
+    this.stompClient.subscribe('/user-notification/' + userId, function (message) {
+      console.log('user-notification subscribed : ' + JSON.stringify(message.body));
+      // alert(JSON.stringify(message.body));
+     /// this.WebSocketService.showGreeting(JSON.parse(message.body));
+  });
   }
 
   connectToOperator(operatorId) {
-    const socket = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.Stomp.over(socket);
-    const _this = this;
-    this.stompClient.connect({}, function (frame) {
-      console.log('connectToOperator: ' + frame);
-      _this.stompClient.subscribe('/operator-notification/' + operatorId, function (message) {
-        console.log('operator-notification subscribed : ' + JSON.parse(message.body));
-        _this.showGreeting(JSON.parse(message.body));
-      });
+    this.stompClient.subscribe('/operator-notification/' + operatorId, function (message) {
+      console.log('operator-notification subscribed : ' + JSON.stringify(message.body));
+      // alert(JSON.stringify(message.body));
+      //this.WebSocketService.showGreeting(JSON.parse(message.body));
     });
-  }
+}
 
   disconnect() {
     if (this.stompClient != null) {

@@ -16,12 +16,12 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(private adminService: AdminService, private websocketService: WebSocketService,
               private router: Router, private toasterNotification: ToasterNotificationService,
-              private appLoader: AppLoaderService) { }
+              private appLoader: AppLoaderService) {
+               }
 
   ngOnInit() {
+    this.websocketService.connectToUser();
     this.getUserOrdersForOperator();
-    const operatorAid = parseInt(localStorage.getItem('operator_aid'), 0);
-    this.websocketService.connectToOperator(operatorAid);
   }
 
   getUserOrdersForOperator() {
@@ -42,6 +42,8 @@ export class AdminDashboardComponent implements OnInit {
 
   onGetUsersListSuccess(response) {
     this.stopLoader();
+    const operatorAid = parseInt(localStorage.getItem('operator_aid'), 0);
+    this.websocketService.connectToOperator(operatorAid);
     this.userList = response;
   }
 
